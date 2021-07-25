@@ -88,7 +88,6 @@ async def help(client: Client, message: Message):
 /current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
 /song (judul lagu) - Untuk Mendownload lagu dari YouTube 
 /search (judul video) - Untuk Mencari Video di YouTube dengan detail
-/video (judul video) - Untuk Mendownload Video di YouTube dengan detail
 \n**Hanya Admin:**
 /player - Buka panel pengaturan pemutar musik
 /pause - Untuk Menjeda pemutaran Lagu
@@ -123,7 +122,6 @@ async def help(client: Client, message: Message):
 /current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
 /song (judul lagu) - Untuk Mendownload lagu dari YouTube 
 /search (judul video) - Untuk Mencari Video di YouTube dengan detail
-/video (judul video) - Untuk Mendownload Video di YouTube dengan detail
 \n**Hanya Admin:**
 /player - Buka panel pengaturan pemutar musik
 /pause - Untuk Menjeda pemutaran Lagu
