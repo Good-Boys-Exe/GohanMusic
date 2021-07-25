@@ -27,7 +27,7 @@ def song(client, message):
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     query = "".join(" " + str(i) for i in message.command[1:])
     print(query)
-    m = message.reply(f"**🔎 Mencari Lagu Yang Diminta Oleh:** {rpk}")
+    m = message.reply(f"**🔎 Mencari Lagu Yang Diminta Oleh** {rpk}")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
