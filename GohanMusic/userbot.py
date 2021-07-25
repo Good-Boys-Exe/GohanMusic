@@ -21,7 +21,7 @@ from pyrogram.types import Message
 from GohanMusic.play import arq
 from config import SUDO_USERS
 from helpers.misc import exec_time
-from callsmusic.callsmusic import client as tede
+from callsmusic.callsmusic import client as gohan
 # Eval and Sh module from nana-remix
 
 m = None
@@ -45,7 +45,7 @@ async def edit_or_reply(msg: Message, **kwargs):
     await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
-@tede.on_message(
+@gohan.on_message(
     filters.user(SUDO_USERS)
     & ~filters.forwarded
     & ~filters.via_bot
@@ -100,7 +100,7 @@ async def executor(client, message: Message):
         await edit_or_reply(message, text=final_output)
 
 
-@tede.on_message(
+@gohan.on_message(
     filters.user(SUDO_USERS)
     & ~filters.forwarded
     & ~filters.via_bot
@@ -193,7 +193,7 @@ async def sendFile(message: Message, text: str):
     os.remove(file)
 
 
-@tede.on_message(
+@gohan.on_message(
     filters.command(["c", "cpp"], prefixes=".")
     & ~filters.edited
     & ~filters.via_bot
