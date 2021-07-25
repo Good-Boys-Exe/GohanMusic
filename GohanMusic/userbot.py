@@ -18,7 +18,7 @@ import aiofiles
 from pyrogram import filters
 from pyrogram.types import Message
 
-from handlers.play import arq
+from GohanMusic.play import arq
 from config import SUDO_USERS
 from helpers.misc import exec_time
 from callsmusic.callsmusic import client as tede
