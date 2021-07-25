@@ -348,7 +348,7 @@ async def m_cb(b, cb):
 @Client.on_message(command(["play", f"play@{BOT_USERNAME}"]) & other_filters)
 async def play(_, message: Message):
     global que
-    lel = await message.reply(f"**🔎 Mencari Lagu Yang Diminta Oleh {rpk}**")
+    lel = await message.reply(f"**🔎 Mencari Lagu Yang Diminta Oleh** {rpk}")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
