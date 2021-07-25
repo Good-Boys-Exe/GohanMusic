@@ -53,7 +53,8 @@ def song(client, message):
             ydl.process_info(info_dict)
         rep = f"""
 **🏷 Nama Lagu:** [{title}]({link})
-**🎵 Diunggah Oleh;** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**⏱️ Durasi Lagu:** {duration}
+**🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 **🎧 Permintaan Dari:** {rpk}
 """
         secmul, dur, dur_arr = 1, 0, duration.split(":")
