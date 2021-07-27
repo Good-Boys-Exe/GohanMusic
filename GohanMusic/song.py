@@ -54,7 +54,7 @@ def song(client, message):
         rep = f"""
 **🏷 Nama Lagu:** [{title}]({link})
 **⏱️ Durasi Lagu:** {duration}
-**👁️‍🗨️ Dilihat Oleh:** {views}
+**👁️‍🗨️ Dilihat Oleh:** {results[0]['views']}
 **🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 **🎧 Permintaan Dari:** {rpk}
 """
