@@ -90,9 +90,9 @@ async def help(client: Client, message: Message):
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
 async def help(client: Client, message: Message):
     await message.reply_photo(
+    await message.reply_photo(
        photo = f"{START_IMAGE}",
-    await message.reply_text(
-        f"""<b>Hallo {message.from_user.mention}
+       caption = f"""<b>Hallo {message.from_user.mention}
 \n**Untuk Semua**
 /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 /playlist - Untuk Menampilkan daftar putar Lagu sekarang
