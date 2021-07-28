@@ -15,6 +15,11 @@
           "required": false,
           "value": ""
         },
+        "START_IMAGE": {
+          "description": "Masukan link gambar anda yang di upload ke telegra.ph [skip ini jika Anda tidak punya]",
+          "required": false,
+          "value": ""
+        },
         "SUPPORT_GROUP": {
           "description": "Grup dukungan MusicPlayer Anda Tanpa Menggunakan ==> @ <== [skip ini jika Anda tidak punya]",
           "required": false,
