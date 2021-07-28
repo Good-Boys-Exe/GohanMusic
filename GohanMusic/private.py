@@ -1,6 +1,6 @@
 from time import time
 from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, STICKER_ID, OWNER
+from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, START_IMAGE, OWNER
 from helpers.filters import command
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -31,7 +31,8 @@ async def _human_time_duration(seconds):
 
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
-    await message.reply_sticker(f"{STICKER_ID}")
+    tunggu pesan.reply_sticker(f"{STICKER_ID}")await message.reply_photo(
+       photo = f"{START_IMAGE}",
     await message.reply_text(
         f"""<b>Hallo {message.from_user.mention} Nama saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})\n
 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram\n
@@ -47,7 +48,7 @@ Ketik » /help « Untuk Melihat Daftar Perintah Saya!
                          "🙎🏻‍♂ ᴀssɪsᴛᴀɴᴛ", url=f"https://t.me/{ASSISTANT_NAME}"
                     ),
                     InlineKeyboardButton(
-                        "ᴏᴡɴᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
+                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
                     )
                 ]
             ]
@@ -61,6 +62,8 @@ async def start(client: Client, message: Message):
     current_time = datetime.utcnow()
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
+    await message.reply_photo(
+       photo = f"{START_IMAGE}",
     await message.reply_text(
         f"""Saya Sedang Online!\n<b>Waktu Online:</b> `{uptime}`""",
         reply_markup=InlineKeyboardMarkup(
@@ -80,6 +83,8 @@ async def start(client: Client, message: Message):
 
 @Client.on_message(command("help") & filters.private & ~filters.edited)
 async def help(client: Client, message: Message):
+    await message.reply_photo(
+       photo = f"{START_IMAGE}",
     await message.reply_text(
         f"""<b>Hallo {message.from_user.mention}
 \n**Untuk Semua**
@@ -101,10 +106,10 @@ async def help(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 ɢʀᴏᴜᴘ", url=f"https://t.me/{SUPPORT_GROUP}"
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
                     ),
                     InlineKeyboardButton(
-                        "ᴏᴡɴᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
+                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
                     )
                 ]
             ]
@@ -114,6 +119,8 @@ async def help(client: Client, message: Message):
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
 async def help(client: Client, message: Message):
+    await message.reply_photo(
+       photo = f"{START_IMAGE}",
     await message.reply_text(
         f"""<b>Hallo {message.from_user.mention}
 \n**Untuk Semua**
@@ -135,10 +142,10 @@ async def help(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 ɢʀᴏᴜᴘ", url=f"https://t.me/{SUPPORT_GROUP}"
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
                     ),
                     InlineKeyboardButton(
-                        "ᴏᴡɴᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
+                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
                     )
                 ]
             ]
