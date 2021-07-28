@@ -14,6 +14,7 @@ ASSISTANT_NAME = getenv("ASSISTANT_NAME")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "GroupMusicRandom")
 OWNER = getenv("OWNER", "GB_03101999")
 STICKER_ID = getenv("STICKER_ID", "CAACAgUAAxkBAAFF-Bdg-i8JvMgppo9DCVkFV9pPVSprzgACdwIAAsgM0VdqqiQQ6Hdw7CAE")
+START_IMAGE = getenv("START_IMAGE", "https://telegra.ph/file/6b14ab68ab3dfd4200ca5.jpg.
 
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 
