@@ -32,25 +32,6 @@ Ketik » /help « Untuk Melihat Daftar Perintah Saya!
         )
     )
 
-@Client.on_message(command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
-async def start(client: Client, message: Message):
-    await message.reply_photo(
-       photo = f"{START_IMAGE}",
-       caption ="Saya Sedang Online",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🧑🏻‍💻 ᴏᴡɴᴇʀ", url=f"https://t.me/{OWNER}"
-                    ),
-                    InlineKeyboardButton(
-                        "ɢʀᴏᴜᴘ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
-                ]
-            ]
-        )
-    )
-
 
 @Client.on_message(command("help") & filters.private & ~filters.edited)
 async def help(client: Client, message: Message):
