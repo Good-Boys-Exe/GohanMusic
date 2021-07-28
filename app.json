@@ -13,12 +13,12 @@
         "OWNER": {
           "description": "Masukan Username Telegram Anda Tanpa ==> @ <== [skip ini jika Anda tidak punya]",
           "required": false,
-          "value": "GB_03101999"
+          "value": ""
         },
         "SUPPORT_GROUP": {
           "description": "Grup dukungan MusicPlayer Anda Tanpa Menggunakan ==> @ <== [skip ini jika Anda tidak punya]",
           "required": false,
-          "value": "GroupMusicRandom"
+          "value": ""
         },
         "BOT_TOKEN": {
             "description": "Masukan Bot Token dari @BotFather",
