@@ -44,11 +44,6 @@
             "description": "Masukan API HASH Silahkan Ambil dari my.telegram.org/apps",
             "required": true
         },
-        "STICKER_ID": {
-          "description": "Masukan Id Sticker Yang Anda Inginkan [skip ini jika Anda tidak punya]",
-          "required": false,
-          "value": "CAACAgUAAxkBAAFF-Bdg-i8JvMgppo9DCVkFV9pPVSprzgACdwIAAsgM0VdqqiQQ6Hdw7CAE"
-        },
         "SUDO_USERS": {
             "description": "Daftar User ID pengguna dihitung sebagai admin di semua tempat (pemisah menggunakan space)",
             "required": true
