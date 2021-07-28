@@ -148,17 +148,6 @@ async def help(client: Client, message: Message):
     )
 
 
-@Client.on_message(command(["ping", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
-async def ping_pong(client: Client, m: Message):
-    start = time()
-    m_reply = await m.reply_text("Pinging...")
-    delta_ping = time() - start
-    await m_reply.edit_text(
-        f"{emoji.PING_PONG} **PONG!!**\n"
-        f"`{delta_ping * 1000:.3f} ms`"
-    )
-
-
 @Client.on_message(command(["uptime", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
 async def get_uptime(client: Client, m: Message):
     current_time = datetime.utcnow()
