@@ -29,7 +29,8 @@ Ketik » /help « Untuk Melihat Daftar Perintah Saya!
                     )
                 ]
             ]
-
+        )
+    )
 
 @Client.on_message(command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def start(client: Client, message: Message):
