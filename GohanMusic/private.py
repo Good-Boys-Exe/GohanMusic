@@ -81,8 +81,6 @@ async def start(client: Client, message: Message):
 
 @Client.on_message(command("help") & filters.private & ~filters.edited)
 async def help(client: Client, message: Message):
-    await message.reply_photo(
-       photo = f"{START_IMAGE}",
     await message.reply_text(
         f"""<b>Hallo {message.from_user.mention}
 \n**Untuk Semua**
