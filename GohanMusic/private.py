@@ -31,7 +31,7 @@ async def _human_time_duration(seconds):
 
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
-    tunggu pesan.reply_sticker(f"{STICKER_ID}")await message.reply_photo(
+    await message.reply_photo(
        photo = f"{START_IMAGE}",
     await message.reply_text(
         f"""<b>Hallo {message.from_user.mention} Nama saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})\n
