@@ -113,6 +113,20 @@ async def playlist(client, message):
             msg += f"\n• Permintaan {usr}\n"
     await message.reply_text(msg)       
     
+        reply_markup=InlineKeyboardMarkup(
+            [ 
+                [
+                    InlineKeyboardButton(
+                         "🙎🏻‍♂ ᴀssɪsᴛᴀɴᴛ", url=f"https://t.me/{ASSISTANT_NAME}"
+                    ),
+                    InlineKeyboardButton(
+                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
+                    )
+                ]
+            ]
+        )
+    )
+
 # ============================= Settings =========================================
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.pytgcalls.active_calls:
