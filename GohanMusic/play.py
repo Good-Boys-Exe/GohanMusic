@@ -219,7 +219,15 @@ async def p_cb(b, cb):
                  usr = song[1].mention(style="md")
                  msg += f"\n• {name}"
                  msg += f"\n• Permintaan {usr}\n"
-        await cb.message.edit(msg)      
+    else:
+        msg = None
+    return stats
+
+def r_ply(type_):
+    if type_ == "play":
+        pass
+    else:
+        pass
         marr=InlineKeyboardMarkup(
             [
                 [
