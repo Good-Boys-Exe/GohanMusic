@@ -389,7 +389,7 @@ async def play(_, message: Message):
         chatdetails = await USER.get_chat(chid)
     except:
         await lel.edit(
-            f"<b>{user.first_name} terkena banned dari Group ini, Minta admin untuk kirim perintah `/unban @{user.username}` kemudian kirim perintah `/userbotjoin` untuk mengundang assistant ke dalam grup anda</b>"
+            f"<b>{user.first_name}\nterkena banned dari Group ini, Minta admin untuk kirim perintah `/unban @{user.username}` di grup ini kemudian kirim perintah `/userbotjoin` di grup ini untuk mengundang assistant ke dalam grup anda</b>"
         )
         return     
     sender_id = message.from_user.id
@@ -405,7 +405,7 @@ async def play(_, message: Message):
         query += " " + str(i)
     print(query)
     await lel.edit(f"**🔄 Sedang Memproses Lagu**")
-    ydl_opts = {"format": "bestaudio[ext=m4a]"}
+    ydl_opts = {"format": "bestaudio/best",}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         url = f"https://www.youtube.com{results[0]['url_suffix']}"
@@ -419,7 +419,7 @@ async def play(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
-        await lel.edit("**❌ Lagu tidak ditemukan.**\nCoba masukan judul lagu yang lebih jelas")
+        await lel.edit("**❌ Lagu tidak ditemukan ❌**\nCoba masukan judul lagu yang lebih jelas")
         print(str(e))
         return
     try:    
@@ -428,7 +428,7 @@ async def play(_, message: Message):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await lel.edit(f"❌ **Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar! Lagu yang di minta berdurasi `{duration}` menit**")
+             await lel.edit(f"**❌ Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!\n🎧 Lagu yang di minta berdurasi `{duration}` menit**")
              return
     except:
         pass
@@ -438,10 +438,11 @@ async def play(_, message: Message):
             [
                 [
                  InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
-                 InlineKeyboardButton("ɢʀᴏᴜᴘ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
+                 InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
                 ],
-                [InlineKeyboardButton("📥 ᴅᴏᴡɴʟᴏᴀᴅ", url=f"{durl}"),
-                 InlineKeyboardButton(text="ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
+                [InlineKeyboardButton("📥 ᴅᴏᴡɴʟᴏᴀᴅ 📥", url=f"{durl}")
+                ],
+                [InlineKeyboardButton(text="🗑️ ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
             ]
         )
     requested_by = message.from_user.first_name
