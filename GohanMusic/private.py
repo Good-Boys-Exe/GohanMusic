@@ -22,11 +22,12 @@ Ketik » /help « Untuk Melihat Daftar Perintah Saya!
                         "➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                   ],[
                     InlineKeyboardButton(
-                         "🙎🏻‍♂ ᴀssɪsᴛᴀɴᴛ", url=f"https://t.me/{ASSISTANT_NAME}"
-                    ),
+                         "🙎🏻‍♂ ᴀssɪsᴛᴀɴᴛ", url=f"https://t.me/{ASSISTANT_NAME}"),
                     InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
-                    )
+                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
+                  ],[
+                    InlineKeyboardButton(
+                         "🛠 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🛠", url="https://github.com/Good-Boys-Exe/GohanMusic")
                 ]
             ]
         )
