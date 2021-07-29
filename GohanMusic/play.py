@@ -178,6 +178,7 @@ async def settings(client, message):
 
 
 @Client.on_callback_query(filters.regex(pattern=r"^(playlist)$"))
+@cb_admin_check
 async def p_cb(b, cb):
     global que    
     qeue = que.get(cb.message.chat.id)
