@@ -15,7 +15,7 @@ from callsmusic.callsmusic import client as USER
 from pyrogram.errors import UserAlreadyParticipant
 from downloaders import youtube
 
-from config import que, DURATION_LIMIT, SUPPORT_GROUP, BOT_USERNAME
+from config import que, DURATION_LIMIT, SUPPORT_GROUP, BOT_USERNAME, ARQ_API_KEY as aak
 from helpers.filters import command, other_filters
 from helpers.decorators import authorized_users_only
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -23,7 +23,7 @@ from cache.admins import admins as a
 from PIL import Image, ImageFont, ImageDraw
 chat_id = None
 
-ARQ_API_KEY = "YPHODY-ZLSHSE-UBBIQA-YFLDKM-ARQ"
+ARQ_API_KEY = f"{aak}"
 aiohttpsession = aiohttp.ClientSession()
 arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
 
