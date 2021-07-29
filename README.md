@@ -11,29 +11,14 @@ Dapatkan STRING SESSION klik tombol dibawah untuk mendapatkan string (P)
 
 ### Temukan saya di telegram: [@GohanMusicRobot](t.me/GohanMusicRobot)
 
-### Mandatory Vars.
-
-- Beberapa Vars Wajib Adalah :-
-   - `API_ID` :  Berikan API_ID Akun Telegram Alternatif Anda. juga dapatkan dari sini https://my.telegram.org
-   - `API_HASH` :  Give API_HASH of your Alternate Telegram Account. also get from here https://my.telegram.org
-   - `STRING_NAME` :  Buat sesi string dari [klik sini](https://replit.com/@GoodBoysExe/string-session?lite=1&outputonly=1)
-   - `BOT_TOKEN` :  Buat Bot dari [@Botfather](https://t.me/botfather) dan isi token botnya.
-   - `SUDO_USERS` :  Isi User Id dari pengguna yang Anda inginkan untuk dapat mengontrol bot. Anda dapat menambahkan beberapa id dengan memberikan spasi di b/w setiap id.
-
-
-
-
-
-
-
-### Perintah untuk semua anggota grup
+### Perintah semua anggota grup
 - `/play <song name>` - mainkan lagu kamu 
 - `/playlist` - Tampilkan daftar putar sekarang
 - `/current` - Tampilkan sekarang sedang diputar
 - `/song <song name>` - unduh lagu yang Anda inginkan dengan cepat
 - `/search <query>` - cari video di youtube dengan detail
 
-### Perintah untuk semua admin grup
+### Perintah semua admin grup
 - `/player` - buka panel pengaturan pemutar musik
 - `/pause` - jeda lagu 
 - `/resume` - melanjutkan pemutaran lagu
