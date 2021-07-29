@@ -220,6 +220,19 @@ async def p_cb(b, cb):
                  msg += f"\n• {name}"
                  msg += f"\n• Permintaan {usr}\n"
         await cb.message.edit(msg)      
+        marr=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton(
+                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
+                    )
+                ]
+            ]
+        )
+    return mar
 
 
 @Client.on_callback_query(filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$"))
@@ -291,7 +304,7 @@ async def m_cb(b, cb):
                 ]
             ]
         )
-    return mar
+        await cb.message.edit(stats, reply_markup=marr)
 
                       
     elif type_ == "resume":     
