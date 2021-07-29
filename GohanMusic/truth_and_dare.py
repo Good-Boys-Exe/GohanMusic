@@ -1,5 +1,5 @@
 import requests
-from GohanMusic.events import register
+from events import register
 
 
 @register(pattern="^/truth ?(.*)")
