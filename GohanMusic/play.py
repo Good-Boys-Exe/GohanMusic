@@ -124,7 +124,7 @@ async def playlist(client, message):
                 ]
             ]
         )
-    )
+    return mar
 
 # ============================= Settings =========================================
 def updated_stats(chat, queue, vol=100):
@@ -291,7 +291,7 @@ async def m_cb(b, cb):
                 ]
             ]
         )
-    )
+    return mar
 
                       
     elif type_ == "resume":     
