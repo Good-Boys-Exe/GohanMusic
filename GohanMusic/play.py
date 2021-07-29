@@ -221,7 +221,7 @@ async def p_cb(b, cb):
                  msg += f"\n• Permintaan {usr}\n"
     else:
         msg = None
-    return stats
+    return msg
 
 def r_ply(type_):
     if type_ == "play":
