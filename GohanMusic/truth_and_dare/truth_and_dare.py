@@ -1,5 +1,5 @@
 import requests
-from events import register
+from truth_and_dare.events import register
 
 
 @register(pattern="^/truth ?(.*)")
