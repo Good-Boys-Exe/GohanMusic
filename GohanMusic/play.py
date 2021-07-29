@@ -381,7 +381,7 @@ async def play(_, message: Message):
                               pass
                           except Exception as e:
                               await lel.edit(
-                                  f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam group."
+                                  f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk assistant! Pastikan assistan tidak dibanned didalam grup."
                         f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>",
                               )
                               pass
@@ -389,7 +389,7 @@ async def play(_, message: Message):
         chatdetails = await USER.get_chat(chid)
     except:
         await lel.edit(
-            f"<b>{user.first_name} terkena banned dari Group ini, Minta admin untuk unban @{user.username} secara manual, Lalu coba play lagi.</b>"
+            f"<b>{user.first_name} terkena banned dari Group ini, Minta admin untuk kirim perintah `/unban @{user.username}` kemudian kirim perintah `/userbotjoin` untuk mengundang assistant ke dalam grup anda</b>"
         )
         return     
     sender_id = message.from_user.id
@@ -419,7 +419,7 @@ async def play(_, message: Message):
         views = results[0]["views"]
 
     except Exception as e:
-        await lel.edit("**Lagu tidak ditemukan.** Coba cari dengan judul lagu yang lebih jelas")
+        await lel.edit("**❌ Lagu tidak ditemukan.**\nCoba masukan judul lagu yang lebih jelas")
         print(str(e))
         return
     try:    
@@ -428,7 +428,7 @@ async def play(_, message: Message):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await lel.edit(f"❌ **Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!**")
+             await lel.edit(f"❌ **Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar! Lagu yang di minta berdurasi `{duration}` menit**")
              return
     except:
         pass
@@ -475,7 +475,7 @@ async def play(_, message: Message):
         callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
         await message.reply_photo(
         photo = "final.png",
-        caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** `{duration}`\n💡 **Status:** `Sedang Memutar`\n" \
+        caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** `{duration}`\n💡 **Status:** `Memutar`\n" \
                 + f"🎧 **Permintaan:** {message.from_user.mention}",
         reply_markup = keyboard
         )
