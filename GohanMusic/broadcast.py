@@ -23,8 +23,8 @@ async def broadcast(_, message: Message):
             try:
                 await USER.send_message(dialog.chat.id, lmao)
                 sent = sent+1
-                await wtf.edit(f"`Broadcasting...` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dalam:** {failed} Obrolan")
+                await wtf.edit(f"`Broadcasting...` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dikirim:** {failed} Obrolan")
                 await asyncio.sleep(3)
             except:
                 failed=failed+1
-                await message.reply_text(f"`Broadcast Selesai` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dalam:** {failed} Obrolan")
+                await message.reply_text(f"`Broadcast Selesai` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dikirim:** {failed} Obrolan")
