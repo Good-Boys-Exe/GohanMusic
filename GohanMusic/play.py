@@ -15,7 +15,7 @@ from callsmusic.callsmusic import client as USER
 from pyrogram.errors import UserAlreadyParticipant
 from downloaders import youtube
 
-from config import que, DURATION_LIMIT, SUPPORT_GROUP, OWNER, BOT_USERNAME
+from config import que, DURATION_LIMIT, SUPPORT_GROUP, BOT_USERNAME
 from helpers.filters import command, other_filters
 from helpers.decorators import authorized_users_only
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -76,7 +76,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
                 await f.write(await resp.read())
                 await f.close()
     image1 = Image.open("./background.png")
-    image2 = Image.open("Gohan/ImgPhoto.png")
+    image2 = Image.open("etc/foreground.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
@@ -111,21 +111,8 @@ async def playlist(client, message):
             usr = song[1].mention(style="md")
             msg += f"\n• {name}"
             msg += f"\n• Permintaan {usr}\n"
-    await message.reply_text(msg)           
-    marr=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
-                    ),
-                    InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
-                    )
-                ]
-            ]
-        )
-    return mar
-
+    await message.reply_text(msg)       
+    
 # ============================= Settings =========================================
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.pytgcalls.active_calls:
@@ -219,28 +206,7 @@ async def p_cb(b, cb):
                  usr = song[1].mention(style="md")
                  msg += f"\n• {name}"
                  msg += f"\n• Permintaan {usr}\n"
-    else:
-        msg = None
-    return msg
-
-def r_ply(type_):
-    if type_ == "play":
-        pass
-    else:
-        pass
-        marr=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
-                    ),
-                    InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
-                    )
-                ]
-            ]
-        )
-    return mar
+        await cb.message.edit(msg)      
 
 
 @Client.on_callback_query(filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$"))
@@ -300,20 +266,6 @@ async def m_cb(b, cb):
                  msg += f"\n• {name}"
                  msg += f"\n• Permintaan {usr}\n"
         await cb.message.edit(msg)      
-        marr=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
-                    ),
-                    InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"
-                    )
-                ]
-            ]
-        )
-        await cb.message.edit(stats, reply_markup=marr)
-
                       
     elif type_ == "resume":     
         if (
@@ -485,10 +437,11 @@ async def play(_, message: Message):
     keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
-                    InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
+                 InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
+                 InlineKeyboardButton("ɢʀᴏᴜᴘ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
                 ],
-                [InlineKeyboardButton(text="🗑️ ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
+                [InlineKeyboardButton("📥 ᴅᴏᴡɴʟᴏᴀᴅ", url=f"{durl}"),
+                 InlineKeyboardButton(text="ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
             ]
         )
     requested_by = message.from_user.first_name
