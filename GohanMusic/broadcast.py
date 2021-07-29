@@ -16,7 +16,7 @@ async def broadcast(_, message: Message):
     else:
         wtf = await message.reply("`Mulai dari broadcast...`")
         if not message.reply_to_message:
-            await wtf.edit("Mohon Balas Pesan ke broadcast!")
+            await wtf.edit("Mohon Balas Pesan ke ke pesan!")
             return
         lmao = message.reply_to_message.text
         async for dialog in USER.iter_dialogs():
