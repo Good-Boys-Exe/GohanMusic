@@ -209,8 +209,7 @@ async def p_cb(b, cb):
         await cb.message.edit(msg)      
 
 
-@Client.on_callback_query(filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$"))
-@cb_admin_check
+@Client.on_callback_query(filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|clsresum
 async def m_cb(b, cb):
     global que    
     qeue = que.get(cb.message.chat.id)
