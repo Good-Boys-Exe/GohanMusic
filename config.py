@@ -9,6 +9,7 @@ BOT_NAME = getenv("BOT_NAME")
 admins = {}
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
+ARQ_API_KEY = getenv("ARQ_API_KEY", QFOTZM-GSZUFY-CHGHRX-TDEHOZ-ARQ)
 BOT_USERNAME = getenv("BOT_USERNAME")
 ASSISTANT_NAME = getenv("ASSISTANT_NAME")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "GroupMusicRandom")
