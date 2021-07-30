@@ -373,7 +373,7 @@ async def play(_, message: Message):
                 except:
                     await lel.edit(
                               await lel.edit(
-                                  "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>",
+                                  "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>"
                               )
                               return
 
@@ -381,7 +381,7 @@ async def play(_, message: Message):
                               await USER.join_chat(invitelink)
                               await USER.send_message(message.chat.id, "Saya bergabung dengan group ini untuk memainkan musik di VCG.")
                               await lel.edit(
-                                  "<b>{user.first_name} berhasil bergabung dengan Group anda</b>",
+                                  "<b>{user.first_name} berhasil bergabung dengan Group anda</b>"
                               )
 
                           except UserAlreadyParticipant:
@@ -389,7 +389,7 @@ async def play(_, message: Message):
                           except Exception as e:
                               await lel.edit(
                                   f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam group."
-                        f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>",
+                        f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>"
                               )
                               pass
     try:
