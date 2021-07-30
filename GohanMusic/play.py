@@ -372,20 +372,16 @@ async def play(_, message: Message):
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Tambahkan saya sebagai admin grup Anda terlebih dahulu!</b>")
-                    return
+                              await lel.edit(
+                                  "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>",
+                              )
+                              return
 
-                try:
-                    await USER.join_chat(invitelink)
-                    await USER.send_message(
-                        message.chat.id, "<b>{user.first_name} berhasil bergabung dengan Group anda</b>")
-
-                except UserAlreadyParticipant:
-                    pass
-                except Exception:
-                    await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk assistant! Pastikan assistan tidak dibanned didalam grup."
-                        f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>"
+                          try:
+                              await USER.join_chat(invitelink)
+                              await USER.send_message(message.chat.id, "Saya bergabung dengan group ini untuk memainkan musik di VCG.")
+                              await lel.edit(
+                                  "<b>{user.first_name} berhasil bergabung dengan Group anda</b>",
                               )
 
                           except UserAlreadyParticipant:
