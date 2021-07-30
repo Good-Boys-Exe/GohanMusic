@@ -37,5 +37,4 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 
 ## KREDIT
 - [Tofik Denianto](https://github.com/tofikdn)
-- [Infinity_Bots](https://github.com/Infinity-Bots)
 - [KEN KAN](https://github.com/kenkansaja)
