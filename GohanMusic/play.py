@@ -367,8 +367,7 @@ async def play(_, message: Message):
                 except:
                     await lel.edit(
                               await lel.edit(
-                                  "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>"
-                              )
+                                  "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>")
                               return
 
                           try:
