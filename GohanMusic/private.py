@@ -44,7 +44,9 @@ async def help(client: Client, message: Message):
 /playlist - Untuk Menampilkan daftar putar Lagu sekarang
 /current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
 /song (judul lagu) - Untuk Mendownload lagu dari YouTube 
-/search (judul video) - Untuk Mencari Video di YouTube dengan detail
+/search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
+/video (judul video) - Untuk Mendownload Video di YouTube
+
 \nPerintah semua admin grup:
 /player - Buka panel pengaturan pemutar musik
 /pause - Untuk Menjeda pemutaran Lagu
@@ -77,7 +79,8 @@ async def help(client: Client, message: Message):
 /playlist - Untuk Menampilkan daftar putar Lagu sekarang
 /current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
 /song (judul lagu) - Untuk Mendownload lagu dari YouTube 
-/search (judul video) - Untuk Mencari Video di YouTube dengan detail
+/search (judul lagu/video) - Untuk Mencari Video di YouTube dengan detail
+/video (judul video) - Untuk Mendownload Video di YouTube dengan detail
 \nPerintah semua admin grup:
 /player - Buka panel pengaturan pemutar musik
 /pause - Untuk Menjeda pemutaran Lagu
