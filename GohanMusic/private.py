@@ -80,7 +80,7 @@ async def help(client: Client, message: Message):
 /current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
 /song (judul lagu) - Untuk Mendownload lagu dari YouTube 
 /search (judul video) - Untuk Mencari Video di YouTube dengan detail
-\n*Perintah semua admin grup:**
+\n**Perintah semua admin grup:**
 /player - Buka panel pengaturan pemutar musik
 /pause - Untuk Menjeda pemutaran Lagu
 /resume - Untuk Melanjutkan pemutaran Lagu yang di pause
