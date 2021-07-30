@@ -386,13 +386,23 @@ async def play(_, message: Message):
                     await lel.edit(
                         f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk assistant! Pastikan assistan tidak dibanned didalam grup."
                         f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>"
+                              )
+
+                          except UserAlreadyParticipant:
+                              pass
+                          except Exception as e:
+                              await lel.edit(
+                                  f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam group."
+                        f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>",
+                              )
+                              pass
     try:
-        await USER.get_chat(chid)
+        chatdetails = await USER.get_chat(chid)
     except:
         await lel.edit(
-            f"<i>Hey {user.first_name}, assistant userbot is not in this chat, ask admin to send /play command for first time to add it.</i>")
-        return
-    
+            f"<b>{user.first_name} terkena banned dari Group ini, Minta admin untuk unban @{user.username} secara manual, Lalu coba play lagi.</b>"
+        )
+        return         
     audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
     url = get_url(message)
 
@@ -412,11 +422,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        text="Channel 🔊",
-                        url="https://t.me/Infinity_BOTs")
-                   
-                ]
+                 InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
+                 InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
+                ],
+                [InlineKeyboardButton(text="🗑️ ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
             ]
         )
         
