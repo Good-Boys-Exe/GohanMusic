@@ -368,7 +368,6 @@ async def play(_, message: Message):
                     await lel.edit(
                               await lel.edit(
                                   "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>")
-                              return
 
                           try:
                               await USER.join_chat(invitelink)
