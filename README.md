@@ -35,6 +35,3 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 - `/userbotleave` - hapus asisten dari obrolan Anda
 - `/reload` - Segarkan daftar admin
 
-## KREDIT
-- [Tofik Denianto](https://github.com/tofikdn)
-- [KEN KAN](https://github.com/kenkansaja)
