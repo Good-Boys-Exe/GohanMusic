@@ -18,4 +18,3 @@ psutil
 wget
 regex
 html2text
-ffmpeg
