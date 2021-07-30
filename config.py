@@ -13,7 +13,7 @@ ARQ_API_KEY = getenv("ARQ_API_KEY", "QFOTZM-GSZUFY-CHGHRX-TDEHOZ-ARQ")
 BOT_USERNAME = getenv("BOT_USERNAME")
 ASSISTANT_NAME = getenv("ASSISTANT_NAME")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "GroupMusicRandom")
-OWNER = getenv("OWNER", "GB_03101999")
+OWNER = getenv("OWNER", "Tomi_Setiawan")
 STICKER_ID = getenv("STICKER_ID", "CAACAgUAAxkBAAFF-Bdg-i8JvMgppo9DCVkFV9pPVSprzgACdwIAAsgM0VdqqiQQ6Hdw7CAE")
 START_IMAGE = getenv("START_IMAGE", "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg")
 
