@@ -381,16 +381,13 @@ async def play(_, message: Message):
                               await USER.join_chat(invitelink)
                               await USER.send_message(message.chat.id, "Saya bergabung dengan group ini untuk memainkan musik di VCG.")
                               await lel.edit(
-                                  "<b>{user.first_name} berhasil bergabung dengan Group anda</b>"
-                              )
+                                  "<b>{user.first_name} berhasil bergabung dengan Group anda</b>")
 
                           except UserAlreadyParticipant:
                               pass
                           except Exception as e:
                               await lel.edit(
-                                  f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam group."
-                        f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>"
-                              )
+                                  f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam group.")
                               pass
     try:
         chatdetails = await USER.get_chat(chid)
@@ -405,8 +402,7 @@ async def play(_, message: Message):
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
-                f"**❌ Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!\n🎧 Lagu yang di minta berdurasi `{duration}` menit**"
-            )
+                f"**❌ Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!\n🎧 Lagu yang di minta berdurasi `{duration}` menit**")
 
         file_name = get_file_name(audio)
         title = file_name
@@ -512,8 +508,7 @@ async def play(_, message: Message):
                 
         except Exception as e:
             await lel.edit(
-                "**❌ Lagu tidak ditemukan ❌**\nCoba masukan judul lagu yang lebih jelas"
-            )
+                "**❌ Lagu tidak ditemukan ❌**\nCoba masukan judul lagu yang lebih jelas")
             print(str(e))
             return
 
