@@ -224,7 +224,9 @@ async def download_song(url):
                 await f.write(await resp.read())
                 await f.close()
     return song_name
-    is_downloading = False
+
+
+is_downloading = False
 
 
 def time_to_seconds(time):
