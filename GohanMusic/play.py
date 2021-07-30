@@ -1,31 +1,25 @@
 import os
-import ffmpeg
-import aiohttp
-import aiofiles
-import requests
-import converter
-from Python_ARQ import ARQ
-from asyncio.queues import QueueEmpty
+from os import path
 from pyrogram import Client, filters
-from typing import Callable
-from callsmusic import callsmusic, queues
-from helpers.admins import get_administrators
-from youtube_search import YoutubeSearch
-from callsmusic.callsmusic import client as USER
+from pyrogram.types import Message, Voice, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import UserAlreadyParticipant
+from callsmusic import callsmusic, queues
+from callsmusic.callsmusic import client as USER
+from helpers.admins import get_administrators
+import requests
+import aiohttp
+import youtube_dl
+from youtube_search import YoutubeSearch
+import converter
 from downloaders import youtube
-
-from config import que, DURATION_LIMIT, SUPPORT_GROUP, BOT_USERNAME, ARQ_API_KEY as aak
-from helpers.filters import command, other_filters
-from helpers.decorators import authorized_users_only
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from cache.admins import admins as a
+from config import DURATION_LIMIT, SUPPORT_GROUP, BOT_USERNAME
+from helpers.filters import command
+from helpers.decorators import errors
+from helpers.errors import DurationLimitError
+from helpers.gets import get_url, get_file_name
+import aiofiles
+import ffmpeg
 from PIL import Image, ImageFont, ImageDraw
-chat_id = None
-
-ARQ_API_KEY = f"{aak}"
-aiohttpsession = aiohttp.ClientSession()
-arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
 
 
 def cb_admin_check(func: Callable) -> Callable:
