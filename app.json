@@ -20,10 +20,10 @@
           "required": false,
           "value": ""
         },
-        ARQ_API_KEY": {
-         "description": "Ambil api dari bot telegram » @ARQRobot [skip ini jika Anda tidak punya]",
-         "required": false
-         "value"; ""
+        "ARQ_API_KEY": {
+          "description": "Ambil api dari bot telegram » @ARQRobot [skip ini jika Anda tidak punya]",
+          "required": false
+          "value"; ""
         },    
         "SUPPORT_GROUP": {
           "description": "Grup dukungan MusicPlayer Anda Tanpa Menggunakan ==> @ <== [skip ini jika Anda tidak punya]",
