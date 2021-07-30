@@ -24,10 +24,10 @@ Ketik » /help « Untuk Melihat Daftar Perintah Saya!
                     InlineKeyboardButton(
                          "🙎🏻‍♂ ᴀssɪsᴛᴀɴᴛ", url=f"https://t.me/{ASSISTANT_NAME}"),
                     InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
+                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
                   ],[
                     InlineKeyboardButton(
-                         "🛠 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🛠", url="https://github.com/Good-Boys-Exe/GohanMusic")
+                         "🛠 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🛠", url="https://github.com/Good-Boys-Exe/GohanMusic"),
                 ]
             ]
         )
