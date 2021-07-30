@@ -247,7 +247,7 @@ async def ytmusic(client, message: Message):
         message.chat.id, f"**Mendapatkan** `{urlissed}` **Dari Youtube. Tunggu Sebentar.**"
     )
     if not urlissed:
-        await pablo.edit("**Sintaks Perintah Tidak Valid** Silakan ketik /help Untuk Mengetahui Lebih Lanjut!")
+        await pablo.edit("**Sintaks Perintah Tidak Valid** Silakan ketik `/help` Untuk Mengetahui Lebih Lanjut!")
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -281,20 +281,20 @@ async def ytmusic(client, message: Message):
 
             if duration > DURATION_LIMIT:
                 await pablo.edit(
-                    f"**❌ Video berdurasi lebih dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang ingin kamu download {duration} menit**"
+                    f"❌ **Video berdurasi lebih dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang ingin kamu download {duration} menit**"
                 )
                 is_downloading = False
                 return
             ytdl_data = ytdl.extract_info(url, download=True)
 
     except Exception:
-        # await pablo.edit(event, f"**Gagal Mengunduh** \n**Kesalahan :** `{str(e)}`")
+        # await pablo.edit(event, f"**Failed To Download** \n**Error :** `{str(e)}`")
         is_downloading = False
         return
 
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"**🎬 Nama Video** [{thum}]({mo}) \n**🎧 Permintaan Dari :** {urlissed}"
+    capy = f"**Nama Video ➠** `{thum}` \n**Permintaan Dari :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}`"
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
