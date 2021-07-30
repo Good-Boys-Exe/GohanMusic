@@ -27,7 +27,7 @@ Ketik » /help « Untuk Melihat Daftar Perintah Saya!
                         "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
                   ],[
                     InlineKeyboardButton(
-                         "🛠 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 🛠", url="https://github.com/Good-Boys-Exe/GohanMusic")
+                         "✨ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ✨", url="https://github.com/Good-Boys-Exe/GohanMusic")
                 ]
             ]
         )
