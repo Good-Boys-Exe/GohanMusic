@@ -9,6 +9,13 @@ Dapatkan STRING SESSION klik tombol dibawah untuk mendapatkan string (P)
 
 <p align="center"><a href="https://replit.com/@GoodBoysExe/string-session?lite=1&outputonly=1"><img src="https://img.shields.io/badge/DAPATKAN-STRING-blue?style=plastic&logo=replit&logoColor=yellow"width="300" height="40" /></a></p>
 
+Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
+<p>
+    <a href="https://t.me/GB_03101999" target="blank"><img src="https://img.shields.io/badge/OWNER-ɢᴏᴏᴅ ʙᴏʏs-blue?style=plastic&logo=telegram"width="250" height="52"/></a>
+    <a href="https://t.me/GroupMusicRandom" target="blank"><img src="https://img.shields.io/badge/GROUP-Group Music Random-blue?style=plastic&logo=telegram"width="250" height="52"/></a>
+</p>
+
+
 ### Temukan saya di telegram: [@GohanMusicRobot](t.me/GohanMusicRobot)
 
 ### Perintah semua anggota grup
@@ -27,14 +34,6 @@ Dapatkan STRING SESSION klik tombol dibawah untuk mendapatkan string (P)
 - `/userbotjoin` - undang asisten ke obrolan Anda
 - `/userbotleave` - hapus asisten dari obrolan Anda
 - `/reload` - Segarkan daftar admin
-
-
-### TELEGRAM
-Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
-<p>
-    <a href="https://t.me/GB_03101999" target="blank"><img src="https://img.shields.io/badge/OWNER-ɢᴏᴏᴅ ʙᴏʏs-blue?style=plastic&logo=telegram"width="250" height="52"/></a>
-    <a href="https://t.me/GroupMusicRandom" target="blank"><img src="https://img.shields.io/badge/GROUP-Group Music Random-blue?style=plastic&logo=telegram"width="250" height="52"/></a>
-</p>
 
 ## KREDIT
 - [Tofik Denianto](https://github.com/tofikdn)
