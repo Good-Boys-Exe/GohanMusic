@@ -1,6 +1,4 @@
-import requests
 
-events import register
 
 
 @register(pattern="^/truth ?(.*)")
