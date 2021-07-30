@@ -1,3 +1,6 @@
+events import register
+import requests
+
 @register(pattern="^/truth ?(.*)")
 async def _(td):
     try:
