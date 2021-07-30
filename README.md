@@ -11,8 +11,8 @@ Dapatkan STRING SESSION klik tombol dibawah untuk mendapatkan string (P)
 
 Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 <p>
-    <a href="https://t.me/GB_03101999" target="blank"><img src="https://img.shields.io/badge/OWNER-ɢᴏᴏᴅ ʙᴏʏs-blue?style=plastic&logo=telegram"width="250" height="52"/></a>
-    <a href="https://t.me/GroupMusicRandom" target="blank"><img src="https://img.shields.io/badge/GROUP-Group Music Random-blue?style=plastic&logo=telegram"width="250" height="52"/></a>
+    <a href="https://t.me/GB_03101999" target="blank"><img src="https://img.shields.io/badge/OWNER-ɢᴏᴏᴅ ʙᴏʏs-blue?style=plastic&logo=telegram"width="300" height="40"/></a>
+    <a href="https://t.me/GroupMusicRandom" target="blank"><img src="https://img.shields.io/badge/GROUP-Group Music Random-blue?style=plastic&logo=telegram"width="300" height="40"/></a>
 </p>
 
 
