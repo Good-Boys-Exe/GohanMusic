@@ -23,7 +23,7 @@
         "ARQ_API_KEY": {
           "description": "Ambil api dari bot telegram » @ARQRobot [skip ini jika Anda tidak punya]",
           "required": false
-          "value": "QFOTZM-GSZUFY-CHGHRX-TDEHOZ-ARQ"
+         "value": "QFOTZM-GSZUFY-CHGHRX-TDEHOZ-ARQ"
         },    
         "SUPPORT_GROUP": {
           "description": "Grup dukungan MusicPlayer Anda Tanpa Menggunakan ==> @ <== [skip ini jika Anda tidak punya]",
