@@ -16,6 +16,9 @@ SUPPORT_GROUP = getenv("SUPPORT_GROUP", "GroupMusicRandom")
 OWNER = getenv("OWNER", "Tomi_sn")
 STICKER_ID = getenv("STICKER_ID", "CAACAgUAAxkBAAFF-Bdg-i8JvMgppo9DCVkFV9pPVSprzgACdwIAAsgM0VdqqiQQ6Hdw7CAE")
 START_IMAGE = getenv("START_IMAGE", "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg")
+COSTOM_TEXT_START = getenv("COSTOM_TEXT_START", """Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
+
+Tekan » /help « Untuk Melihat Daftar Perintah Saya!"""
 
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 
