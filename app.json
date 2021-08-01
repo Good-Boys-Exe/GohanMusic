@@ -12,7 +12,7 @@
         },
         "OWNER": {
           "description": "Masukan Username Telegram Anda Tanpa ==> @ <== [skip ini jika Anda tidak punya]",
-          "required": false
+          "required": false,
           "value": "Tomi_sn"
         },
         "START_IMAGE": {
