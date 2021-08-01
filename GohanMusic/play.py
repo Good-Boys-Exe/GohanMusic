@@ -33,9 +33,8 @@ def cb_admin_check(func: Callable) -> Callable:
         admemes = a.get(cb.message.chat.id)
         if cb.from_user.id in admemes:
             return await func(client, cb)
-        else:
-            await cb.answer("Anda tidak diizinkan!", show_alert=True)
-            return
+        await cb.answer("Anda tidak diizinkan!", show_alert=True)
+        return
     return decorator                                                                       
                                           
                                                                                     
@@ -459,26 +458,25 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo = "final.png",
         caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** `{duration}`\n💡 **Status:** `Antrian ke {position}`\n" \
-                + f"🎧 **Permintaan** {message.from_user.mention}",
+                    + f"🎧 **Permintaan** {message.from_user.mention}",
         reply_markup = keyboard
         )
         os.remove("final.png")
         return await lel.delete()
-    else:
-        chat_id = message.chat.id
-        que[chat_id] = []
-        qeue = que.get(message.chat.id)
-        s_name = title            
-        r_by = message.from_user
-        loc = file_path
-        appendable = [s_name, r_by, loc]      
-        qeue.append(appendable)
-        callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
-        await message.reply_photo(
-        photo = "final.png",
-        caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** `{duration}`\n💡 **Status:** `Memutar`\n" \
-                + f"🎧 **Permintaan:** {message.from_user.mention}",
-        reply_markup = keyboard
-        )
-        os.remove("final.png")
-        return await lel.delete()
+    chat_id = message.chat.id
+    que[chat_id] = []
+    qeue = que.get(message.chat.id)
+    s_name = title            
+    r_by = message.from_user
+    loc = file_path
+    appendable = [s_name, r_by, loc]      
+    qeue.append(appendable)
+    callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+    await message.reply_photo(
+    photo = "final.png",
+    caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** `{duration}`\n💡 **Status:** `Memutar`\n" \
+                    + f"🎧 **Permintaan:** {message.from_user.mention}",
+    reply_markup = keyboard
+    )
+    os.remove("final.png")
+    return await lel.delete()
