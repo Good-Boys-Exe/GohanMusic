@@ -21,13 +21,7 @@
         },
         "COSTOM_TEXT_START": {
           "description": "isi kata-kata yang anda mau akan di gunakan untuk start di pm bot [jika tidak paham silahkan Diskop]"
-          "required": true,
-          "value": """👋🏻Hallo {message.from_user.mention} Selamat Datang 
-🎟️ Nama Saya Adalah [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-
-🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
-
-✏️ Teksb » /help « Untuk Melihat Daftar Perintah Saya"""
+          "required": false
         },
         "ARQ_API_KEY": {
           "description": "Ambil api dari bot telegram » @ARQRobot [skip ini jika Anda tidak punya]",
