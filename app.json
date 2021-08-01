@@ -21,7 +21,6 @@
         },
         "COSTOM_TEXT_START": {
           "description": "isi kata-kata yang anda mau akan di gunakan untuk start di pm bot [jika tidak paham silahkan Diskop]"
-          "required": false
         },
         "ARQ_API_KEY": {
           "description": "Ambil api dari bot telegram » @ARQRobot [skip ini jika Anda tidak punya]",
