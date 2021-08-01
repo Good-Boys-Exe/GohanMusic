@@ -20,8 +20,9 @@
           "value": "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg"
         },
         "COSTOM_TEXT_START": {
-          "description": "isi kata-kata yang anda mau akan di gunakan untuk start di pm bot [jika tidak paham silahkan Diskop]"
-        },
+          "description": "isi kata-kata yang anda mau akan di gunakan untuk start di pm bot [jika tidak paham silahkan di skip]"
+          "required": false
+        },    
         "ARQ_API_KEY": {
           "description": "Ambil api dari bot telegram » @ARQRobot [skip ini jika Anda tidak punya]",
           "required": false
