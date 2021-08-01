@@ -1,6 +1,6 @@
 from time import time
 from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, START_IMAGE, OWNER
+from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, START_IMAGE, OWNER, COSTOM_TEXT_START as cts
 from helpers.filters import command
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -11,10 +11,7 @@ from helpers.decorators import authorized_users_only
 async def start_(client: Client, message: Message):
     await message.reply_photo(
        photo = f"{START_IMAGE}",
-       caption = f"""<b>Hallo {message.from_user.mention} Nama saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})\n
-Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram\n
-Ketik » /help « Untuk Melihat Daftar Perintah Saya!
-</b>""",
+       caption = f"""<b>{cts}</b>""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
