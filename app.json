@@ -13,6 +13,7 @@
         "OWNER": {
           "description": "Masukan Username Telegram Anda Tanpa ==> @ <== [skip ini jika Anda tidak punya]",
           "required": false
+          "value": "Tomi_sn"
         },
         "START_IMAGE": {
           "description": "Masukan link gambar anda yang di upload ke telegra.ph [skip ini jika Anda tidak punya]",
