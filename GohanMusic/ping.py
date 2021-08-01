@@ -1,6 +1,6 @@
 from time import time
 from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, STICKER_ID, OWNER
+from config import BOT_NAME as bn, BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, STICKER_ID, OWNER
 from helpers.filters import command
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -35,7 +35,7 @@ async def start(client: Client, message: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await message.reply_text(
-        f"""Saya Sedang Online!\n<b>Waktu Online:</b> `{uptime}`""",
+        f"""✅ **{bn}** Sedang Online!\n<b>Waktu Online:</b> `{uptime}`""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
