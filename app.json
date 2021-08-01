@@ -20,9 +20,10 @@
           "required": false,
           "value": "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg"
         },
-        "description": "isi kata-kata yang anda mau akan di gunakan untuk start di pm bot [jika tidak paham silahkan Diskop]"
-        "required": false,
-        "value": """👋🏻Hallo {message.from_user.mention} Selamat Datang 
+        "COSTOM_TEXT_START": {
+          "description": "isi kata-kata yang anda mau akan di gunakan untuk start di pm bot [jika tidak paham silahkan Diskop]"
+          "required": false,
+          "value": """👋🏻Hallo {message.from_user.mention} Selamat Datang 
 🎟️ Nama Saya Adalah [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
