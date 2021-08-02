@@ -11,7 +11,7 @@ from helpers.decorators import authorized_users_only
 async def start_(client: Client, message: Message):
     await message.reply_photo(
        photo = f"{START_IMAGE}",
-       caption = f"""<b>👋🏻Hallo {message.from_user.mention} Selamat Datang 
+       caption = f"""<b>👋🏻 Hallo {message.from_user.mention}
 🎟️ Nama Saya Adalah [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
