@@ -21,7 +21,7 @@ COSTOM_TEXT_START = getenv("COSTOM_TEXT_START", """👋🏻Hallo {message.from_u
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
 
-✏️ Teksb » /help « Untuk Melihat Daftar Perintah Saya"""
+✏️ Teksb » /help « Untuk Melihat Daftar Perintah Saya""")
 
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60")
 
