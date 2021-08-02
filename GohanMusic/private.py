@@ -16,7 +16,7 @@ async def start_(client: Client, message: Message):
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
 
-✏️ Teksb » /help « Untuk Melihat Daftar Perintah Saya</b>""",
+✏️ Tekan » /help « Untuk Melihat Daftar Perintah Yang Saya Punya</b>""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
