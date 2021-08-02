@@ -23,7 +23,7 @@ COSTOM_TEXT_START = getenv("COSTOM_TEXT_START", """👋🏻Hallo {message.from_u
 
 ✏️ Teksb » /help « Untuk Melihat Daftar Perintah Saya"""
 
-DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
+DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60")
 
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ . , - : ; !").split())
 
