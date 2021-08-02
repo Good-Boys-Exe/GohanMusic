@@ -1,6 +1,6 @@
 from time import time
 from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, STICKER_ID, OWNER
+from config import BOT_USERNAME, BOT_NAME as bn, ASSISTANT_NAME, SUPPORT_GROUP, STICKER_ID, OWNER
 from helpers.filters import command
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
