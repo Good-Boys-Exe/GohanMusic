@@ -22,14 +22,12 @@ async def start_(client: Client, message: Message):
                 [
                     InlineKeyboardButton(
                         "➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
-                  ],
-                  [
+                  ],[
                     InlineKeyboardButton(
                          "🙎🏻‍♂ ᴀssɪsᴛᴀɴᴛ", url=f"https://t.me/{ASSISTANT_NAME}"),
                     InlineKeyboardButton(
                         "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
-                  ],
-                  [
+                  ],[
                     InlineKeyboardButton(
                          "✨ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ✨", url="https://github.com/Good-Boys-Exe/GohanMusic")
                 ]
@@ -47,7 +45,7 @@ async def help(client: Client, message: Message):
 /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 /playlist - Untuk Menampilkan daftar putar Lagu sekarang
 /current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
-/song (judul lagu) - Untuk Mendownload lagu dari YouTube
+/song (judul lagu) - Untuk Mendownload lagu dari YouTube 
 /search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
 /video (judul video) - Untuk Mendownload Video di YouTube
 
@@ -105,3 +103,5 @@ async def help(client: Client, message: Message):
             ]
         )
     )
+
+
