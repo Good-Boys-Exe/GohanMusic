@@ -21,7 +21,7 @@
           "value": "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg"
         },
         "ARQ_API_KEY": {
-          "description": "Ambil api dari bot telegram » @ARQRobot"
+          "description": "Ambil api dari bot telegram » @ARQRobot",
           "required": true
         },    
         "SUPPORT_GROUP": {
