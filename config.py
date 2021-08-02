@@ -18,7 +18,7 @@ COSTOM_TEXT_START = getenv("COSTOM_TEXT_START", "👋🏻Hallo {message.from_use
 STICKER_ID = getenv("STICKER_ID", "CAACAgUAAxkBAAFF-Bdg-i8JvMgppo9DCVkFV9pPVSprzgACdwIAAsgM0VdqqiQQ6Hdw7CAE")
 START_IMAGE = getenv("START_IMAGE", "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg")
 
-DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60")
+DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ . , - : ; !").split())
 
