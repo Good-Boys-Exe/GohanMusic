@@ -405,9 +405,9 @@ async def play(_, message: Message):
         entities = []
         toxt = message.reply_to_message.text or message.reply_to_message.caption
         if message.reply_to_message.entities:
-            entities = message.reply_to_message.entities + entities
+           # entities = message.reply_to_message.entities + entities
         elif message.reply_to_message.caption_entities:
-            entities = message.reply_to_message.entities + entities
+           # entities = message.reply_to_message.entities + entities
         urls = [entity for entity in entities if entity.type == 'url']
         text_links = [
             entity for entity in entities if entity.type == 'text_link'
