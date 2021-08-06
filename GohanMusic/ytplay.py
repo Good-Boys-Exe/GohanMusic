@@ -343,7 +343,7 @@ async def m_cb(b, cb):
         else:
             await cb.answer("Assistant Sedang Tidak Terhubung dengan VCG!", show_alert=True)
 
-@Client.on_message(command(["play", f"play@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(command(["ytplay", f"ytplay@{BOT_USERNAME}"]) & other_filters)
 async def play(_, message: Message):
     global que
     lel = await message.reply("**🔎 Sedang Mencari Lagu**")
