@@ -232,7 +232,7 @@ def time_to_seconds(time):
     stringt = str(time)
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
-@Client.on_message(command(["video", f"video@{BOT_USERNAME}"]))
+@Client.on_message(command(["vsong", f"vsong@{BOT_USERNAME}"]))
 async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:
