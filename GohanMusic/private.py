@@ -12,7 +12,7 @@ async def start_(client: Client, message: Message):
     await message.reply_photo(
        photo = f"{bi}",
        caption = f"""<b>👋🏻 Hallo {message.from_user.mention}
-🎟️ Nama Saya Adalah [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
 
