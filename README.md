@@ -15,7 +15,6 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
     <a href="https://t.me/GroupMusicRandom" target="blank"><img src="https://img.shields.io/badge/GROUP-Group Music Random-blue?style=plastic&logo=telegram"width="300" height="40"/></a>
 </p>
 
-
 ### Temukan saya di telegram: [@GohanMusicRobot](t.me/GohanMusicRobot)
 
 ### Perintah semua anggota grup
