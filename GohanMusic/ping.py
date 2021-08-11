@@ -71,7 +71,7 @@ async def get_uptime(client: Client, m: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await m.reply_text(
-        f"{emoji.ROBOT} Saya Masih Aktif\n"
+        f"{emoji.ROBOT} Status\n"
         f"• **Waktu aktif:** `{uptime}`\n"
         f"• **Waktu mulai:** `{START_TIME_ISO}`"
     )
