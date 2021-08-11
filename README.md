@@ -37,3 +37,9 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 - `/userbotleave` - hapus asisten dari obrolan Anda
 - `/reload` - Segarkan daftar admin
 
+
+
+# ❤️ KREDIT MUSIC
+- [tofikdn](https://github.com/tofikdn/TDMusicBot)
+- [levina-lab](https://github.com/levina-lab/VeezMusic)
+- [kenkansaja](https://github.com/kenkansaja/Music-Ken)
