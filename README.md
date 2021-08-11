@@ -24,7 +24,7 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 - `/current` - Tampilkan sekarang sedang diputar
 - `/song <nama lagu>` - unduh lagu yang Anda inginkan dengan cepat
 - `/search <nama lagu/video>` - cari video di youtube dengan detail
-- `/video <judul video>` - Untuk Mendownload Video di YouTube dengan detail
+- `/vsong <judul video>` - Untuk Mendownload Video di YouTube dengan detail
 
 
 ### Perintah semua admin grup
