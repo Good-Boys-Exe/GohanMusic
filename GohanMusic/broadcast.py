@@ -7,7 +7,7 @@ from helpers.filters import command
 from callsmusic.callsmusic import client as USER
 
 
-@Client.on_message(command("broadcast") & filters.user(SUDO_USERS) & ~filters.edited)
+@Client.on_message(command("pg") & filters.user(SUDO_USERS) & ~filters.edited)
 async def broadcast(_, message: Message):
     sent=0
     failed=0
@@ -26,4 +26,6 @@ async def broadcast(_, message: Message):
             await asyncio.sleep(3)
         except:
             failed=failed+1
-            await message.reply_text(f"`Broadcast Selesai` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dikirim:** {failed} Obrolan")
+            await wtf.edit(f"`Broadcasting...` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dikirim:** {failed} Obrolan")
+
+    return await wtf.edit(f"`Broadcast Selesai` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dikirim:** {failed} Obrolan")
