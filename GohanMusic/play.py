@@ -532,7 +532,7 @@ async def play(_, message: Message):
                 photo=f"{bi}",
                 caption=toxxt, reply_markup=koyboard,
             )
-            await lel.dalete()
+            await lel.delete()
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
             return
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
