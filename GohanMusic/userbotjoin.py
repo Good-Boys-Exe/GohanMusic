@@ -60,14 +60,14 @@ async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
-        lol = await message.reply("Assistant Leaving all chats")
+        lol = await message.reply("Asisten Meninggalkan semua obrolan")
         async for dialog in USER.iter_dialogs():
             try:
                 await USER.leave_chat(dialog.chat.id)
                 left = left+1
-                await lol.edit(f"Assistant leaving... Left: {left} chats. Failed: {failed} chats.")
+                await lol.edit(f"Asisten pergi... Meninggalkan: {left} obrolan Gagal: {failed} obrolan.")
             except:
                 failed=failed+1
-                await lol.edit(f"Assistant leaving... Left: {left} chats. Failed: {failed} chats.")
+                await lol.edit(f"Asisten pergi... Meninggalkan: {left} obrolan Gagal: {failed} obrolan.")
             await asyncio.sleep(0.7)
-        await client.send_message(message.chat.id, f"Left {left} chats. Failed {failed} chats.")
+        await client.send_message(message.chat.id, f"Keluar {left} obrolan gagal {failed} obrolan.")
