@@ -346,7 +346,7 @@ async def m_cb(b, cb):
 @Client.on_message(command(["play", f"play@{bu}"]) & other_filters)
 async def play(_, message: Message):
     global que
-    lel = await message.reply("🔄 **Memproses...**")
+    lel = await message.reply("**🔄 Memproses...**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
@@ -377,7 +377,7 @@ async def play(_, message: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "🤖:\nSaya bergabung ke grup ini untuk memutar musik di obrolan suara"
+                        message.chat.id, "Saya bergabung ke grup ini untuk memutar musik di obrolan suara"
                     )
                     await lel.edit(
                         "<b>userbot bergabung dengan obrolan Anda</b>",
@@ -400,14 +400,14 @@ async def play(_, message: Message):
         )
         return
     text_links=None
-    await lel.edit("🔎 **menemukan lagu...**")
+    await lel.edit("**🔎 Menemukan lagu...**")
     if message.reply_to_message:
         entities = []
         toxt = message.reply_to_message.text or message.reply_to_message.caption
         if message.reply_to_message.entities:
-           entities = message.reply_to_message.entities + entities
+            entities = message.reply_to_message.entities + entities
         elif message.reply_to_message.caption_entities:
-           entities = message.reply_to_message.entities + entities
+            entities = message.reply_to_message.entities + entities
         urls = [entity for entity in entities if entity.type == 'url']
         text_links = [
             entity for entity in entities if entity.type == 'text_link'
@@ -440,7 +440,7 @@ async def play(_, message: Message):
         )
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/fa2cdb8a14a26950da711.png"
+        thumb_name = f"{bi}"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
@@ -453,13 +453,13 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🎵 **Memproses lagu...**")
-        ydl_opts = {"format": "bestaudio[ext=m4a]"}
+        await lel.edit("**🎵 Memproses lagu...**")
+        ydl_opts = {"format": "141/bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             # print(results)
-            title = results[0]["title"][:25]
+            title = results[0]["title"][:999]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -493,16 +493,16 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("🎵 **Memproses lagu...**")
-        ydl_opts = {"format": "bestaudio[ext=m4a]"}
+        await lel.edit("**🎵 Memproses lagu...**")
+        ydl_opts = {"format": "141/bestaudio[ext=m4a]"}
         
         try:
           results = YoutubeSearch(query, max_results=5).to_dict()
         except:
           await lel.edit("**anda tidak memberikan judul lagu apapun !**")
-        # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖
+        # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         try:
-            toxxt = "⚡ pilih lagu untuk dimainkan:\n\n"
+            toxxt = "⚡ pilih lagu yang ingin anda putar:\n\n"
             j = 0
             useer=user_name
             emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣"]
@@ -510,7 +510,7 @@ async def play(_, message: Message):
             while j < 5:
                 toxxt += f"{emojilist[j]} [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f" ├ 💡 **Duration** - {results[j]['duration']}\n"
-                toxxt += f" └ ⚡ **Powered by** [{bn}](https://t.me/{bu})\n\n"
+                toxxt += f" └ ⚡ **Powered by** [{bn}](t.me/{bu})\n\n"
 
                 j += 1            
             koyboard = InlineKeyboardMarkup(
@@ -532,17 +532,17 @@ async def play(_, message: Message):
                 photo=f"{bi}",
                 caption=toxxt, reply_markup=koyboard,
             )
-            await lel.delete()
-            # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖
+            await lel.dalete()
+            # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
             return
-            # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖
+            # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         except:
-            await lel.edit("__no more results, starting to playing...__")
+            await lel.edit(f"**✅ Jika terjadi error jangan ragu untuk menghubungi\n• [GROUP](t.me/{SUPPORT_GROUP})\n• [OWNER](t.me/{OWNER})**")
                         
             # print(results)
             try:
                 url = f"https://youtube.com{results[0]['url_suffix']}"
-                title = results[0]["title"][:25]
+                title = results[0]["title"][:250]
                 thumbnail = results[0]["thumbnails"][0]
                 thumb_name = f"thumb{title}.jpg"
                 thumb = requests.get(thumbnail, allow_redirects=True)
@@ -582,8 +582,7 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** {duration}\n💡 **Status:** Antrian Ke `{position}`\n" \
-                    + f"🎧 **Permintaan:** {message.from_user.mention}",
+            caption = f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
                    reply_markup=keyboard)
        
     else:
@@ -602,16 +601,14 @@ async def play(_, message: Message):
             return
         await message.reply_photo(
             photo="final.png",
-            caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** {duration}\n💡 **Status:** Sedang Memutar\n" \
-                    + f"🎧 **Permintaan:** {message.from_user.mention}",
+            caption = f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Memutar\n**🎧 Permintaan:** {message.from_user.mention}",
                    reply_markup=keyboard)
         
         m = await client.send_photo(
             chat_id=message_.chat.id,
             reply_markup=keyboard,
-            photo="final.png",
-            caption = f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** {duration}\n💡 **Status:** Sedang Memutar\n" \
-                    + f"🎧 **Permintaan:** {message.from_user.mention}",
+            photo = "final.png",
+            caption = f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Memutar\n**🎧 Permintaan:** {message.from_user.mention}",
         )
         os.remove("final.png")
         return await lel.delete()
@@ -625,13 +622,13 @@ async def lol_cb(b, cb):
     try:
         x,query,useer_id = typed_.split("|")      
     except:
-        await cb.message.edit("❌ **lagu tidak ditemukan**")
+        await cb.message.edit("**❌ lagu tidak ditemukan**")
         return
     useer_id = int(useer_id)
     if cb.from_user.id != useer_id:
         await cb.answer("anda bukan orang yang meminta untuk memutar lagu ini!", show_alert=True)
         return
-    await cb.message.edit("🔄 **Memproses...**")
+    await cb.message.edit("**🔄 Memproses...**")
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -639,7 +636,7 @@ async def lol_cb(b, cb):
         useer_name = cb.message.from_user.first_name
     results = YoutubeSearch(query, max_results=5).to_dict()
     resultss=results[x]["url_suffix"]
-    title=results[x]["title"][:25]
+    title=results[x]["title"][:250]
     thumbnail=results[x]["thumbnails"][0]
     duration=results[x]["duration"]
     views=results[x]["views"]
@@ -688,9 +685,8 @@ async def lol_cb(b, cb):
         qeue.append(appendable)
         await cb.message.delete()
         await b.send_photo(chat_id,
-        photo="final.png",
-        caption=f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** {duration}\n💡 **Status:** Antrian Ke `{position}`\n" \
-               +f"🎧 **Permintaan:** {r_by.mention}",
+        photo = "final.png",
+        caption = f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {r_by.mention}",
         reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -708,9 +704,8 @@ async def lol_cb(b, cb):
         callsmusic.pytgcalls.join_group_call(chat_id, file_path)
         await cb.message.delete()
         await b.send_photo(chat_id,
-        photo="final.png",
-        caption=f"🏷 **Judul:** [{title[:60]}]({url})\n⏱ **Durasi:** {duration}\n💡 **Status:** Sedang Memutar\n" \
-               +f"🎧 **Permintaan:** {r_by.mention}",
+        photo = "final.png",
+        caption = f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Memutar\n**🎧 Permintaan:** {r_by.mention}",
         reply_markup=keyboard,
         )
         os.remove("final.png")
