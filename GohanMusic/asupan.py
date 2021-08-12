@@ -11,7 +11,7 @@ async def asupan(client, message):
     try:
         resp = requests.get("https://tede-api.herokuapp.com/api/asupan/ptl").json()
         results = f"{resp['url']}"
-        return await client.send_video(message.chat.id, video=results, caption=f"@{resp['by']}")
+        return await client.send_video(message.chat.id, video=results, caption=f"{resp['by']}")
     except Exception:
         await message.reply_text("`Something went wrong LOL...`")
 
@@ -21,6 +21,16 @@ async def wibu(client, message):
     try:
         resp = requests.get("https://tede-api.herokuapp.com/api/asupan/wibu").json()
         results = f"{resp['url']}"
-        return await client.send_video(message.chat.id, video=results, caption=f"@{resp['by']}")
+        return await client.send_video(message.chat.id, video=results, caption=f"{resp['by']}")
+    except Exception:
+        await message.reply_text("`Something went wrong LOL...`")
+
+
+@Client.on_message(command(["chika", f"chika@{bu}"]))
+async def chika(client, message):
+    try:
+        resp = requests.get("https://tede-api.herokuapp.com/api/chika").json()
+        results = f"{resp['url']}"
+        return await client.send_video(message.chat.id, video=results, caption=f"{resp['by']}")
     except Exception:
         await message.reply_text("`Something went wrong LOL...`")
