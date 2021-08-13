@@ -40,7 +40,7 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 
 ### ❤️ KREDIT MUSIC
 <p>
-    <a href="https://github.com/tofikdn/TDMusicBot" target="blank"><img src="https://img.shields.io/badge/TAUFIK DANUARTA-black?style=plastic&logo=github"width="100" height="40"/></a>
+    <a href="https://github.com/tofikdn/TDMusicBot" target="blank"><img src="https://img.shields.io/badge/TAUFIK DENIANTO-black?style=plastic&logo=github"width="100" height="40"/></a>
     <a href="https://github.com/levina-lab/VeezMusic" target="blank"><img src="https://img.shields.io/badge/LEVINA-black?style=plastic&logo=github"width="100" height="40"/></a>
     <a href="https://github.com/kenkansaja/Music-Ken" target="blank"><img src="https://img.shields.io/badge/KEN KAN-black?style=plastic&logo=github"width="100" height="40"/></a>
 </p>
