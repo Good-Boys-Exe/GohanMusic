@@ -28,7 +28,7 @@ async def start_(client: Client, message: Message):
                         "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
                   ],[
                     InlineKeyboardButton(text = '⚔️ ʙᴀɴᴛᴜᴀɴ', callback_data = "helps+1"),
-                    InlineKeyboardButton
+                    InlineKeyboardButton(
                         "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic")
                 ]
             ]
