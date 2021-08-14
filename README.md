@@ -17,6 +17,7 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 
 ### Temukan saya di telegram: [@GohanMusicRobot](t.me/GohanMusicRobot)
 
+```
 ### Perintah semua anggota grup
 - `/play <nama lagu>` - mainkan lagu kamu 
 - `/playlist` - Tampilkan daftar putar sekarang
@@ -35,7 +36,7 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 - `/userbotjoin` - undang asisten ke obrolan Anda
 - `/userbotleave` - hapus asisten dari obrolan Anda
 - `/reload` - Segarkan daftar admin
-
+```
 
 
 ### ❤️ KREDIT MUSIC
