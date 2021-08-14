@@ -1,6 +1,7 @@
 from time import time
+from GohanMusic.msg import Messages as tr
 from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, BOT_IMAGE as bi, OWNER
+from config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, SUPPORT_GROUP, BOT_IMAGE, OWNER, ASSISTANT_NAME as an
 from helpers.filters import command
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -10,63 +11,25 @@ from helpers.decorators import authorized_users_only
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
     await message.reply_photo(
-       photo = f"{bi}",
+       photo = f"{BOT_IMAGE}",
        caption = f"""<b>👋🏻 Hallo {message.from_user.mention}
 🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
 
-✏️ Tekan » /help « Untuk Melihat Daftar Perintah Yang Saya Punya</b>""",
+✏️ Klik Tombol Bantuan Untuk Melihat Daftar Perintah Saya</b>""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
                     InlineKeyboardButton(
                         "➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
-                  ],
-                  [
+                  ],[
                     InlineKeyboardButton(
                         "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
                     InlineKeyboardButton(
                         "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
-                  ],
-                  [
-                    InlineKeyboardButton(
-                         "✨ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ✨", url="https://github.com/Good-Boys-Exe/GohanMusic")
-                ]
-            ]
-        )
-    )
-
-
-@Client.on_message(command("help") & filters.private & ~filters.edited)
-async def help(client: Client, message: Message):
-    await message.reply_photo(
-       photo = f"{START_IMAGE}",
-       caption = f"""<b>Hallo {message.from_user.mention}
-\nPerintah semua anggota grup:
-/play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
-/playlist - Untuk Menampilkan daftar putar Lagu sekarang
-/current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
-/song (judul lagu) - Untuk Mendownload lagu dari YouTube 
-/search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
-/vsong (judul video) - Untuk Mendownload Video di YouTube
-
-\nPerintah semua admin grup:
-/player - Buka panel pengaturan pemutar musik
-/pause - Untuk Menjeda pemutaran Lagu
-/resume - Untuk Melanjutkan pemutaran Lagu yang di pause
-/skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
-/end - Untuk Memberhentikan pemutaran Lagu
-/userbotjoin - Untuk Mengundang asisten ke obrolan Anda
-/reload - Untuk Segarkan daftar admin
-</b>""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
-                    InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
+                  ],[
+                    InlineKeyboardButton(text = '⚔️ ʙᴀɴᴛᴜᴀɴ & ᴘᴇʀɪɴᴛᴀʜ ⚔️', callback_data = "helps+1")
                 ]
             ]
         )
@@ -76,24 +39,28 @@ async def help(client: Client, message: Message):
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
 async def help(client: Client, message: Message):
     await message.reply_photo(
-       photo = f"{bi}",
-       caption = f"""<b>Hallo {message.from_user.mention}
-\nPerintah semua anggota grup:
-/play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
-/playlist - Untuk Menampilkan daftar putar Lagu sekarang
-/current - Untuk Menunjukkan  Lagu sekarang yang sedang diputar
-/song (judul lagu) - Untuk Mendownload lagu dari YouTube 
-/search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
-/vsong (judul video) - Untuk Mendownload Video di YouTube dengan detail
-\nPerintah semua admin grup:
-/player - Buka panel pengaturan pemutar musik
-/pause - Untuk Menjeda pemutaran Lagu
-/resume - Untuk Melanjutkan pemutaran Lagu yang di pause
-/skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
-/end - Untuk Memberhentikan pemutaran Lagu
-/userbotjoin - Untuk Mengundang asisten ke obrolan Anda
-/reload - Untuk Segarkan daftar admin
-</b>""",
+       photo = f"{BOT_IMAGE}",
+       caption = f"""<b>Pengaturan
+1) Jadikan Bot Sebagai Admin
+2) Mulai Obrolan Suara / Vcg
+3) Kirim Perintah /userbotjoin
+• Jika Assistant Bot Bergabung Selamat Menikmati Musik, 
+• Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi
+
+Perintah semua anggota grup
+• /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
+• /aplay (balas ke audio) - Untuk Memutar Lagu Dari Audio File
+• /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube tanpa pilihan
+• /song (judul lagu) - Untuk Mendownload lagu dari YouTube
+• /vsong (judul video) - Untuk Mendownload Video di YouTube
+• /search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
+
+Perintah semua admin grup
+• /pause - Untuk Menjeda pemutaran Lagu
+• /resume - Untuk Melanjutkan pemutaran Lagu yang di pause
+• /skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
+• /end - Untuk Memberhentikan pemutaran Lagu
+• /reload - Untuk Segarkan daftar admin</b>""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -106,4 +73,36 @@ async def help(client: Client, message: Message):
         )
     )
 
+
+help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('helps+'))
+
+@Client.on_callback_query(help_callback_filter)
+def help_answer(client, callback_query):
+    chat_id = callback_query.from_user.id
+    disable_web_page_preview=True
+    message_id = callback_query.message.message_id
+    msg = int(callback_query.data.split('+')[1])
+    client.edit_message_text(chat_id=chat_id,    message_id=message_id,
+        text=tr.HELPS_MSG[msg],    reply_markup=InlineKeyboardMarkup(map(msg))
+    )
+
+
+def map(pos):
+    if(pos==1):
+        button = [
+            [InlineKeyboardButton(text = '➡️', callback_data = "helps+2")]
+        ]
+    elif(pos==len(tr.HELPS_MSG)-1):
+        url = f"https://t.me/{SUPPORT_GROUP}"
+        button = [
+            [InlineKeyboardButton(text = '⬅️', callback_data = f"helps+{pos-1}")]
+        ]
+    else:
+        button = [
+            [
+                InlineKeyboardButton(text = '⬅️', callback_data = f"helps+{pos-1}"),
+                InlineKeyboardButton(text = '➡️', callback_data = f"helps+{pos+1}")
+            ],
+        ]
+    return button
 
