@@ -43,7 +43,8 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 
 ### ❤️ KREDIT MUSIC
 <p>
-    <a href="https://github.com/tofikdn/TDMusicBot" target="blank"><img src="https://img.shields.io/badge/TOFIK-black?style=plastic&logo=github"width="100" height="20"/></a>
-    <a href="https://github.com/levina-lab/VeezMusic" target="blank"><img src="https://img.shields.io/badge/LEVINA-black?style=plastic&logo=github"width="100" height="20"/></a>
-    <a href="https://github.com/kenkansaja/Music-Ken" target="blank"><img src="https://img.shields.io/badge/KEN KAN-black?style=plastic&logo=github"width="100" height="20"/></a>
+    <a href="https://github.com/tofikdn" target="blank"><img src="https://img.shields.io/badge/TOFIK-black?style=plastic&logo=github"width="100" height="20"/></a>
+    <a href="https://github.com/levina-lab" target="blank"><img src="https://img.shields.io/badge/LEVINA-black?style=plastic&logo=github"width="100" height="20"/></a>
+    <a href="https://github.com/TeamDaisyX" target="blank"><img src="https://img.shields.io/badge/TEAMDAISYX-black?style=plastic&logo=github"width="100" height="20"/></a>
+    <a href="https://github.com/kenkansaja" target="blank"><img src="https://img.shields.io/badge/KEN KAN-black?style=plastic&logo=github"width="100" height="20"/></a>
 </p>
