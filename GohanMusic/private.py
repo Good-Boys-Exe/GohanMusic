@@ -15,8 +15,7 @@ async def start_(client: Client, message: Message):
        caption = f"""<b>👋🏻 Hallo {message.from_user.mention}
 🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
-🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
-""",
+🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram</b>""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
