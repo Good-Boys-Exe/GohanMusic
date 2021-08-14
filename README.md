@@ -18,28 +18,28 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 ### Temukan saya di telegram: [@GohanMusicRobot](t.me/GohanMusicRobot)
 
 ```
-Perintah semua anggota grup
-- `/play <nama lagu>` - mainkan lagu kamu 
-- `/playlist` - Tampilkan daftar putar sekarang
-- `/current` - Tampilkan sekarang sedang diputar
-- `/song <nama lagu>` - unduh lagu yang Anda inginkan dengan cepat
-- `/search <nama lagu/video>` - cari video di youtube dengan detail
-- `/vsong <judul video>` - Untuk Mendownload Video di YouTube dengan detail
-Perintah semua admin grup
-- `/player` - buka panel pengaturan pemutar musik
-- `/pause` - jeda lagu 
-- `/resume` - melanjutkan pemutaran lagu
-- `/skip` - mainkan lagu berikutnya
-- `/end` - hentikan pemutaran musik
-- `/userbotjoin` - undang asisten ke obrolan Anda
-- `/userbotleave` - hapus asisten dari obrolan Anda
-- `/reload` - Segarkan daftar admin
+- Perintah semua anggota grup
+- /play <nama lagu> - mainkan lagu kamu 
+- /playlist - Tampilkan daftar putar sekarang
+- /current - Tampilkan sekarang sedang diputar
+- /song <nama lagu> - unduh lagu yang Anda inginkan dengan cepat
+- /search <nama lagu/video> - cari video di youtube dengan detail
+- /vsong <judul video> - Untuk Mendownload Video di YouTube dengan detail
+- Perintah semua admin grup
+- /player - buka panel pengaturan pemutar musik
+- /pause - jeda lagu 
+- /resume - melanjutkan pemutaran lagu
+- /skip - mainkan lagu berikutnya
+- /end - hentikan pemutaran musik
+- /userbotjoin - undang asisten ke obrolan Anda
+- /userbotleave - hapus asisten dari obrolan Anda
+- /reload - Segarkan daftar admin
 ```
 
 
 ### ❤️ KREDIT MUSIC
 <p>
-    <a href="https://github.com/tofikdn/TDMusicBot" target="blank"><img src="https://img.shields.io/badge/TOFIK-black?style=plastic&logo=github"width="100" height="40"/></a>
-    <a href="https://github.com/levina-lab/VeezMusic" target="blank"><img src="https://img.shields.io/badge/LEVINA-black?style=plastic&logo=github"width="100" height="40"/></a>
-    <a href="https://github.com/kenkansaja/Music-Ken" target="blank"><img src="https://img.shields.io/badge/KEN KAN-black?style=plastic&logo=github"width="100" height="40"/></a>
+    <a href="https://github.com/tofikdn/TDMusicBot" target="blank"><img src="https://img.shields.io/badge/TOFIK-black?style=plastic&logo=github"width="100" height="20"/></a>
+    <a href="https://github.com/levina-lab/VeezMusic" target="blank"><img src="https://img.shields.io/badge/LEVINA-black?style=plastic&logo=github"width="100" height="20"/></a>
+    <a href="https://github.com/kenkansaja/Music-Ken" target="blank"><img src="https://img.shields.io/badge/KEN KAN-black?style=plastic&logo=github"width="100" height="20"/></a>
 </p>
