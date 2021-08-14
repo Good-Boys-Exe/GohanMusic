@@ -18,16 +18,14 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 ### Temukan saya di telegram: [@GohanMusicRobot](t.me/GohanMusicRobot)
 
 ```
-### Perintah semua anggota grup
+Perintah semua anggota grup
 - `/play <nama lagu>` - mainkan lagu kamu 
 - `/playlist` - Tampilkan daftar putar sekarang
 - `/current` - Tampilkan sekarang sedang diputar
 - `/song <nama lagu>` - unduh lagu yang Anda inginkan dengan cepat
 - `/search <nama lagu/video>` - cari video di youtube dengan detail
 - `/vsong <judul video>` - Untuk Mendownload Video di YouTube dengan detail
-
-
-### Perintah semua admin grup
+Perintah semua admin grup
 - `/player` - buka panel pengaturan pemutar musik
 - `/pause` - jeda lagu 
 - `/resume` - melanjutkan pemutaran lagu
