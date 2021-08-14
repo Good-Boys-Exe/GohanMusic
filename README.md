@@ -16,7 +16,7 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 </p>
 
 Anda dapat menemukan saya di telegram sebagai
-<p align="center"><a href="t.me/GohanMusicRobot"><img src="https://img.shields.io/badge/𝗚𝗢𝗛𝗔𝗡-𝗠𝗨𝗦𝗜𝗖-blue?style=plastic&logo=telegram&logoColor=blue"width="300" height="40" /></a></p>
+<p align="center"><a href="t.me/GohanMusicRobot"><img src="https://img.shields.io/badge/ROBOT 𝗚𝗢𝗛𝗔𝗡-𝗠𝗨𝗦𝗜𝗖-blue?style=plastic&logo=telegram&logoColor=blue"width="300" height="40" /></a></p>
 
 ```
 - Perintah semua anggota grup
