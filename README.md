@@ -25,6 +25,7 @@ Jika ada pertanyaan silahkan hubungi kami di grup atau di PM owner
 - /song <nama lagu> - unduh lagu yang Anda inginkan dengan cepat
 - /search <nama lagu/video> - cari video di youtube dengan detail
 - /vsong <judul video> - Untuk Mendownload Video di YouTube dengan detail
+
 - Perintah semua admin grup
 - /player - buka panel pengaturan pemutar musik
 - /pause - jeda lagu 
