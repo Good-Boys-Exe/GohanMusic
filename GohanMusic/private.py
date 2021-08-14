@@ -16,8 +16,7 @@ async def start_(client: Client, message: Message):
 🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
-
-✏️ Klik Tombol Bantuan Untuk Melihat Daftar Perintah Saya</b>""",
+""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
@@ -29,7 +28,9 @@ async def start_(client: Client, message: Message):
                     InlineKeyboardButton(
                         "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
                   ],[
-                    InlineKeyboardButton(text = '⚔️ ʙᴀɴᴛᴜᴀɴ & ᴘᴇʀɪɴᴛᴀʜ ⚔️', callback_data = "helps+1")
+                    InlineKeyboardButton(text = '⚔️ ʙᴀɴᴛᴜᴀɴ', callback_data = "helps+1"),
+                    InlineKeyboardButton
+                        "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic")
                 ]
             ]
         )
