@@ -21,7 +21,7 @@ f"""
 • Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi
 """,
 
-"""
+f"""
 Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /aplay (balas ke audio) - Untuk Memutar Lagu Dari Audio File
