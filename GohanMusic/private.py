@@ -78,8 +78,7 @@ Perintah semua admin grup
 help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('helps+'))
 
 @Client.on_callback_query(help_callback_filter)
-async def helps_(client: Client, message: Message):
-def help_answer(client, callback_query):
+def helps_answer(client, callback_query, message: Message):
     chat_id = callback_query.from_user.id
     disable_web_page_preview=True
     message_id = callback_query.message.message_id
