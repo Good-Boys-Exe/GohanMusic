@@ -4,12 +4,11 @@ class Messages():
       HELPS_MSG = [
         ".",
 f"""
-👋🏻 Hallo Selamat Datang Kembali Di {bn}
+<b>👋🏻 Hallo Selamat Datang Kembali Di {bn}
 
 ✣️ {bn} Dapat Memutar Lagu Di Voice Chat Group Dengan Cara Yang Mudah.
 
-✣️ Assistant Music » @{an}
-
+✣️ Assistant Music » @{an}</b>
 """,
 
 
