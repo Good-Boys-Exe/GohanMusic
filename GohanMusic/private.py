@@ -84,7 +84,7 @@ def help_answer(client, callback_query):
     message_id = callback_query.message.message_id
     msg = int(callback_query.data.split('+')[1])
     client.edit_message_text(chat_id=chat_id,    message_id=message_id,
-        text=tr.HELPS_MSG[msg],    reply_markup=InlineKeyboardMarkup(map(msg))
+        text=tr.HELPS_MSG[msg],.format(message.from_user.first_name, message.from_user.id, bn),    reply_markup=InlineKeyboardMarkup(map(msg))
     )
 
 
