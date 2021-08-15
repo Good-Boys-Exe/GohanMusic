@@ -39,9 +39,5 @@ f"""
 • /skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
 • /end - Untuk Memberhentikan pemutaran Lagu
 • /reload - Untuk Segarkan daftar admin</b>
-""",
-
-f"""
-{TXT}
 """
       ]
