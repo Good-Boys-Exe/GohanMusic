@@ -41,8 +41,8 @@ f"""
 """,
 
 """
-👋🏻 Hallo [{}](tg://user?id={})
+<b>👋🏻 Hallo [{}](tg://user?id={})
 🎟️ Nama Saya {}
-🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
+🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram</b>
 """
       ]
