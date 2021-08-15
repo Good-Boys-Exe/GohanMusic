@@ -4,27 +4,27 @@ class Messages():
       HELPS_MSG = [
         ".",
 f"""
-**👋🏻 Hallo Selamat Datang Kembali Di {bn}
+👋🏻 Hallo Selamat Datang Kembali Di {bn}
 
 ✣️ {bn} Dapat Memutar Lagu Di Voice Chat Group Dengan Cara Yang Mudah.
 
-✣️ Assistant Music » @{an}**
+✣️ Assistant Music » @{an}
 
 """,
 
 
 f"""
-**Pengaturan
+Pengaturan
 1) Jadikan Bot Sebagai Admin
 2) Mulai Obrolan Suara / Vcg
 3) Kirim Perintah /userbotjoin
 • Jika Assistant Bot Bergabung Selamat Menikmati Musik, 
-• Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi**
+• Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi
 """,
 
 
 f"""
-**Perintah semua anggota grup
+Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /aplay (balas ke audio) - Untuk Memutar Lagu Dari Audio File
 • /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube tanpa pilihan
@@ -37,6 +37,6 @@ Perintah semua admin grup
 • /resume - Untuk Melanjutkan pemutaran Lagu yang di pause
 • /skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
 • /end - Untuk Memberhentikan pemutaran Lagu
-• /reload - Untuk Segarkan daftar admin**
+• /reload - Untuk Segarkan daftar admin
 """
       ]
