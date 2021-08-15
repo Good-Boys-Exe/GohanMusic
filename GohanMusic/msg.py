@@ -12,6 +12,7 @@ f"""
 
 """,
 
+
 f"""
 **Pengaturan
 1) Jadikan Bot Sebagai Admin
@@ -20,6 +21,7 @@ f"""
 • Jika Assistant Bot Bergabung Selamat Menikmati Musik, 
 • Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi
 """,
+
 
 f"""
 Perintah semua anggota grup
