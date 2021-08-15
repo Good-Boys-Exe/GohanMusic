@@ -2,7 +2,7 @@ import os
 from pyrogram.types import Message
 from config import ASSISTANT_NAME as an, BOT_NAME as bn ,SUPPORT_GROUP, OWNER
 async def helps(client: Client, message: Message):
-class Message():
+class Messages():
       HELPS_MSG = [
         ".",
 f"""
