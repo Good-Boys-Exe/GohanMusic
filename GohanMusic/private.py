@@ -78,13 +78,14 @@ Perintah semua admin grup
 help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('helps+'))
 
 @Client.on_callback_query(help_callback_filter)
+async def start_(client: Client, message: Message):
 def help_answer(client, callback_query):
     chat_id = callback_query.from_user.id
     disable_web_page_preview=True
     message_id = callback_query.message.message_id
     msg = int(callback_query.data.split('+')[1])
     client.edit_message_text(chat_id=chat_id,    message_id=message_id,
-        text=tr.HELPS_MSG[msg].format(message.from_user.first_name, message.from_user.id,),    reply_markup=InlineKeyboardMarkup(map(msg))
+        text=tr.HELPS_MSG[msg].format(message.from_user.first_name, message.from_user.id, bn),    reply_markup=InlineKeyboardMarkup(map(msg))
     )
 
 
