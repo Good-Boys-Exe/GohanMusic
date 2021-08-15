@@ -19,12 +19,12 @@ f"""
 2) Mulai Obrolan Suara / Vcg
 3) Kirim Perintah /userbotjoin
 • Jika Assistant Bot Bergabung Selamat Menikmati Musik, 
-• Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi
+• Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi**
 """,
 
 
 f"""
-Perintah semua anggota grup
+**Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /aplay (balas ke audio) - Untuk Memutar Lagu Dari Audio File
 • /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube tanpa pilihan
