@@ -1,7 +1,6 @@
 import os
 from pyrogram.types import Message
-from config import ASSISTANT_NAME as an, BOT_NAME as bn ,SUPPORT_GROUP, OWNER
-async def helps(client: Client, message: Message):
+from config import ASSISTANT_NAME as an, BOT_NAME as bn ,SUPPORT_GROUP, OWNER, TXT
 class Messages():
       HELPS_MSG = [
         ".",
@@ -43,8 +42,6 @@ f"""
 """,
 
 f"""
-<b>👋🏻 Hallo {message.from_user.mention}
-🎟️ Nama Saya {bn}
-🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram</b>
+{TXT}
 """
       ]
