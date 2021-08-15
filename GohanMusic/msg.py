@@ -1,6 +1,6 @@
 import os
 from pyrogram.types import Message
-from config import ASSISTANT_NAME as an, BOT_NAME as bn ,SUPPORT_GROUP, OWNER, TXT
+from config import ASSISTANT_NAME as an, BOT_NAME as bn ,SUPPORT_GROUP, OWNER
 class Messages():
       HELPS_MSG = [
         ".",
