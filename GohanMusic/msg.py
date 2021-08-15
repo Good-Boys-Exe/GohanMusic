@@ -29,9 +29,9 @@ f"""
 • /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube tanpa pilihan
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
 • /vsong (judul video) - Untuk Mendownload Video di YouTube
-• /search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
+• /search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail<b>
 
-Perintah semua admin grup
+</b>Perintah semua admin grup
 • /pause - Untuk Menjeda pemutaran Lagu
 • /resume - Untuk Melanjutkan pemutaran Lagu yang di pause
 • /skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
