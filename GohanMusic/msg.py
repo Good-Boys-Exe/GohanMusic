@@ -26,16 +26,23 @@ f"""
 <b>Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /aplay (balas ke audio) - Untuk Memutar Lagu Dari Audio File
-• /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube tanpa pilihan
+• /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube Tanpa Pilihan
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
 • /vsong (judul video) - Untuk Mendownload Video di YouTube
-• /search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail<b>
-
+• /lyrics (judul lagu) Untuk Mencari Lirik Lagu
+• /search (judul lagu/video) - Untuk Mencari Link Di YouTube Dengan Detail<b>
+\n\n
 </b>Perintah semua admin grup
 • /pause - Untuk Menjeda pemutaran Lagu
 • /resume - Untuk Melanjutkan pemutaran Lagu yang di pause
 • /skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
 • /end - Untuk Memberhentikan pemutaran Lagu
 • /reload - Untuk Segarkan daftar admin</b>
+""",
+
+"""
+👋🏻 Hallo [{}](tg://user?id={})
+🎟️ Nama Saya {}
+🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
 """
       ]
