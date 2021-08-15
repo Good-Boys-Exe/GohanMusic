@@ -15,7 +15,7 @@ from callsmusic.callsmusic import client as USER
 from pyrogram.errors import UserAlreadyParticipant
 from downloaders import youtube
 
-from config import que, DURATION_LIMIT, SUPPORT_GROUP, BOT_USERNAME as bu, BOT_NAME as bn, ARQ_API_KEY as aak, BOT_IMAGE as bi, OWNER
+from config import que, DURATION_LIMIT, SUPPORT_GROUP, BOT_USERNAME as bu, BOT_NAME as bn, ARQ_API_KEY as aak, BOT_IMAGE as bi
 from helpers.filters import command, other_filters
 from helpers.decorators import authorized_users_only
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
