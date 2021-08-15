@@ -6,6 +6,7 @@ from pyrogram import Client
 from config import BOT_USERNAME as bu, OWNER as o
 from helpers.filters import command
 
+
 @Client.on_message(command(["asupan", f"asupan@{bu}"]))
 async def asupan(client, message):
     try:
