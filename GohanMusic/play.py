@@ -85,6 +85,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("temp.png")
     os.remove("background.png")
 
+
 @Client.on_message(command(["playlist", f"playlist@{bu}"]) & filters.group & ~filters.edited)
 async def playlist(client, message):
     global que
@@ -109,6 +110,7 @@ async def playlist(client, message):
             msg += f"\n• {name}"
             msg += f"\n• Permintaan {usr}\n"
     await message.reply_text(msg)       
+
 
 # ============================= Settings =========================================
 def updated_stats(chat, queue, vol=100):
@@ -204,6 +206,7 @@ async def p_cb(b, cb):
                  msg += f"\n• {name}"
                  msg += f"\n• Permintaan {usr}\n"
         await cb.message.edit(msg)      
+
 
 @Client.on_callback_query(filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$"))
 @cb_admin_check
@@ -340,6 +343,7 @@ async def m_cb(b, cb):
             await cb.message.edit("**✅ Userbot telah terputus dari obrolan suara.**")
         else:
             await cb.answer("Assistant Sedang Tidak Terhubung dengan VCG!", show_alert=True)
+
 
 @Client.on_message(command(["play", f"play@{bu}"]) & other_filters)
 async def play(_, message: Message):
