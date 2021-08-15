@@ -434,10 +434,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                 InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
-                 InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
+                 InlineKeyboardButton("⏯ ᴍᴇɴᴜ", callback_data="menu"),
+                 InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ 🗑", callback_data="cls"),
                 ],
-                [InlineKeyboardButton(text="🗑️ ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
+                [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
             ]
         )
         file_name = get_file_name(audio)
@@ -480,10 +480,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                 InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
-                 InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
+                 InlineKeyboardButton("⏯ ᴍᴇɴᴜ", callback_data="menu"),
+                 InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ 🗑", callback_data="cls"),
                 ],
-                [InlineKeyboardButton(text="🗑️ ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
+                [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -575,10 +575,10 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
             [
                 [
-                 InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
-                 InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
+                 InlineKeyboardButton("⏯ ᴍᴇɴᴜ", callback_data="menu"),
+                 InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ 🗑", callback_data="cls"),
                 ],
-                [InlineKeyboardButton(text="🗑️ ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
+                [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
             ]
         )
             requested_by = message.from_user.first_name
@@ -675,10 +675,10 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
             [
                 [
-                 InlineKeyboardButton("📖 ᴘʟᴀʏʟɪsᴛ", callback_data="playlist"),
-                 InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"),
+                 InlineKeyboardButton("⏯ ᴍᴇɴᴜ", callback_data="menu"),
+                 InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ 🗑", callback_data="cls"),
                 ],
-                [InlineKeyboardButton(text="🗑️ ᴄʟᴏsᴇ 🗑️", callback_data="cls")],
+                [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
             ]
         )
     requested_by = useer_name
