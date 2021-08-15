@@ -1,4 +1,5 @@
 import os
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from config import ASSISTANT_NAME as an, BOT_NAME as bn ,SUPPORT_GROUP, OWNER
 class Messages():
       HELPS_MSG = [
