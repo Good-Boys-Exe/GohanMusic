@@ -40,9 +40,9 @@ f"""
 • /reload - Untuk Segarkan daftar admin</b>
 """,
 
-"""
-<b>👋🏻 Hallo [{}](tg://user?id={})
-🎟️ Nama Saya {}
+f"""
+<b>👋🏻 Hallo {message.from_user.mention}
+🎟️ Nama Saya {bn}
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram</b>
 """
       ]
