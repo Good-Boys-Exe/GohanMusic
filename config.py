@@ -22,3 +22,7 @@ DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ . , - : ; !").split())
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
+
+TXT = <b>👋🏻 Hallo {message.from_user.mention}
+🎟️ Nama Saya {bn}
+🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram</b>
