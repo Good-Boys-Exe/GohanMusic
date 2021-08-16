@@ -407,7 +407,7 @@ async def play(_, message: Message):
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         url = f"https://www.youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:999]       
+        title = results[0]["title"][:250]       
         thumbnail = results[0]["thumbnails"][0]
         thumb_name = f"thumb{title}.jpg"
         thumb = requests.get(thumbnail, allow_redirects=True)
