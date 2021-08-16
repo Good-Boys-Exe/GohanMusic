@@ -4,6 +4,7 @@ from config import BOT_USERNAME, BOT_NAME as bn, ASSISTANT_NAME, SUPPORT_GROUP, 
 from helpers.filters import command
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from helpers.decorators import authorized_users_only
 
 
 START_TIME = datetime.utcnow()
