@@ -4,7 +4,6 @@ from config import BOT_USERNAME, BOT_NAME as bn, ASSISTANT_NAME, SUPPORT_GROUP, 
 from helpers.filters import command
 from pyrogram import Client, filters, emoji
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from helpers.decorators import authorized_users_only
 
 
 START_TIME = datetime.utcnow()
@@ -65,7 +64,6 @@ async def ping_pong(client: Client, m: Message):
 
 
 @Client.on_message(command(["uptime", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
-@authorized_users_only
 async def get_uptime(client: Client, m: Message):
     current_time = datetime.utcnow()
     uptime_sec = (current_time - START_TIME).total_seconds()
