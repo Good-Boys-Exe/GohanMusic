@@ -208,7 +208,7 @@ async def p_cb(b, cb):
         await cb.message.edit(msg)      
 
 
-@Client.on_callback_query(filters.regex(pattern=r"^(play|playlist|pause|skip|leave|puse|resume|menu|cls)$"))
+@Client.on_callback_query(filters.regex(pattern=r"^(play|pause|skip|leave|puse|resume|menu|cls)$"))
 @cb_admin_check
 async def m_cb(b, cb):
     global que    
