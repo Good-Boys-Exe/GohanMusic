@@ -436,7 +436,7 @@ async def play(_, message: Message):
             [
                 [
                  InlineKeyboardButton("⏯ ᴍᴇɴᴜ", callback_data="menu"),
-                 InlineKeyboardButton(text="ᴛᴜᴛᴜᴘ 🗑", callback_data="cls"),
+                 InlineKeyboardButton("ᴛᴜᴛᴜᴘ 🗑", callback_data="cls"),
                 ],
                 [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
             ]
