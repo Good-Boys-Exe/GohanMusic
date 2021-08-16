@@ -509,7 +509,7 @@ async def play(_, message: Message):
             
             emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"]
             while j < 10:
-                toxxt += f"{emojilist[j]} **Judul -** [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
+                toxxt += f"{emojilist[j]} [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f" ├ 💡 **Duration -** {results[j]['duration']}\n"
                 toxxt += f" └ ⚡ **Powered by -** [{bn}](t.me/{bu})\n\n"
                 j += 1            
@@ -551,7 +551,7 @@ async def play(_, message: Message):
             return
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         except:
-            await lel.edit(f"**✅ Jika terjadi error jangan ragu untuk menghubungi\n• [GROUP](t.me/{SUPPORT_GROUP})\n• [OWNER](t.me/{OWNER})**")
+            await lel.edit(f"**❌ Error Silahkan Lapor Ke @{SUPPORT_GROUP}**")
                         
             # print(results)
             try:
