@@ -2,7 +2,7 @@ import logging
 from pyrogram.types import Message
 from search_engine_parser import GoogleSearch
 from youtube_search import YoutubeSearch
-from pyrogram import Client as app, filters
+from pyrogram import Client, filters
 from helpers.filters import command
 from config import BOT_USERNAME
 
@@ -17,7 +17,7 @@ import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
-@app.on_message(command(["search", f"search@{BOT_USERNAME}"]))
+@Client.on_message(command(["search", f"search@{BOT_USERNAME}"]))
 async def ytsearch(_, message: Message):
     try:
         if len(message.command) < 2:
