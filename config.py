@@ -1,4 +1,5 @@
 from os import getenv
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,7 +15,10 @@ BOT_USERNAME = getenv("BOT_USERNAME")
 ASSISTANT_NAME = getenv("ASSISTANT_NAME")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "GroupMusicRandom")
 OWNER = getenv("OWNER", "Tomi_sn")
-STICKER_ID = getenv("STICKER_ID", "CAACAgUAAxkBAAFF-Bdg-i8JvMgppo9DCVkFV9pPVSprzgACdwIAAsgM0VdqqiQQ6Hdw7CAE")
+STICKER_ID = getenv(
+    "STICKER_ID",
+    "CAACAgUAAxkBAAFF-Bdg-i8JvMgppo9DCVkFV9pPVSprzgACdwIAAsgM0VdqqiQQ6Hdw7CAE",
+)
 BOT_IMAGE = getenv("BOT_IMAGE", "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg")
 
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))

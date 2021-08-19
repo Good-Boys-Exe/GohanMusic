@@ -1,46 +1,50 @@
-from time import time
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+
+from config import ASSISTANT_NAME as an
+from config import BOT_IMAGE, BOT_NAME, BOT_USERNAME, OWNER, SUPPORT_GROUP
 from GohanMusic.msg import Messages as tr
-from datetime import datetime
-from config import BOT_USERNAME, BOT_NAME, SUPPORT_GROUP, BOT_IMAGE, OWNER, ASSISTANT_NAME as an
 from helpers.filters import command
-from pyrogram import Client, filters, emoji
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from helpers.decorators import authorized_users_only
 
 
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
     await message.reply_photo(
-       photo = f"{BOT_IMAGE}",
-       caption = f"""<b>👋🏻 Hallo {message.from_user.mention}
+        photo=f"{BOT_IMAGE}",
+        caption=f"""<b>👋🏻 Hallo {message.from_user.mention}
 🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram</b>""",
         reply_markup=InlineKeyboardMarkup(
-            [ 
+            [
                 [
                     InlineKeyboardButton(
-                        "➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
-                  ],[
+                        "➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕",
+                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                    )
+                ],
+                [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
+                ],
+                [
+                    InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
                     InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
-                  ],[
-                    InlineKeyboardButton(text = '⚔️ ʙᴀɴᴛᴜᴀɴ', callback_data = "helps+1"),
-                    InlineKeyboardButton(
-                        "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic")
-                ]
+                        "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic"
+                    ),
+                ],
             ]
-        )
+        ),
     )
 
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
 async def help(client: Client, message: Message):
     await message.reply_photo(
-       photo = f"{BOT_IMAGE}",
-       caption = f"""<b>Pengaturan
+        photo=f"{BOT_IMAGE}",
+        caption=f"""<b>Pengaturan
 1) Jadikan Bot Sebagai Admin
 2) Mulai Obrolan Suara / Vcg
 3) Kirim Perintah /userbotjoin
@@ -65,45 +69,44 @@ Perintah semua admin grup
             [
                 [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
-                    InlineKeyboardButton(
-                        "ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
                 ]
             ]
-        )
+        ),
     )
 
 
+help_callback_filter = filters.create(
+    lambda _, __, query: query.data.startswith("helps+")
+)
 
-help_callback_filter = filters.create(lambda _, __, query: query.data.startswith('helps+'))
 
 @Client.on_callback_query(help_callback_filter)
 def helps_answer(client, callback_query):
     chat_id = callback_query.from_user.id
-    disable_web_page_preview=True
     message_id = callback_query.message.message_id
-    msg = int(callback_query.data.split('+')[1])
-    client.edit_message_text(chat_id=chat_id,    message_id=message_id,
-        text=tr.HELPS_MSG[msg],    reply_markup=InlineKeyboardMarkup(map(msg))
+    msg = int(callback_query.data.split("+")[1])
+    client.edit_message_text(
+        chat_id=chat_id,
+        message_id=message_id,
+        text=tr.HELPS_MSG[msg],
+        reply_markup=InlineKeyboardMarkup(map(msg)),
     )
 
 
 def map(pos):
-    if(pos==1):
-        button = [
-            [InlineKeyboardButton(text = '➡️', callback_data = "helps+2")]
-        ]
-    elif(pos==len(tr.HELPS_MSG)-1):
+    if pos == 1:
+        button = [[InlineKeyboardButton(text="➡️", callback_data="helps+2")]]
+    elif pos == len(tr.HELPS_MSG) - 1:
         url = f"https://t.me/{SUPPORT_GROUP}"
-        button = [
-            [InlineKeyboardButton(text = '⬅️', callback_data = f"helps+{pos-1}")]
-        ]
+        button = [[InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}")]]
     else:
         button = [
             [
-                InlineKeyboardButton(text = '⬅️', callback_data = f"helps+{pos-1}"),
-                InlineKeyboardButton(text = '➡️', callback_data = f"helps+{pos+1}")
+                InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}"),
+                InlineKeyboardButton(text="➡️", callback_data=f"helps+{pos+1}"),
             ],
         ]
     return button
-

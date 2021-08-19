@@ -3,7 +3,9 @@
 
 import requests
 from pyrogram import Client
-from config import BOT_USERNAME as bu, OWNER as o
+
+from config import BOT_USERNAME as bu
+from config import OWNER as o
 from helpers.filters import command
 
 
@@ -65,8 +67,12 @@ async def lirik(_, message):
             return
         query = message.text.split(None, 1)[1]
         rep = await message.reply_text("🔎 **Sedang Mencari lyrics**")
-        resp = requests.get(f"https://tede-api.herokuapp.com/api/lirik?l={query}").json()
+        resp = requests.get(
+            f"https://tede-api.herokuapp.com/api/lirik?l={query}"
+        ).json()
         result = f"{resp['data']}"
         await rep.edit(result)
     except Exception:
-        await rep.edit("**Lyrics tidak ditemukan.** Coba cari dengan judul lagu yang lebih jelas")
+        await rep.edit(
+            "**Lyrics tidak ditemukan.** Coba cari dengan judul lagu yang lebih jelas"
+        )

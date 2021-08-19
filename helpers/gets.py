@@ -1,6 +1,6 @@
 from typing import Union
 
-from pyrogram.types import Message, Audio, Voice
+from pyrogram.types import Audio, Message, Voice
 
 
 def get_url(message_1: Message) -> Union[str, None]:
@@ -27,7 +27,7 @@ def get_url(message_1: Message) -> Union[str, None]:
     if offset in (None,):
         return None
 
-    return text[offset:offset + length]
+    return text[offset : offset + length]
 
 
 def get_file_name(audio: Union[Audio, Voice]):

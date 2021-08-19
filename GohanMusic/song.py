@@ -1,23 +1,25 @@
 from __future__ import unicode_literals
+
 import asyncio
 import math
 import os
 import time
+from random import randint
+from urllib.parse import urlparse
+
 import aiofiles
 import aiohttp
 import requests
 import wget
 import youtube_dl
-from random import randint
-from urllib.parse import urlparse
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
+
+from config import BOT_NAME, BOT_USERNAME, DURATION_LIMIT
 from helpers.filters import command
-from config import DURATION_LIMIT, BOT_USERNAME, BOT_NAME
-from GohanMusic.play import arq
 
 
 @Client.on_message(command(["song", f"song@{BOT_USERNAME}"]) & ~filters.channel)
@@ -42,7 +44,9 @@ def song(client, message):
         results[0]["url_suffix"]
         results[0]["views"]
     except Exception as e:
-        m.edit("❌ **Lagu Tidak ditemukan.**\n\n**Coba Masukan Judul lagu yang lebih jelas.**")
+        m.edit(
+            "❌ **Lagu Tidak ditemukan.**\n\n**Coba Masukan Judul lagu yang lebih jelas.**"
+        )
         print(str(e))
         return
     m.edit(f"**🔄 Sabar Ya** {rpk} **Lagu Sedang Didownload**")
@@ -72,7 +76,9 @@ def song(client, message):
         )
         m.delete()
     except Exception as e:
-        m.edit("DownloadError: ERROR: No video formats found; please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the verbose flag and include its complete output.")
+        m.edit(
+            "DownloadError: ERROR: No video formats found; please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the verbose flag and include its complete output."
+        )
         print(e)
     try:
         os.remove(audio_file)
@@ -232,6 +238,7 @@ def time_to_seconds(time):
     stringt = str(time)
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
+
 @Client.on_message(command(["vsong", f"vsong@{BOT_USERNAME}"]))
 async def ytmusic(client, message: Message):
     global is_downloading
@@ -244,10 +251,13 @@ async def ytmusic(client, message: Message):
     urlissed = get_text(message)
 
     pablo = await client.send_message(
-        message.chat.id, f"**Mendapatkan** `{urlissed}` **Dari Youtube. Tunggu Sebentar.**"
+        message.chat.id,
+        f"**Mendapatkan** `{urlissed}` **Dari Youtube. Tunggu Sebentar.**",
     )
     if not urlissed:
-        await pablo.edit("**Sintaks Perintah Tidak Valid** Silakan ketik `/help` Untuk Mengetahui Lebih Lanjut!")
+        await pablo.edit(
+            "**Sintaks Perintah Tidak Valid** Silakan ketik `/help` Untuk Mengetahui Lebih Lanjut!"
+        )
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)

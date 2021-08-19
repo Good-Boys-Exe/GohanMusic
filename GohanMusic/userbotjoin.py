@@ -1,14 +1,17 @@
 import asyncio
-from callsmusic.callsmusic import client as USER
+
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import UserAlreadyParticipant
-from helpers.decorators import errors, authorized_users_only
+
+from callsmusic.callsmusic import client as USER
+from config import BOT_USERNAME, SUDO_USERS
+from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command
-from config import SUDO_USERS, BOT_USERNAME
 
 
-@Client.on_message(command(["userbotjoin", f"userbotjoin@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(
+    command(["userbotjoin", f"userbotjoin@{BOT_USERNAME}"]) & filters.group
+)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
@@ -26,7 +29,9 @@ async def addchannel(client, message):
         user.first_name = "helper"
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "Saya bergabung di sini seperti yang Anda minta")
+        await USER.send_message(
+            message.chat.id, "Saya bergabung di sini seperti yang Anda minta"
+        )
     except UserAlreadyParticipant:
         await message.reply_text(
             f"<b>{user.first_name} sudah ada di obrolan Anda.</b>",
@@ -42,12 +47,12 @@ async def addchannel(client, message):
         f"<b>{user.first_name} berhasil bergabung dengan group Anda.</b>",
     )
 
-    
+
 @USER.on_message(command("userbotleave") & filters.group)
 async def rem(USER, message):
     try:
         await USER.leave_chat(message.chat.id)
-    except:  
+    except:
         await message.reply_text(
             "<b>Pengguna tidak dapat meninggalkan group Anda! Mungkin menunggu floodwaits."
             "\n\nAtau keluarkan saya secara manual dari ke Group Anda</b>",
@@ -55,19 +60,27 @@ async def rem(USER, message):
         return
 
 
-@Client.on_message(command("userbotleaveall") & filters.user(SUDO_USERS) & ~filters.edited)
+@Client.on_message(
+    command("userbotleaveall") & filters.user(SUDO_USERS) & ~filters.edited
+)
 async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
-        left=0
-        failed=0
+        left = 0
+        failed = 0
         lol = await message.reply("Asisten Meninggalkan semua obrolan")
         async for dialog in USER.iter_dialogs():
             try:
                 await USER.leave_chat(dialog.chat.id)
-                left = left+1
-                await lol.edit(f"Asisten pergi... Meninggalkan: {left} obrolan Gagal: {failed} obrolan.")
+                left = left + 1
+                await lol.edit(
+                    f"Asisten pergi... Meninggalkan: {left} obrolan Gagal: {failed} obrolan."
+                )
             except:
-                failed=failed+1
-                await lol.edit(f"Asisten pergi... Meninggalkan: {left} obrolan Gagal: {failed} obrolan.")
+                failed = failed + 1
+                await lol.edit(
+                    f"Asisten pergi... Meninggalkan: {left} obrolan Gagal: {failed} obrolan."
+                )
             await asyncio.sleep(0.7)
-        await client.send_message(message.chat.id, f"Keluar {left} obrolan gagal {failed} obrolan.")
+        await client.send_message(
+            message.chat.id, f"Keluar {left} obrolan gagal {failed} obrolan."
+        )
