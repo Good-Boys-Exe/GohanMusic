@@ -37,4 +37,3 @@ class Messages:
 • /reload - Untuk Segarkan daftar admin</b>
 """,
     ]
-
