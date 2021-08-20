@@ -84,4 +84,3 @@ async def bye(client, message):
         await client.send_message(
             message.chat.id, f"Keluar {left} obrolan gagal {failed} obrolan."
         )
-
