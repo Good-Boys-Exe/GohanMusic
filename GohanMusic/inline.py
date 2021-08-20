@@ -46,3 +46,4 @@ async def inline(client: Client, query: InlineQuery):
                 switch_pm_text="Error: Search timed out",
                 switch_pm_parameter="",
             )
+
