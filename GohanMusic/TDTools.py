@@ -77,3 +77,4 @@ async def lirik(_, message):
             "**Lyrics tidak ditemukan.** Coba cari dengan judul lagu yang lebih jelas"
         )
 
+
