@@ -40,3 +40,4 @@ def clear(chat_id: int):
             raise Empty
         queues[chat_id].queue = []
     raise Empty
+
