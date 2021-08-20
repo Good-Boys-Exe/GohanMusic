@@ -809,4 +809,3 @@ async def lol_cb(b, cb):
             reply_markup=keyboard,
         )
         os.remove("final.png")
-
