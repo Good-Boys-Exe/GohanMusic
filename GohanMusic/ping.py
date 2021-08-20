@@ -80,3 +80,4 @@ async def get_uptime(client: Client, m: Message):
         f"• **Waktu aktif:** `{uptime}`\n"
         f"• **Waktu mulai:** `{START_TIME_ISO}`"
     )
+
