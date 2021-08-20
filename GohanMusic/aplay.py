@@ -68,4 +68,3 @@ async def aplay(_, message: Message):
             ),
         )
         return await lel.delete()
-
