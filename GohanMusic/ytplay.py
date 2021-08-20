@@ -519,4 +519,3 @@ async def play(_, message: Message):
     )
     os.remove("final.png")
     return await lel.delete()
-
