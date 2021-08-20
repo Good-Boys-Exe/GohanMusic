@@ -36,4 +36,3 @@ async def broadcast(_, message: Message):
     return await wtf.edit(
         f"`Broadcast Selesai` \n\n**Dikirim ke:** `{sent}` Obrolan \n**Gagal dikirim:** {failed} Obrolan"
     )
-
