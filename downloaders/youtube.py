@@ -31,4 +31,3 @@ def download(url: str) -> str:
             f"❌ Video lebih panjang dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang disediakan adalah {duration} menit)"
         )
     return path.join("downloads", f"{info['id']}.{info['ext']}")
-
