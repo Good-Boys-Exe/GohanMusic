@@ -60,7 +60,11 @@
             "description": "Batas durasi audio maksimal untuk download (minutes)",
             "required": true,
             "value": "60"
-        }
+        },
+        "BG_IMAGE": {
+         "description": "dapatkan di telegraph.ph
+         "required": false,
+         "value": "https://telegra.ph/file/ef6272f4852904a35b4bf.png"
     },
     "buildpacks": [
     {
