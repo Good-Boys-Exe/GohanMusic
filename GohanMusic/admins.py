@@ -3,8 +3,9 @@ from asyncio.queues import QueueEmpty
 from pyrogram import Client
 from pyrogram.types import Message
 
+from cache.admins import set
 from callsmusic import callsmusic
-from config import BOT_USERNAME
+from config import BOT_USERNAME, que, admins as a
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
 
