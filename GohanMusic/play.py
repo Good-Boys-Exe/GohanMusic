@@ -376,7 +376,7 @@ async def m_cb(b, cb):
 
 
 @Client.on_message(command(["ytplay", f"ytplay@{bu}"]) & other_filters)
-async def play(_, message: Message):
+async def ytplay(_, message: Message):
     global que
     lel = await message.reply("**🔎 Sedang Mencari Lagu**")
     administrators = await get_administrators(message.chat)
