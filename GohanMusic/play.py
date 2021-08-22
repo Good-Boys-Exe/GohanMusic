@@ -850,7 +850,6 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-
 @Client.on_callback_query(filters.regex(pattern=r"plll"))
 async def lol_cb(b, cb):
     global que
