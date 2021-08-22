@@ -375,6 +375,156 @@ async def m_cb(b, cb):
             )
 
 
+@Client.on_message(command(["ytplay", f"ytplay@{BOT_USERNAME}"]) & other_filters)
+async def play(_, message: Message):
+    global que
+    lel = await message.reply("**🔎 Sedang Mencari Lagu**")
+    administrators = await get_administrators(message.chat)
+    chid = message.chat.id
+    try:
+        user = await USER.get_me()
+    except:
+        user.first_name = "helper"
+    usar = user
+    wew = usar.id
+    try:
+        await _.get_chat_member(chid, wew)
+    except:
+        for administrator in administrators:
+            if administrator == message.from_user.id:
+                try:
+                    invitelink = await _.export_chat_invite_link(chid)
+                except:
+                    await lel.edit(
+                        "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>",
+                    )
+                    return
+
+                try:
+                    await USER.join_chat(invitelink)
+                    await USER.send_message(
+                        message.chat.id,
+                        "Saya bergabung dengan group ini untuk memainkan musik di VCG.",
+                    )
+                    await lel.edit(
+                        "<b>{user.first_name} berhasil bergabung dengan Group anda</b>",
+                    )
+
+                except UserAlreadyParticipant:
+                    pass
+                except Exception:
+                    await lel.edit(
+                        f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk assistant! Pastikan assistan tidak dibanned didalam grup."
+                        f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>",
+                    )
+    try:
+        await USER.get_chat(chid)
+    except:
+        await lel.edit(
+            f"<b>{user.first_name}\nterkena banned dari Group ini, Minta admin untuk kirim perintah `/unban @{user.username}` di grup ini kemudian kirim perintah `/userbotjoin` di grup ini untuk mengundang assistant ke dalam grup anda</b>"
+        )
+        return
+    message.from_user.id
+    message.from_user.first_name
+    message.from_user.id
+    user_id = message.from_user.id
+    message.from_user.first_name
+    user_name = message.from_user.first_name
+    rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+
+    query = ""
+    for i in message.command[1:]:
+        query += " " + str(i)
+    print(query)
+    await lel.edit("**🔄 Sedang Memproses Lagu**")
+    ydl_opts = {
+        "format": "bestaudio/best",
+    }
+    try:
+        results = YoutubeSearch(query, max_results=1).to_dict()
+        url = f"https://www.youtube.com{results[0]['url_suffix']}"
+        title = results[0]["title"][:250]
+        thumbnail = results[0]["thumbnails"][0]
+        thumb_name = f"thumb{title}.jpg"
+        thumb = requests.get(thumbnail, allow_redirects=True)
+        open(thumb_name, "wb").write(thumb.content)
+        duration = results[0]["duration"]
+        results[0]["url_suffix"]
+        views = results[0]["views"]
+
+    except Exception as e:
+        await lel.edit(
+            "**❌ Lagu tidak ditemukan ❌**\nCoba masukan judul lagu yang lebih jelas"
+        )
+        print(str(e))
+        return
+    try:
+        secmul, dur, dur_arr = 1, 0, duration.split(":")
+        for i in range(len(dur_arr) - 1, -1, -1):
+            dur += int(dur_arr[i]) * secmul
+            secmul *= 60
+        if (dur / 60) > DURATION_LIMIT:
+            await lel.edit(
+                f"**❌ Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!\n🎧 Lagu yang di minta berdurasi `{duration}` menit**"
+            )
+            return
+    except:
+        pass
+    durl = url
+    durl = durl.replace("youtube", "youtubepp")
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("⏯ ᴍᴇɴᴜ", callback_data="menu"),
+                InlineKeyboardButton("ᴛᴜᴛᴜᴘ 🗑", callback_data="cls"),
+            ],
+            [
+                InlineKeyboardButton(
+                    "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                )
+            ],
+        ]
+    )
+    requested_by = message.from_user.first_name
+    await generate_cover(requested_by, title, views, duration, thumbnail)
+    file_path = await converter.convert(youtube.download(url))
+
+    if message.chat.id in callsmusic.pytgcalls.active_calls:
+        position = await queues.put(message.chat.id, file=file_path)
+        qeue = que.get(message.chat.id)
+        s_name = title
+        r_by = message.from_user
+        loc = file_path
+        appendable = [s_name, r_by, loc]
+        qeue.append(appendable)
+        await message.reply_photo(
+            photo="final.png",
+            caption=f"🏷 **Judul:** [{title}]({url})\n⏱ **Durasi:** `{duration}`\n💡 **Status:** `Antrian ke {position}`\n"
+            + f"🎧 **Permintaan** {message.from_user.mention}",
+            reply_markup=keyboard,
+        )
+        os.remove("final.png")
+        return await lel.delete()
+    chat_id = message.chat.id
+    que[chat_id] = []
+    qeue = que.get(message.chat.id)
+    s_name = title
+    r_by = message.from_user
+    loc = file_path
+    appendable = [s_name, r_by, loc]
+    qeue.append(appendable)
+    callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+    await message.reply_photo(
+        photo="final.png",
+        caption=f"🏷 **Judul:** [{title}]({url})\n⏱ **Durasi:** `{duration}`\n💡 **Status:** `Memutar`\n"
+        + f"🎧 **Permintaan:** {message.from_user.mention}",
+        reply_markup=keyboard,
+    )
+    os.remove("final.png")
+    return await lel.delete()
+
+
+
 @Client.on_message(command(["play", f"play@{bu}"]) & other_filters)
 async def play(_, message: Message):
     global que
