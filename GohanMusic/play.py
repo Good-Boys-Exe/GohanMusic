@@ -524,7 +524,6 @@ async def play(_, message: Message):
     return await lel.delete()
 
 
-
 @Client.on_message(command(["play", f"play@{bu}"]) & other_filters)
 async def play(_, message: Message):
     global que
