@@ -13,12 +13,12 @@
         "OWNER": {
           "description": "Masukan Username Telegram Anda Tanpa ==> @ <== [skip ini jika Anda tidak punya]",
           "required": false,
-          "value": "Tomi_sn"
+          "value": ""
         },
         "BOT_IMAGE": {
           "description": "Masukan link gambar anda yang di upload ke telegra.ph [skip ini jika Anda tidak punya]",
           "required": false,
-          "value": "https://telegra.ph/file/3cf32d3eae4c81dca0792.jpg"
+          "value": ""
         },
         "ARQ_API_KEY": {
           "description": "Ambil api dari bot telegram » @ARQRobot",
@@ -27,7 +27,7 @@
         "SUPPORT_GROUP": {
           "description": "Grup dukungan MusicPlayer Anda Tanpa Menggunakan ==> @ <== [skip ini jika Anda tidak punya]",
           "required": false,
-          "value": "GroupMusicRandom"
+          "value": ""
         },
         "BOT_TOKEN": {
             "description": "Masukan Bot Token dari @BotFather",
