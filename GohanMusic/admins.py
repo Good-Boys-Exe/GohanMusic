@@ -5,7 +5,8 @@ from pyrogram.types import Message
 
 from cache.admins import set, get
 from callsmusic import callsmusic
-from config import BOT_USERNAME, que, admins as a
+from config import que, admins as a
+from config import BOT_USERNAME
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
 
