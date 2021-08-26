@@ -23,7 +23,7 @@ async def update_admin(client, message):
     a[message.chat.id] = new_ads
     await message.reply_text(
         "✅ Bot **berhasil dimulai ulang!**\n\n• **Daftar admin** telah **diperbarui.**"
-    )
+     )
 
 
 @Client.on_message(command(["pause", f"pause@{BOT_USERNAME}"]) & other_filters)
