@@ -164,7 +164,7 @@ def r_ply(type_):
              InlineKeyboardButton("⏭️", "skip"),
              InlineKeyboardButton("⏹️", "leave")],
             [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ 🗑️", "cls")],
+            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
         ]
     )
     return mar
@@ -313,7 +313,7 @@ async def m_cb(b, cb):
              InlineKeyboardButton("⏭️", "skip"),
              InlineKeyboardButton("⏹️", "leave")],
             [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ 🗑️", "cls")],
+            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
         ]
     )
         await cb.message.edit(stats, reply_markup=marr)
@@ -447,7 +447,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
             ]
         )
         file_name = get_file_name(audio)
@@ -492,7 +492,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -546,7 +546,7 @@ async def play(_, message: Message):
                         InlineKeyboardButton("8️⃣", callback_data=f"plll 7|{query}|{user_id}"),
                         InlineKeyboardButton("9️⃣", callback_data=f"plll 8|{query}|{user_id}")],
                        [InlineKeyboardButton("🔟", callback_data=f"plll 9|{query}|{user_id}")],
-                       [InlineKeyboardButton(text="🗑 ʙᴀᴛᴀʟ ᴍᴇɴʏ 🗑️", callback_data="cls")],
+                       [InlineKeyboardButton(text="🗑 ʙᴀᴛᴀʟ ᴍᴇɴᴜ 🗑️", callback_data="cls")],
                 ]
             )
 
@@ -583,7 +583,7 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                 [
                     [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                    [InlineKeyboardButton(text="🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+                    [InlineKeyboardButton(text="🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
                 ]
             )
             requested_by = message.from_user.first_name
@@ -689,7 +689,7 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
         ]
     )
     requested_by = useer_name
@@ -837,7 +837,7 @@ async def ytplay(_, message: Message):
     keyboard = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
         ]
     )
     requested_by = message.from_user.first_name
