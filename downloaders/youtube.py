@@ -6,7 +6,7 @@ from config import DURATION_LIMIT
 from helpers.errors import DurationLimitError
 
 ydl_opts = {
-    "format": "141/bestaudio[ext=m4a]",
+    "format": "bestaudio[ext=m4a]",
     "verbose": True,
     "geo-bypass": True,
     "nocheckcertificate": True,
