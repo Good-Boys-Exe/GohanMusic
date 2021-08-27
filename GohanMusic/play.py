@@ -538,7 +538,7 @@ async def play(_, message: Message):
             await lel.edit("**anda tidak memberikan judul lagu apapun !**")
         # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         try:
-            toxxt = "**⚡ Silahkan pilih lagu yang ingin anda putar:** {rpk}\n\n"
+            toxxt = f"**⚡ Silahkan pilih lagu yang ingin anda putar:** {rpk}\n\n"
             j = 0
 
             emojilist = [
