@@ -96,7 +96,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     font = ImageFont.truetype("Gohan/font.otf", 32)
     draw.text((205, 550), "", (51, 215, 255), font=font)
     draw.text((20, 590), "", (255, 255, 255), font=font)
-    draw.text((20, 630), "{requested_by}", (256, 255, 255), font=font)
+    draw.text((20, 630), "Playing Here", (256, 255, 255), font=font)
     draw.text(
         (20, 670),
         f"{title[:25]}...",
@@ -135,6 +135,13 @@ async def playlist(client, message):
             msg += f"\n• Permintaan {usr}\n"
         await message.reply_text(
             msg,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
+                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                ]
+            ),
+        )
 
 
 # ============================= Settings =========================================
@@ -164,7 +171,7 @@ def r_ply(type_):
              InlineKeyboardButton("⏭️", "skip"),
              InlineKeyboardButton("⏹️", "leave")],
             [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ 🗑️", "cls")],
         ]
     )
     return mar
@@ -233,6 +240,13 @@ async def p_cb(b, cb):
                 msg += f"\n• Permintaan {usr}\n"
         await cb.message.edit(
             msg,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
+                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                ]
+            ),
+        )
 
 
 @Client.on_callback_query(
@@ -339,9 +353,19 @@ async def m_cb(b, cb):
                     chat_id, callsmusic.queues.get(chat_id)["file"]
                 )
                 await cb.answer("Skipped")
-                await cb.message.edit(
+                await message.edit(
                     f"**⏭️ Melewati Lagu:** {skip[0]}\n**▶️ Sekarang Memutar Lagu:** {qeue[0][0]}"
                 ),
+                reply_markup = InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("▶️", "resume"),
+                     InlineKeyboardButton("⏸️", "puse"),
+                     InlineKeyboardButton("⏭️", "skip"),
+                     InlineKeyboardButton("⏹️", "leave")],
+                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                    [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+                ]
+            )
 
 
     elif type_ == "leave":
@@ -530,7 +554,7 @@ async def play(_, message: Message):
                 "🔟",
             ]
             while j < 10:
-                toxxt += f"{emojilist[j]} [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
+                toxxt += f"{emojilist[j]}: [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f"├ 💡 **Durasi:** {results[j]['duration']}\n"
                 toxxt += f"└ ⚡ **Didukung:** [{bn}](t.me/{bu})\n\n"
                 j += 1
@@ -546,7 +570,7 @@ async def play(_, message: Message):
                         InlineKeyboardButton("8️⃣", callback_data=f"plll 7|{query}|{user_id}"),
                         InlineKeyboardButton("9️⃣", callback_data=f"plll 8|{query}|{user_id}")],
                        [InlineKeyboardButton("🔟", callback_data=f"plll 9|{query}|{user_id}")],
-                       [InlineKeyboardButton(text="🗑 ʙᴀᴛᴀʟ ᴍᴇɴᴜ 🗑️", callback_data="cls")],
+                       [InlineKeyboardButton(text="❌ ʙᴀᴛᴀʟ ❌", callback_data="cls")],
                 ]
             )
 
@@ -600,7 +624,7 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
 
