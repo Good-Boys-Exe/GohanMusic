@@ -1,4 +1,7 @@
 #### 🎵 Gohan Music Robot 🎵
+
+![Repo 👁‍🗨](https://komarev.com/ghpvc/?username=Good-Boys-Exe&color=red&style=flat-square&label=DILIHAT+👁‍🗨)
+
 <p align="center">
   <img src="https://telegra.ph/file/6b14ab68ab3dfd4200ca5.jpg">
 </p>
