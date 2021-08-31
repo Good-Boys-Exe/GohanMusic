@@ -85,7 +85,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
             await f.write(await resp.read())
             await f.close()
     image1 = Image.open("./background.png")
-    image2 = Image.open("Gohan/ImgPhoto.png")
+    image2 = Image.open("Gohan/0001-6915342529_20210831_003631_0000.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
@@ -96,7 +96,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     font = ImageFont.truetype("Gohan/font.otf", 32)
     draw.text((205, 550), "", (51, 215, 255), font=font)
     draw.text((20, 590), "", (255, 255, 255), font=font)
-    draw.text((20, 630), "Playing Here", (256, 255, 255), font=font)
+    draw.text((20, 630), f"Diputar {chat_title}", (256, 255, 255), font=font)
     draw.text(
         (20, 670),
         f"{title[:25]}...",
