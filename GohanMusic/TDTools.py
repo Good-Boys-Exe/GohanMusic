@@ -120,7 +120,7 @@ async def lirik(_, message):
         )
 
 
-@Client.on_message(command(["songs", f"songs@{BOT_USERNAME}"]))
+@Client.on_message(command(["songs", f"songs@{bu}"]))
 async def songs(client, message):
     message.from_user.id
     message.from_user.first_name
