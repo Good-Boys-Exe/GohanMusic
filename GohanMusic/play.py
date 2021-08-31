@@ -353,16 +353,8 @@ async def m_cb(b, cb):
                     chat_id, callsmusic.queues.get(chat_id)["file"]
                 )
                 await cb.answer("Skipped")
-                await message.edit(
+                await cb message.edit(
                     f"**⏭️ Melewati Lagu:** {skip[0]}\n**▶️ Memutar Lagu:** {qeue[0][0]}"
-                ),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
-                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-                ]
-            ),
-        )
 
     elif type_ == "leave":
         if chat_id in callsmusic.pytgcalls.active_calls:
