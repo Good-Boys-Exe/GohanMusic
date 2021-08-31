@@ -185,13 +185,6 @@ async def ee(client, message):
     stats = updated_stats(message.chat, queue)
     if stats:
         await message.reply(stats)
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
-                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-                ]
-            ),
-        )
     else:
         await message.reply("**Silahkan Nyalakan dulu VCG nya!**"),
 
