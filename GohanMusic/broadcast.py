@@ -1,6 +1,8 @@
 import asyncio
 
 from pyrogram import Client, filters
+from pyrogram.types import Dialog, Chat, Message
+from pyrogram.errors import UserAlreadyParticipant
 from pyrogram.types import Message
 
 from callsmusic.callsmusic import client as USER
