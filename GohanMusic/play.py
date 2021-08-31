@@ -353,8 +353,6 @@ async def m_cb(b, cb):
                     chat_id, callsmusic.queues.get(chat_id)["file"]
                 )
                 await cb.answer("Skipped")
-                await message.edit(
-                    f"**⏭️ Melewati Lagu:** {skip[0]}\n**▶️ Memutar Lagu:** {qeue[0][0]}"
 
     elif type_ == "leave":
         if chat_id in callsmusic.pytgcalls.active_calls:
