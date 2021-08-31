@@ -96,7 +96,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     font = ImageFont.truetype("Gohan/font.otf", 32)
     draw.text((205, 550), "", (51, 215, 255), font=font)
     draw.text((20, 590), "", (255, 255, 255), font=font)
-    draw.text((20, 630), f"Diputar {chat_title}", (256, 255, 255), font=font)
+    draw.text((20, 630), "Diputar disini", (256, 255, 255), font=font)
     draw.text(
         (20, 670),
         f"{title[:25]}...",
