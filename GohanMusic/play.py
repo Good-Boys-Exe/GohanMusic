@@ -185,8 +185,6 @@ async def ee(client, message):
     stats = updated_stats(message.chat, queue)
     if stats:
         await message.reply(stats)
-    else:
-        await message.reply("**Silahkan Nyalakan dulu VCG nya!**"),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
@@ -194,6 +192,9 @@ async def ee(client, message):
                 ]
             ),
         )
+    else:
+        await message.reply("**Silahkan Nyalakan dulu VCG nya!**"),
+
 
 @Client.on_message(
     command(["player", f"player@{bu}"]) & filters.group & ~filters.edited
