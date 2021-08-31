@@ -1,3 +1,5 @@
+# jangan lupa bahagia
+
 import asyncio
 
 from pyrogram import Client
