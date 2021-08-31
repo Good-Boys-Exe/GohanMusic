@@ -781,7 +781,7 @@ async def ytplay(_, message: Message):
                         "Saya bergabung dengan group ini untuk memainkan musik di VCG.",
                     )
                     await lel.edit(
-                        "<b>{user.first_name} berhasil bergabung dengan Group anda</b>",
+                        f"<b>{user.first_name} berhasil bergabung dengan Group anda</b>",
                     )
 
                 except UserAlreadyParticipant:
