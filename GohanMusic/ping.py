@@ -12,11 +12,11 @@ from helpers.filters import command
 START_TIME = datetime.utcnow()
 START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
 TIME_DURATION_UNITS = (
-    ("week", 60 * 60 * 24 * 7),
-    ("day", 60 * 60 * 24),
-    ("hour", 60 * 60),
-    ("min", 60),
-    ("sec", 1),
+    ("Minggu", 60 * 60 * 24 * 7),
+    ("Hari", 60 * 60 * 24),
+    ("Jam", 60 * 60),
+    ("Menit", 60),
+    ("Detik", 1),
 )
 
 
