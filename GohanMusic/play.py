@@ -170,8 +170,8 @@ def r_ply(type_):
              InlineKeyboardButton("⏸️", "puse"),
              InlineKeyboardButton("⏭️", "skip"),
              InlineKeyboardButton("⏹️", "leave")],
-            [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ 🗑️", "cls")],
+            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
         ]
     )
     return mar
@@ -186,8 +186,14 @@ async def ee(client, message):
     if stats:
         await message.reply(stats)
     else:
-        await message.reply("**Silahkan Nyalakan dulu VCG nya!**")
-
+        await message.reply("**Silahkan Nyalakan dulu VCG nya!**"),
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
+                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                ]
+            ),
+        )
 
 @Client.on_message(
     command(["player", f"player@{bu}"]) & filters.group & ~filters.edited
@@ -326,7 +332,7 @@ async def m_cb(b, cb):
              InlineKeyboardButton("⏸️", "puse"),
              InlineKeyboardButton("⏭️", "skip"),
              InlineKeyboardButton("⏹️", "leave")],
-            [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
             [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
         ]
     )
@@ -354,19 +360,15 @@ async def m_cb(b, cb):
                 )
                 await cb.answer("Skipped")
                 await message.edit(
-                    f"**⏭️ Melewati Lagu:** {skip[0]}\n**▶️ Sekarang Memutar Lagu:** {qeue[0][0]}"
+                    f"**⏭️ Melewati Lagu:** {skip[0]}\n**▶️ Memutar Lagu:** {qeue[0][0]}"
                 ),
-                reply_markup = InlineKeyboardMarkup(
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("▶️", "resume"),
-                     InlineKeyboardButton("⏸️", "puse"),
-                     InlineKeyboardButton("⏭️", "skip"),
-                     InlineKeyboardButton("⏹️", "leave")],
+                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
                     [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-                    [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
                 ]
-            )
-
+            ),
+        )
 
     elif type_ == "leave":
         if chat_id in callsmusic.pytgcalls.active_calls:
@@ -491,7 +493,7 @@ async def play(_, message: Message):
         query = toxt
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
-            "format": "bestaudio[ext=m4a]",
+            "format": "bestaudio/best",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -516,7 +518,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -529,7 +531,7 @@ async def play(_, message: Message):
         print(query)
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
-            "format": "bestaudio[ext=m4a]",
+            "format": "bestaudio/best",
         }
 
         try:
@@ -556,7 +558,7 @@ async def play(_, message: Message):
             while j < 10:
                 toxxt += f"{emojilist[j]}: [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f"├ 💡 **Durasi:** {results[j]['duration']}\n"
-                toxxt += f"└ ⚡ **Didukung:** [{bn}](t.me/{bu})\n\n"
+                toxxt += f"└ ⚡ **Dipersembahkan:** [{bn}](t.me/{bu})\n\n"
                 j += 1
             keyboard = InlineKeyboardMarkup(
                 [
@@ -570,7 +572,7 @@ async def play(_, message: Message):
                         InlineKeyboardButton("8️⃣", callback_data=f"plll 7|{query}|{user_id}"),
                         InlineKeyboardButton("9️⃣", callback_data=f"plll 8|{query}|{user_id}")],
                        [InlineKeyboardButton("🔟", callback_data=f"plll 9|{query}|{user_id}")],
-                       [InlineKeyboardButton(text="❌ ʙᴀᴛᴀʟ ❌", callback_data="cls")],
+                       [InlineKeyboardButton(text="❌", callback_data="cls")],
                 ]
             )
 
@@ -624,7 +626,7 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"**🏷 Judul:** [{title[:25]}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
 
@@ -676,7 +678,7 @@ async def lol_cb(b, cb):
             "anda bukan orang yang meminta untuk memutar lagu ini!", show_alert=True
         )
         return
-    await cb.message.edit("**🔄 Memproses...**")
+    await cb.message.edit("**🔄 Memproses lagu...**")
     x = int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -824,7 +826,7 @@ async def ytplay(_, message: Message):
     print(query)
     await lel.edit("**🎵 Memproses lagu...**")
     ydl_opts = {
-        "format": "bestaudio[ext=m4a]",
+        "format": "bestaudio/best",
     }
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
