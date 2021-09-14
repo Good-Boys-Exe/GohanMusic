@@ -20,7 +20,6 @@ from youtubesearchpython import SearchVideos
 
 from config import BOT_NAME, BOT_USERNAME, DURATION_LIMIT
 from helpers.filters import command
-from GohanMusic.play import arq
 
 
 @Client.on_message(command(["song", f"song@{BOT_USERNAME}"]) & ~filters.channel)

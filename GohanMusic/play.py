@@ -6,12 +6,8 @@ import aiofiles
 import aiohttp
 import ffmpeg
 import requests
-from helpers.decorators import authorized_users_only, errors
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
-from typing import Callable
-from callsmusic import callsmusic, queues
-from helpers.admins import get_administrators
 from pyrogram.errors import UserAlreadyParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Python_ARQ import ARQ
@@ -28,7 +24,7 @@ from config import BOT_USERNAME as bu
 from config import DURATION_LIMIT, SUPPORT_GROUP, que
 from downloaders import youtube
 from helpers.admins import get_administrators
-from helpers.decorators import authorized_users_only
+from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
 
 chat_id = -1001352787797
@@ -141,7 +137,11 @@ async def playlist(client, message):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
-                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                    [
+                        InlineKeyboardButton(
+                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                        )
+                    ],
                 ]
             ),
         )
@@ -169,10 +169,12 @@ def r_ply(type_):
         pass
     mar = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("▶️", "resume"),
-             InlineKeyboardButton("⏸️", "puse"),
-             InlineKeyboardButton("⏭️", "skip"),
-             InlineKeyboardButton("⏹️", "leave")],
+            [
+                InlineKeyboardButton("▶️", "resume"),
+                InlineKeyboardButton("⏸️", "puse"),
+                InlineKeyboardButton("⏭️", "skip"),
+                InlineKeyboardButton("⏹️", "leave"),
+            ],
             [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
             [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
         ]
@@ -246,7 +248,11 @@ async def p_cb(b, cb):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
-                    [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                    [
+                        InlineKeyboardButton(
+                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                        )
+                    ],
                 ]
             ),
         )
@@ -324,20 +330,22 @@ async def m_cb(b, cb):
         stats = updated_stats(cb.message.chat, qeue)
         await cb.answer("Menu opened")
         marr = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("▶️", "resume"),
-             InlineKeyboardButton("⏸️", "puse"),
-             InlineKeyboardButton("⏭️", "skip"),
-             InlineKeyboardButton("⏹️", "leave")],
-            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
-        ]
-    )
+            [
+                [
+                    InlineKeyboardButton("▶️", "resume"),
+                    InlineKeyboardButton("⏸️", "puse"),
+                    InlineKeyboardButton("⏭️", "skip"),
+                    InlineKeyboardButton("⏹️", "leave"),
+                ],
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+            ]
+        )
         await cb.message.edit(stats, reply_markup=marr)
 
     elif type_ == "skip":
         if qeue:
-            skip = qeue.pop(0)
+            qeue.pop(0)
         if chat_id not in callsmusic.pytgcalls.active_calls:
             await cb.answer(
                 "Assistant Sedang Tidak Terhubung dengan VCG!", show_alert=True
@@ -549,17 +557,45 @@ async def play(_, message: Message):
                 j += 1
             keyboard = InlineKeyboardMarkup(
                 [
-                       [InlineKeyboardButton("1️⃣", callback_data=f"plll 0|{query}|{user_id}"),
-                        InlineKeyboardButton("2️⃣", callback_data=f"plll 1|{query}|{user_id}"),
-                        InlineKeyboardButton("3️⃣", callback_data=f"plll 2|{query}|{user_id}")],
-                       [InlineKeyboardButton("4️⃣", callback_data=f"plll 3|{query}|{user_id}"),
-                        InlineKeyboardButton("5️⃣", callback_data=f"plll 4|{query}|{user_id}"),
-                        InlineKeyboardButton("6️⃣", callback_data=f"plll 5|{query}|{user_id}")],
-                       [InlineKeyboardButton("7️⃣", callback_data=f"plll 6|{query}|{user_id}"),
-                        InlineKeyboardButton("8️⃣", callback_data=f"plll 7|{query}|{user_id}"),
-                        InlineKeyboardButton("9️⃣", callback_data=f"plll 8|{query}|{user_id}")],
-                       [InlineKeyboardButton("🔟", callback_data=f"plll 9|{query}|{user_id}")],
-                       [InlineKeyboardButton(text="❌", callback_data="cls")],
+                    [
+                        InlineKeyboardButton(
+                            "1️⃣", callback_data=f"plll 0|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "2️⃣", callback_data=f"plll 1|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "3️⃣", callback_data=f"plll 2|{query}|{user_id}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "4️⃣", callback_data=f"plll 3|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "5️⃣", callback_data=f"plll 4|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "6️⃣", callback_data=f"plll 5|{query}|{user_id}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "7️⃣", callback_data=f"plll 6|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "8️⃣", callback_data=f"plll 7|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "9️⃣", callback_data=f"plll 8|{query}|{user_id}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "🔟", callback_data=f"plll 9|{query}|{user_id}"
+                        )
+                    ],
+                    [InlineKeyboardButton(text="❌", callback_data="cls")],
                 ]
             )
 
@@ -595,7 +631,11 @@ async def play(_, message: Message):
             dlurl = dlurl.replace("youtube", "youtubepp")
             keyboard = InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                    [
+                        InlineKeyboardButton(
+                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
+                        )
+                    ],
                     [InlineKeyboardButton(text="🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
                 ]
             )
@@ -665,7 +705,7 @@ async def lol_cb(b, cb):
             "anda bukan orang yang meminta untuk memutar lagu ini!", show_alert=True
         )
         return
-    #await cb.message.edit("**🔄 Memproses lagu...**")
+    # await cb.message.edit("**🔄 Memproses lagu...**")
     x = int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -889,4 +929,3 @@ async def ytplay(_, message: Message):
         reply_markup=keyboard,
     )
     os.remove("final.png")
-
