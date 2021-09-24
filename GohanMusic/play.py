@@ -95,7 +95,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/font.otf", 40)
     draw.text((20, 630), f"Diputar: {requested_by}", (256, 255, 255), font=font)
-    draw.text((20, 670), f"**{title[:25]}**", (255, 255, 255), font=font)
+    draw.text((20, 670), f"{title[:25]}", (255, 255, 255), font=font)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -683,6 +683,7 @@ async def play(_, message: Message):
 
 @Client.on_callback_query(filters.regex(pattern=r"plll"))
 @errors
+async def pil(_, message: Message):
 async def lol_cb(b, cb):
     global que
     cbd = cb.data.strip()
