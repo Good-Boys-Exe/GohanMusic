@@ -95,7 +95,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/font.otf", 40)
     draw.text((20, 630), f"Diputar: {requested_by}", (256, 255, 255), font=font)
-    draw.text((20, 670), f"<b>{title[:25]}</b>", (255, 255, 255), font=font)
+    draw.text((20, 670), f"**{title[:25]}**", (255, 255, 255), font=font)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -761,6 +761,7 @@ async def lol_cb(b, cb):
             reply_markup=keyboard,
         )
         os.remove("final.png")
+        return await lel.delete()
     else:
         que[chat_id] = []
         qeue = que.get(chat_id)
@@ -781,6 +782,7 @@ async def lol_cb(b, cb):
             reply_markup=keyboard,
         )
         os.remove("final.png")
+        return await lel.delete()
 
 
 @Client.on_message(command(["ytplay", f"ytplay@{bu}"]) & other_filters)
@@ -923,3 +925,4 @@ async def ytplay(_, message: Message):
         reply_markup=keyboard,
     )
     os.remove("final.png")
+    return await lel.delete()
