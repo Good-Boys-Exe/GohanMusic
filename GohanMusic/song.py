@@ -29,7 +29,7 @@ def song(client, message):
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     query = "".join(" " + str(i) for i in message.command[1:])
     print(query)
-    m = message.reply(f"**🔎 Mencari Lagu Yang Diminta Oleh** {rpk}")
+    m = message.reply("🔎 **Sedang Mencari Lagu**")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -49,18 +49,18 @@ def song(client, message):
         )
         print(str(e))
         return
-    m.edit(f"**🔄 Sabar Ya** {rpk} **Lagu Sedang Didownload**")
+    m.edit("📥 **Sedang Mendownload Lagu**")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
         rep = f"""
-**🏷 Nama Lagu:** [{title}]({link})
-**⏱️ Durasi Lagu:** {duration}
-**👁️‍🗨️ Dilihat Oleh:** {results[0]['views']}
-**🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-**🎧 Permintaan Dari:** {rpk}
+**🏷 Nama:** [{title}]({link})
+**⏱️ Durasi:** {duration}
+**👁️‍🗨️ Dilihat:** {results[0]['views']}
+**🤖 Diunggah:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**🎧 Permintaan:** {rpk}
 """
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
@@ -76,9 +76,7 @@ def song(client, message):
         )
         m.delete()
     except Exception as e:
-        m.edit(
-            "DownloadError: ERROR: No video formats found; please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the verbose flag and include its complete output."
-        )
+        m.edit("❌ **Error**")
         print(e)
     try:
         os.remove(audio_file)
@@ -202,7 +200,7 @@ def time_formatter(milliseconds: int) -> str:
 
 
 ydl_opts = {
-    "format": "bestaudio[ext=m4a]",
+    "format": "bestaudio/best",
     "writethumbnail": True,
     "postprocessors": [
         {
@@ -223,11 +221,12 @@ def get_file_extension_from_url(url):
 # Funtion To Download Song
 async def download_song(url):
     song_name = f"{randint(6969, 6999)}.mp3"
-    async with aiohttp.ClientSession() as session, session.get(url) as resp:
-        if resp.status == 200:
-            f = await aiofiles.open(song_name, mode="wb")
-            await f.write(await resp.read())
-            await f.close()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status == 200:
+                f = await aiofiles.open(song_name, mode="wb")
+                await f.write(await resp.read())
+                await f.close()
     return song_name
 
 
@@ -252,7 +251,7 @@ async def ytmusic(client, message: Message):
 
     pablo = await client.send_message(
         message.chat.id,
-        f"**Mendapatkan** `{urlissed}` **Dari Youtube. Tunggu Sebentar.**",
+        f"**Mencari** `{urlissed}` **Dari Youtube. Tunggu Sebentar.**",
     )
     if not urlissed:
         await pablo.edit(
@@ -266,7 +265,7 @@ async def ytmusic(client, message: Message):
     mo = mio[0]["link"]
     thum = mio[0]["title"]
     fridayz = mio[0]["id"]
-    thums = mio[0]["channel"]
+    mio[0]["channel"]
     kekme = f"https://img.youtube.com/vi/{fridayz}/hqdefault.jpg"
     await asyncio.sleep(0.6)
     url = mo
@@ -304,7 +303,12 @@ async def ytmusic(client, message: Message):
 
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"**Nama Video ➠** `{thum}` \n**Permintaan Dari :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}`"
+    capy = f"""
+**🏷️ Nama:** [{thum}]({mo})
+**⏱️ Durasi:** {duration}
+**🤖 Diunggah:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**🎧 Permintaan:** {message.from_user.mention}
+"""
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
@@ -317,7 +321,7 @@ async def ytmusic(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"**Mengupload Lagu** `{urlissed}` **Dari YouTube Music!**",
+            f"**Mendownload Video** `{urlissed}` **Dari YouTube Music!**",
             file_stark,
         ),
     )
