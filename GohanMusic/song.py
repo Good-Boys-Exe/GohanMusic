@@ -25,7 +25,7 @@ from helpers.filters import command
 @Client.on_message(command(["song", f"song@{BOT_USERNAME}"]) & ~filters.channel)
 def song(client, message):
     m = message.reply("🔎 **Sedang Mencari Lagu**")
-    ydl_opts = {"format": "bestaudio[ext=m4a]"}
+    ydl_opts = {"format": "bestaudio/best"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://www.youtube.com{results[0]['url_suffix']}"
