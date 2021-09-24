@@ -667,18 +667,9 @@ async def play(_, message: Message):
             return
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Memutar\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `sedang memutar`\n**🎧 Permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
-
-        m = await client.send_photo(
-            chat_id=message_.chat.id,
-            reply_markup=keyboard,
-            photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Memutar\n**🎧 Permintaan:** {message.from_user.mention}",
-        )
-        os.remove("final.png")
-        return await lel.delete()
 
 
 @Client.on_callback_query(filters.regex(pattern=r"plll"))
