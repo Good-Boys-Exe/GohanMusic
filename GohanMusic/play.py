@@ -23,6 +23,7 @@ from config import BOT_NAME as bn
 from config import BOT_USERNAME as bu
 from config import DURATION_LIMIT, SUPPORT_GROUP, que
 from downloaders import youtube
+from helpers.channelmusic import get_chat_id
 from helpers.admins import get_administrators
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
@@ -84,7 +85,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
             await f.write(await resp.read())
             await f.close()
     image1 = Image.open("./background.png")
-    image2 = Image.open("Gohan/Logopit_1630388213989.png")
+    image2 = Image.open("etc/IMG_20210924_011357_699.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
@@ -92,16 +93,9 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("Gohan/font.otf", 32)
-    draw.text((205, 550), "", (51, 215, 255), font=font)
-    draw.text((20, 590), "", (255, 255, 255), font=font)
-    draw.text((20, 630), "Diputar disini", (256, 255, 255), font=font)
-    draw.text(
-        (20, 670),
-        f"{title[:25]}...",
-        (255, 255, 255),
-        font=font,
-    )
+    font = ImageFont.truetype("etc/Chopsic.otf", 32)
+    draw.text((20, 630), f"Diputar {chat_play} ", (256, 255, 255), font=font)
+    draw.text((20, 670), f"{title[:25]}...", (255, 255, 255), font=font)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -640,6 +634,7 @@ async def play(_, message: Message):
                 ]
             )
             requested_by = message.from_user.first_name
+            chat_play = message.chat.title
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await converter.convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
