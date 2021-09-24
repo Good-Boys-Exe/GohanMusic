@@ -24,6 +24,11 @@ from helpers.filters import command
 
 @Client.on_message(command(["song", f"song@{BOT_USERNAME}"]) & ~filters.channel)
 def song(client, message):
+    user_id = message.from_user.id
+    user_name = message.from_user.first_name
+    rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+    query = "".join(" " + str(i) for i in message.command[1:])
+    print(query)
     m = message.reply("🔎 **Sedang Mencari Lagu**")
     ydl_opts = {"format": "bestaudio/best"}
     try:
@@ -55,7 +60,7 @@ def song(client, message):
 **⏱️ Durasi Lagu:** {duration}
 **👁️‍🗨️ Dilihat Oleh:** {results[0]['views']}
 **🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-**🎧 Permintaan Dari:** {message.from_user.mention}
+**🎧 Permintaan Dari:** {rpk}
 """
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
