@@ -633,7 +633,7 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
                 ]
             )
-            requested_by = message.chat.title
+            requested_by = message.from_user.first_name
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await converter.convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
@@ -739,7 +739,7 @@ async def lol_cb(b, cb):
             [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
         ]
     )
-    requested_by = message.chat.title
+    requested_by = useer_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
     if chat_id in callsmusic.pytgcalls.active_calls:
@@ -889,7 +889,7 @@ async def ytplay(_, message: Message):
             [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
         ]
     )
-    requested_by = message.chat.title
+    requested_by = message.from_user.first_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
 
