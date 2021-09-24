@@ -94,7 +94,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/Chopsic.otf", 32)
-    draw.text((20, 630), f"Diputar {chat_play} ", (256, 255, 255), font=font)
+    draw.text((20, 630), f"Diputar {requested_by}", (256, 255, 255), font=font)
     draw.text((20, 670), f"{title[:25]}...", (255, 255, 255), font=font)
     img.save("final.png")
     os.remove("temp.png")
@@ -633,8 +633,7 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
                 ]
             )
-            requested_by = message.from_user.first_name
-            chat_play = message.chat.title
+            requested_by = message.chat.title
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await converter.convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
@@ -740,8 +739,7 @@ async def lol_cb(b, cb):
             [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
         ]
     )
-    requested_by = useer_name
-    chat_play = message.chat.title
+    requested_by = message.chat.title
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
     if chat_id in callsmusic.pytgcalls.active_calls:
@@ -889,8 +887,7 @@ async def ytplay(_, message: Message):
             [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
         ]
     )
-    requested_by = message.from_user.first_name
-    chat_play = message.chat.title
+    requested_by = message.chat.title
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
 
