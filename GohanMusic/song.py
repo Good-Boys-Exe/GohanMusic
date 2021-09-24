@@ -24,11 +24,6 @@ from helpers.filters import command
 
 @Client.on_message(command(["song", f"song@{BOT_USERNAME}"]) & ~filters.channel)
 def song(client, message):
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
-    rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-    query = "".join(" " + str(i) for i in message.command[1:])
-    print(query)
     m = message.reply("🔎 **Sedang Mencari Lagu**")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
@@ -56,11 +51,11 @@ def song(client, message):
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
         rep = f"""
-**🏷 Nama:** [{title}]({link})
-**⏱️ Durasi:** {duration}
-**👁️‍🗨️ Dilihat:** {results[0]['views']}
-**🤖 Diunggah:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-**🎧 Permintaan:** {rpk}
+**🏷 Nama Lagu:** [{title}]({link})
+**⏱️ Durasi Lagu:** {duration}
+**👁️‍🗨️ Dilihat Oleh:** {results[0]['views']}
+**🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**🎧 Permintaan Dari:** {message.from_user.mention}
 """
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
@@ -304,10 +299,10 @@ async def ytmusic(client, message: Message):
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"""
-**🏷️ Nama:** [{thum}]({mo})
-**⏱️ Durasi:** {duration}
-**🤖 Diunggah:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-**🎧 Permintaan:** {message.from_user.mention}
+**🏷️ Nama Video:** [{thum}]({mo})
+**⏱️ Durasi Video:** {duration}
+**🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**🎧 Permintaan Dari:** {message.from_user.mention}
 """
     await client.send_video(
         message.chat.id,
