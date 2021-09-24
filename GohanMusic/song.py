@@ -24,7 +24,6 @@ from helpers.filters import command
 
 @Client.on_message(command(["song", f"song@{BOT_USERNAME}"]) & ~filters.channel)
 def song(client, message):
-    print(query)
     m = message.reply("🔎 **Sedang Mencari Lagu**")
     ydl_opts = {"format": "bestaudio/best"}
     try:
