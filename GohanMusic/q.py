@@ -38,12 +38,12 @@ def isArgInt(message: Message) -> bool:
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
-        return await message.reply_text("Reply To a Message To Quote It 😆!")
+        return await message.reply_text("Membalas Pesan Untuk Mengutipnya !")
     if not message.reply_to_message.text:
         return await message.reply_text(
-            "Replied Message hasn't any text! Please Reply To a Text Message 🥺!"
+            "Pesan yang Dibalas tidak memiliki teks apa pun! Tolong Balas Pesan Teks !"
         )
-    m = await message.reply_text("`Quoting Messages...`")
+    m = await message.reply_text("`Membuat kutipan Pesan...`")
     if len(message.command) < 2:
         messages = [message.reply_to_message]
 
@@ -67,7 +67,7 @@ async def quotly_func(client, message: Message):
         else:
             if getArg(message) != "r":
                 return await m.edit(
-                    "Incorrect Argument, Pass **'r'** or **'INT'**, **Eample:** `/q 2`"
+                    "**SORRY**`"
                 )
             reply_message = await client.get_messages(
                 message.chat.id,
@@ -77,7 +77,7 @@ async def quotly_func(client, message: Message):
             messages = [reply_message]
     else:
         await m.edit(
-            "Incorrect argument; Please hit on **/help** and Select 'Quotely' Module in Help Section 😁!"
+            "**ERROR**"
         )
         return
     try:
