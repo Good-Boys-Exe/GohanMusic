@@ -487,7 +487,7 @@ async def play(_, message: Message):
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
-            title = results[0]["title"][:250]
+            title = results[0]["title"][:999]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -545,9 +545,9 @@ async def play(_, message: Message):
                 "🔟",
             ]
             while j < 10:
-                toxxt += f"{emojilist[j]}: [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
+                toxxt += f"{emojilist[j]} [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f"├ 💡 **Durasi:** {results[j]['duration']}\n"
-                toxxt += f"└ ⚡ **Dipersembahkan:** [{bn}](t.me/{bu})\n\n"
+                toxxt += f"└ ⚡ **Didukung:** [{bn}](t.me/{bu})\n\n"
                 j += 1
             keyboard = InlineKeyboardMarkup(
                 [
@@ -602,12 +602,12 @@ async def play(_, message: Message):
             return
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         except:
-            await lel.edit(f"**❌ Error Silahkan Lapor Ke @{SUPPORT_GROUP}**")
+            await lel.edit("**Tidak ada hasil yang ditemukan\nLangsung memutar lagu**")
 
             # print(results)
             try:
                 url = f"https://youtube.com{results[0]['url_suffix']}"
-                title = results[0]["title"][:250]
+                title = results[0]["title"][:999]
                 thumbnail = results[0]["thumbnails"][0]
                 thumb_name = f"thumb-{title}.jpg"
                 thumb = requests.get(thumbnail, allow_redirects=True)
@@ -647,7 +647,7 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
 
@@ -667,7 +667,7 @@ async def play(_, message: Message):
             return
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `sedang memutar`\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `sedang memutar`\n**🎧 Permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
 
@@ -698,7 +698,7 @@ async def lol_cb(b, cb):
         useer_name = cb.message.from_user.first_name
     results = YoutubeSearch(query, max_results=10).to_dict()
     resultss = results[x]["url_suffix"]
-    title = results[x]["title"][:250]
+    title = results[x]["title"][:999]
     thumbnail = results[x]["thumbnails"][0]
     duration = results[x]["duration"]
     views = results[x]["views"]
@@ -748,7 +748,7 @@ async def lol_cb(b, cb):
         await b.send_photo(
             chat_id,
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {r_by.mention}",
+            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {r_by.mention}",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -769,7 +769,7 @@ async def lol_cb(b, cb):
         await b.send_photo(
             chat_id,
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n**🎧 Permintaan:** {r_by.mention}",
+            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n**🎧 Permintaan:** {r_by.mention}",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -845,7 +845,7 @@ async def ytplay(_, message: Message):
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         url = f"https://www.youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:250]
+        title = results[0]["title"][:999]
         thumbnail = results[0]["thumbnails"][0]
         thumb_name = f"thumb{title}.jpg"
         thumb = requests.get(thumbnail, allow_redirects=True)
@@ -894,7 +894,7 @@ async def ytplay(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Antrian Ke {position}`\n"
+            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Antrian Ke {position}`\n"
             + f"**🎧 Permintaan** {message.from_user.mention}",
             reply_markup=keyboard,
         )
@@ -911,7 +911,7 @@ async def ytplay(_, message: Message):
     callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
     await message.reply_photo(
         photo="final.png",
-        caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n"
+        caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n"
         + f"**🎧 Permintaan:** {message.from_user.mention}",
         reply_markup=keyboard,
     )
