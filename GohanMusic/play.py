@@ -777,7 +777,7 @@ async def lol_cb(b, cb):
             reply_markup=keyboard,
         )
         os.remove("final.png")
-        #return await lel.delete()
+        return await lel.delete()
 
 
 @Client.on_message(command(["ytplay", f"ytplay@{bu}"]) & other_filters)
@@ -904,7 +904,7 @@ async def ytplay(_, message: Message):
             reply_markup=keyboard,
         )
         os.remove("final.png")
-        #return await lel.delete()
+        return await lel.delete()
     chat_id = message.chat.id
     que[chat_id] = []
     qeue = que.get(message.chat.id)
@@ -922,4 +922,4 @@ async def ytplay(_, message: Message):
         reply_markup=keyboard,
     )
     os.remove("final.png")
-    #return await lel.delete()
+    return await lel.delete()
