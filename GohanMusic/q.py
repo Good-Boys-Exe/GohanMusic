@@ -3,7 +3,7 @@
 from io import BytesIO
 from traceback import format_exc
 
-from pyrogram import Client, filters
+from pyrogram import Client
 from pyrogram.types import Message
 
 from config import BOT_USERNAME
