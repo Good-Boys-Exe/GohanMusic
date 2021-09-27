@@ -88,9 +88,9 @@ async def quotly_func(client, message: Message):
         sticker.close()
     except Exception as e:
         await m.edit(
-            "Something wrong happened while quoting messages,"
-            + " This error usually happens when there's a "
-            + " message containing something other than text."
+            "Ada yang salah saat mengutip pesan, bisa"
+            + " Kesalahan ini biasanya terjadi ketika ada "
+            + " pesan yang berisi sesuatu selain teks."
         )
         e = format_exc()
         print(e)
