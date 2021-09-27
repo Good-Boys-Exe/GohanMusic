@@ -8,6 +8,7 @@ from pyrogram.types import Message
 
 from config import BOT_USERNAME
 from GohanMusic.play import arq
+from helpers.filters import command
 from helpers.merrors import capture_err
 
 
@@ -35,7 +36,7 @@ def isArgInt(message: Message) -> bool:
         return [False, 0]
 
 
-@Client.on_message(filters.command(["q", f"q@{BOT_USERNAME}"]))
+@Client.on_message(command(["q", f"q@{BOT_USERNAME}"]))
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
