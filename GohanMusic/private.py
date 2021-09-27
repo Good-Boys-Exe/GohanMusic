@@ -18,11 +18,22 @@ async def start_(client: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-                   [InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
-                    InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}")],
-                   [InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
-                    InlineKeyboardButton("sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic")
+                    InlineKeyboardButton(
+                        "➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕",
+                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
+                ],
+                [
+                    InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
+                    InlineKeyboardButton(
+                        "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic"
+                    ),
                 ],
             ]
         ),
@@ -57,7 +68,9 @@ Perintah semua admin grup
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
                     InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
                 ]
             ]

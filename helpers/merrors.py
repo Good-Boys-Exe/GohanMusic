@@ -6,7 +6,6 @@ from pyrogram import Client
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 
 
-
 def split_limits(text):
     if len(text) < 2048:
         return [text]

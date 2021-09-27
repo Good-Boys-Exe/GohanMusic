@@ -66,9 +66,7 @@ async def quotly_func(client, message: Message):
             )
         else:
             if getArg(message) != "r":
-                return await m.edit(
-                    "**SORRY**`"
-                )
+                return await m.edit("**SORRY**`")
             reply_message = await client.get_messages(
                 message.chat.id,
                 message.reply_to_message.message_id,
@@ -76,9 +74,7 @@ async def quotly_func(client, message: Message):
             )
             messages = [reply_message]
     else:
-        await m.edit(
-            "**ERROR**"
-        )
+        await m.edit("**ERROR**")
         return
     try:
         sticker = await quotify(messages)
