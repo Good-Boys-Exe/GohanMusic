@@ -44,14 +44,7 @@ async def start_(client: Client, message: Message):
 async def help(client: Client, message: Message):
     await message.reply_photo(
         photo=f"{BOT_IMAGE}",
-        caption=f"""<b>Pengaturan
-1) Jadikan Bot Sebagai Admin
-2) Mulai Obrolan Suara / Vcg
-3) Kirim Perintah /userbotjoin
-• Jika Assistant Bot Bergabung Selamat Menikmati Musik, 
-• Jika Assistant Bot Tidak Bergabung Silahkan Tambahkan @{an} Ke Grup Anda Dan Coba Lagi
-
-Perintah semua anggota grup
+        caption=f"""<b>Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube tanpa pilihan
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
