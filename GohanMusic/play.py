@@ -645,6 +645,7 @@ async def play(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
+        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
@@ -665,6 +666,7 @@ async def play(_, message: Message):
         except:
             message.reply("**voice chat group tidak aktif, tidak dapat memutar lagu.**")
             return
+        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `sedang memutar`\n**🎧 Permintaan:** {message.from_user.mention}",
@@ -744,6 +746,7 @@ async def lol_cb(b, cb):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
+        await lel.delete()
         await cb.message.delete()
         await b.send_photo(
             chat_id,
@@ -765,6 +768,7 @@ async def lol_cb(b, cb):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(chat_id, file_path)
+        await lel.delete()
         await cb.message.delete()
         await b.send_photo(
             chat_id,
@@ -773,7 +777,7 @@ async def lol_cb(b, cb):
             reply_markup=keyboard,
         )
         os.remove("final.png")
-        return await lel.delete()
+        #return await lel.delete()
 
 
 @Client.on_message(command(["ytplay", f"ytplay@{bu}"]) & other_filters)
@@ -892,6 +896,7 @@ async def ytplay(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
+        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Antrian Ke {position}`\n"
@@ -899,7 +904,7 @@ async def ytplay(_, message: Message):
             reply_markup=keyboard,
         )
         os.remove("final.png")
-        return await lel.delete()
+        #return await lel.delete()
     chat_id = message.chat.id
     que[chat_id] = []
     qeue = que.get(message.chat.id)
@@ -909,6 +914,7 @@ async def ytplay(_, message: Message):
     appendable = [s_name, r_by, loc]
     qeue.append(appendable)
     callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+    await lel.delete()
     await message.reply_photo(
         photo="final.png",
         caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n"
@@ -916,4 +922,4 @@ async def ytplay(_, message: Message):
         reply_markup=keyboard,
     )
     os.remove("final.png")
-    return await lel.delete()
+    #return await lel.delete()
