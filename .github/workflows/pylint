@@ -1,4 +1,4 @@
-name: PyLint
+name: EXE
  
 on: [push, pull_request]
  
