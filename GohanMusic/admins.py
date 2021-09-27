@@ -15,7 +15,6 @@ from helpers.filters import command, other_filters
 @errors
 @authorized_users_only
 async def update_admin(client, message):
-    global a
     admins = await client.get_chat_members(message.chat.id, filter="administrators")
     new_ads = []
     for u in admins:
@@ -76,7 +75,6 @@ async def stop(_, message: Message):
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
-    global que
     if message.chat.id not in callsmusic.pytgcalls.active_calls:
         await message.reply_text("❗ **Tidak ada lagu didalam antrian untuk dilewati!**")
     else:
