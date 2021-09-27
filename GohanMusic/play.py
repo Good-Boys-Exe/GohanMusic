@@ -746,7 +746,6 @@ async def lol_cb(b, cb):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await lel.delete()
         await cb.message.delete()
         await b.send_photo(
             chat_id,
@@ -768,7 +767,6 @@ async def lol_cb(b, cb):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(chat_id, file_path)
-        await lel.delete()
         await cb.message.delete()
         await b.send_photo(
             chat_id,
@@ -896,7 +894,6 @@ async def ytplay(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Antrian Ke {position}`\n"
@@ -914,7 +911,6 @@ async def ytplay(_, message: Message):
     appendable = [s_name, r_by, loc]
     qeue.append(appendable)
     callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
-    await lel.delete()
     await message.reply_photo(
         photo="final.png",
         caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n"
