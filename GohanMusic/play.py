@@ -25,6 +25,7 @@ from config import DURATION_LIMIT, SUPPORT_GROUP, que
 from downloaders import youtube
 from helpers.admins import get_administrators
 from helpers.channelmusic import get_chat_id
+from helpers.gets import get_file_name
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
 
@@ -467,7 +468,7 @@ async def play(_, message: Message):
         )
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = f"{bi}"
+        thumb_name = "https://telegra.ph/file/a65cd06f5a75b2762fe64.png"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
