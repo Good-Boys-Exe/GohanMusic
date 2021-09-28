@@ -15,11 +15,6 @@
           "required": false,
           "value": ""
         },
-        "BOT_IMAGE": {
-          "description": "Masukan link gambar anda yang di upload ke telegra.ph [skip ini jika Anda tidak punya]",
-          "required": false,
-          "value": ""
-        },
         "ARQ_API_KEY": {
           "description": "Ambil api dari bot telegram » @ARQRobot",
           "required": true,
