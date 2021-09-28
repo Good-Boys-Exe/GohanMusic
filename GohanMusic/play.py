@@ -669,7 +669,7 @@ async def play(_, message: Message):
             callsmusic.pytgcalls.join_group_call(chat_id, file_path)
         except:
            await message.reply("**voice chat group tidak aktif, tidak dapat memutar lagu.**")
-            return
+            #return
         await lel.delete()
         await message.reply_photo(
             photo="final.png",
