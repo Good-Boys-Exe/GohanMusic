@@ -18,16 +18,15 @@ from cache.admins import admins as a
 from callsmusic import callsmusic, queues
 from callsmusic.callsmusic import client as USER
 from config import ARQ_API_KEY as aak
-from config import BOT_IMAGE as bi
 from config import BOT_NAME as bn
 from config import BOT_USERNAME as bu
 from config import DURATION_LIMIT, SUPPORT_GROUP, que
 from downloaders import youtube
 from helpers.admins import get_administrators
 from helpers.channelmusic import get_chat_id
-from helpers.gets import get_file_name
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
+from helpers.gets import get_file_name
 
 chat_id = -1001352787797
 
