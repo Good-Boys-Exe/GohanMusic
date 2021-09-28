@@ -1,14 +1,15 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from config import BOT_IMAGE, BOT_NAME, BOT_USERNAME, OWNER, SUPPORT_GROUP
+from config import BOT_NAME, BOT_USERNAME, OWNER, SUPPORT_GROUP
 from GohanMusic.msg import Messages as tr
 from helpers.filters import command
 
 
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
-    await message.reply_text(f"""
+    await message.reply_text(
+        f"""
 <b>👋🏻 Hallo {message.from_user.mention}
 🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
@@ -43,7 +44,8 @@ async def start_(client: Client, message: Message):
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
 async def help(client: Client, message: Message):
-    await message.reply_text(f"""
+    await message.reply_text(
+        f"""
 <b>Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
