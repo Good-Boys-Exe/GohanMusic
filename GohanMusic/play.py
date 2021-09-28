@@ -532,20 +532,20 @@ async def play(_, message: Message):
             toxxt = f"**⚡ Silahkan pilih lagu yang ingin anda putar:** {rpk}\n\n"
             j = 0
 
-            emojilist = [
-                "1️⃣",
-                "2️⃣",
-                "3️⃣",
-                "4️⃣",
-                "5️⃣",
-                "6️⃣",
-                "7️⃣",
-                "8️⃣",
-                "9️⃣",
-                "🔟",
+            numberlist = [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
             ]
             while j < 10:
-                toxxt += f"{emojilist[j]} [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
+                toxxt += f"{numberlist[j]} [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f"├ 💡 **Durasi:** {results[j]['duration']}\n"
                 toxxt += f"└ ⚡ **Didukung:** [{bn}](t.me/{bu})\n\n"
                 j += 1
@@ -553,51 +553,48 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            "1️⃣", callback_data=f"plll 0|{query}|{user_id}"
+                            "1", callback_data=f"plll 0|{query}|{user_id}"
                         ),
                         InlineKeyboardButton(
-                            "2️⃣", callback_data=f"plll 1|{query}|{user_id}"
+                            "2", callback_data=f"plll 1|{query}|{user_id}"
                         ),
                         InlineKeyboardButton(
-                            "3️⃣", callback_data=f"plll 2|{query}|{user_id}"
-                        ),
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            "4️⃣", callback_data=f"plll 3|{query}|{user_id}"
-                        ),
-                        InlineKeyboardButton(
-                            "5️⃣", callback_data=f"plll 4|{query}|{user_id}"
-                        ),
-                        InlineKeyboardButton(
-                            "6️⃣", callback_data=f"plll 5|{query}|{user_id}"
+                            "3", callback_data=f"plll 2|{query}|{user_id}"
                         ),
                     ],
                     [
                         InlineKeyboardButton(
-                            "7️⃣", callback_data=f"plll 6|{query}|{user_id}"
+                            "4", callback_data=f"plll 3|{query}|{user_id}"
                         ),
                         InlineKeyboardButton(
-                            "8️⃣", callback_data=f"plll 7|{query}|{user_id}"
+                            "5", callback_data=f"plll 4|{query}|{user_id}"
                         ),
                         InlineKeyboardButton(
-                            "9️⃣", callback_data=f"plll 8|{query}|{user_id}"
+                            "6", callback_data=f"plll 5|{query}|{user_id}"
                         ),
                     ],
                     [
                         InlineKeyboardButton(
-                            "🔟", callback_data=f"plll 9|{query}|{user_id}"
+                            "7", callback_data=f"plll 6|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "8", callback_data=f"plll 7|{query}|{user_id}"
+                        ),
+                        InlineKeyboardButton(
+                            "9", callback_data=f"plll 8|{query}|{user_id}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            "10", callback_data=f"plll 9|{query}|{user_id}"
                         )
                     ],
                     [InlineKeyboardButton(text="❌", callback_data="cls")],
                 ]
             )
 
-            await message.reply_photo(
-                photo=f"{bi}", caption=toxxt, reply_markup=keyboard
-            )
+            await lel.edit(toxxt, reply_markup=keyboard, disable_web_page_preview=True)
 
-            await lel.delete()
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
             return
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
@@ -630,7 +627,7 @@ async def play(_, message: Message):
                             "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
                         )
                     ],
-                    [InlineKeyboardButton(text="🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                    [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
                 ]
             )
             requested_by = message.from_user.first_name
@@ -648,7 +645,12 @@ async def play(_, message: Message):
         await lel.delete()
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"""
+💡 Trek ditambahkan ke antrian
+
+**🏷 Nama:** [{title}]({url})
+**⏱️ Durasi:** {duration}
+**🎧 Atas permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
 
@@ -669,8 +671,13 @@ async def play(_, message: Message):
         await lel.delete()
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `sedang memutar`\n**🎧 Permintaan:** {message.from_user.mention}",
-            reply_markup=keyboard,
+            caption=f"""
+**🏷 Nama:** [{title}]({url})
+**⏱️ Durasi:** {duration}
+**💡 Status:** `sedang memutar`
+**🎧 Atas Permintaan:** {message.from_user.mention}
+""",
+        reply_markup=keyboard,
         )
 
 
@@ -750,11 +757,16 @@ async def lol_cb(b, cb):
         await b.send_photo(
             chat_id,
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {r_by.mention}",
-            reply_markup=keyboard,
+            caption=f"""
+**💡Trek ditambahkan ke antrian
+
+**🏷 Nama:** [{title}]({url})
+**⏱️ Durasi:** {duration}
+**🎧 Atas Permintaan:** {r_by.mention}
+""",
+        reply_markup=keyboard,
         )
         os.remove("final.png")
-        return await lel.delete()
     else:
         que[chat_id] = []
         qeue = que.get(chat_id)
@@ -771,151 +783,13 @@ async def lol_cb(b, cb):
         await b.send_photo(
             chat_id,
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n**🎧 Permintaan:** {r_by.mention}",
+            caption=f"""
+**🏷 Nama:** [{title}]({url})
+**⏱️ Durasi:** {duration}
+**💡 Status:** `Sedang Memutar`
+**🎧 Atas Permintaan:** {r_by.mention}
+""",
             reply_markup=keyboard,
         )
         os.remove("final.png")
-        return await lel.delete()
 
-
-@Client.on_message(command(["ytplay", f"ytplay@{bu}"]) & other_filters)
-@errors
-async def ytplay(_, message: Message):
-    global que
-    lel = await message.reply("**🔃 Memproses...**")
-    administrators = await get_administrators(message.chat)
-    chid = message.chat.id
-    try:
-        user = await USER.get_me()
-    except:
-        user.first_name = "helper"
-    usar = user
-    wew = usar.id
-    try:
-        await _.get_chat_member(chid, wew)
-    except:
-        for administrator in administrators:
-            if administrator == message.from_user.id:
-                try:
-                    invitelink = await _.export_chat_invite_link(chid)
-                except:
-                    await lel.edit(
-                        "<b>Tambahkan saya sebagai admin group Anda terlebih dahulu.</b>",
-                    )
-                    return
-
-                try:
-                    await USER.join_chat(invitelink)
-                    await USER.send_message(
-                        message.chat.id,
-                        "Saya bergabung dengan group ini untuk memainkan musik di VCG.",
-                    )
-                    await lel.edit(
-                        f"<b>{user.first_name} berhasil bergabung dengan Group anda</b>",
-                    )
-
-                except UserAlreadyParticipant:
-                    pass
-                except Exception:
-                    await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk assistant! Pastikan assistan tidak dibanned didalam grup."
-                        f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>",
-                    )
-    try:
-        await USER.get_chat(chid)
-    except:
-        await lel.edit(
-            f"<b>{user.first_name}\nterkena banned dari Group ini, Minta admin untuk kirim perintah `/unban @{user.username}` di grup ini kemudian kirim perintah `/userbotjoin` di grup ini untuk mengundang assistant ke dalam grup</b>"
-        )
-        return
-    message.from_user.id
-    message.from_user.first_name
-    message.from_user.id
-    user_id = message.from_user.id
-    message.from_user.first_name
-    user_name = message.from_user.first_name
-    rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
-
-    query = ""
-    for i in message.command[1:]:
-        query += " " + str(i)
-    print(query)
-    await lel.edit("**🎵 Memproses lagu...**")
-    ydl_opts = {
-        "format": "bestaudio/best",
-    }
-    try:
-        results = YoutubeSearch(query, max_results=1).to_dict()
-        url = f"https://www.youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:999]
-        thumbnail = results[0]["thumbnails"][0]
-        thumb_name = f"thumb{title}.jpg"
-        thumb = requests.get(thumbnail, allow_redirects=True)
-        open(thumb_name, "wb").write(thumb.content)
-        duration = results[0]["duration"]
-        results[0]["url_suffix"]
-        views = results[0]["views"]
-
-    except Exception as e:
-        await lel.edit(
-            "**❌ Lagu tidak ditemukan**\nCoba masukan judul lagu yang lebih jelas"
-        )
-        print(str(e))
-        return
-    try:
-        secmul, dur, dur_arr = 1, 0, duration.split(":")
-        for i in range(len(dur_arr) - 1, -1, -1):
-            dur += int(dur_arr[i]) * secmul
-            secmul *= 60
-        if (dur / 60) > DURATION_LIMIT:
-            await lel.edit(
-                f"**❌ Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!\n🎧 Lagu yang di minta berdurasi `{duration}`**"
-            )
-            return
-    except:
-        pass
-    durl = url
-    durl = durl.replace("youtube", "youtubepp")
-    keyboard = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-        ]
-    )
-    requested_by = message.from_user.first_name
-    await generate_cover(requested_by, title, views, duration, thumbnail)
-    file_path = await converter.convert(youtube.download(url))
-
-    if message.chat.id in callsmusic.pytgcalls.active_calls:
-        position = await queues.put(message.chat.id, file=file_path)
-        qeue = que.get(message.chat.id)
-        s_name = title
-        r_by = message.from_user
-        loc = file_path
-        appendable = [s_name, r_by, loc]
-        qeue.append(appendable)
-        await message.reply_photo(
-            photo="final.png",
-            caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Antrian Ke {position}`\n"
-            + f"**🎧 Permintaan** {message.from_user.mention}",
-            reply_markup=keyboard,
-        )
-        os.remove("final.png")
-        return await lel.delete()
-    chat_id = message.chat.id
-    que[chat_id] = []
-    qeue = que.get(message.chat.id)
-    s_name = title
-    r_by = message.from_user
-    loc = file_path
-    appendable = [s_name, r_by, loc]
-    qeue.append(appendable)
-    callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
-    await message.reply_photo(
-        photo="final.png",
-        caption=f"**🏷 Judul:** [{title}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n"
-        + f"**🎧 Permintaan:** {message.from_user.mention}",
-        reply_markup=keyboard,
-    )
-    os.remove("final.png")
-    return await lel.delete()
