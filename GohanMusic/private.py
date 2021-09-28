@@ -45,7 +45,6 @@ async def help(client: Client, message: Message):
         photo=f"{BOT_IMAGE}",
         caption=f"""<b>Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
-• /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube tanpa pilihan
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
 • /vsong (judul video) - Untuk Mendownload Video di YouTube
 • /search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
