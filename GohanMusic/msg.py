@@ -23,7 +23,6 @@ class Messages:
         f"""
 <b>Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
-• /ytplay (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube Tanpa Pilihan
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
 • /vsong (judul video) - Untuk Mendownload Video di YouTube
 • /lyrics (judul lagu) Untuk Mencari Lirik Lagu
