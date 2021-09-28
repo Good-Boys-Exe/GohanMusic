@@ -14,7 +14,7 @@ from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
 import converter
-from cache.admins import admins as a, list
+from cache.admins import admins as a
 from callsmusic import callsmusic, queues
 from callsmusic.callsmusic import client as USER
 from config import ARQ_API_KEY as aak
