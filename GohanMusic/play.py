@@ -650,7 +650,8 @@ async def play(_, message: Message):
 
 🏷 **Nama:** [{title}]({url})
 ⏱️ **Durasi:** {duration}
-🎧 **Atas permintaan:** {message.from_user.mention}",
+🎧 **Atas permintaan:** {message.from_user.mention}
+""",
             reply_markup=keyboard,
         )
         os.remove("final.png")
