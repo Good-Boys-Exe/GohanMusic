@@ -27,8 +27,7 @@ from helpers.admins import get_administrators
 from helpers.channelmusic import get_chat_id
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
-from helpers.gets import get_file_name, get_url
-from helpers.filters import list
+from helpers.gets import get_file_name
 
 chat_id = -1001352787797
 
