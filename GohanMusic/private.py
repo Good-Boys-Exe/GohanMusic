@@ -8,12 +8,14 @@ from helpers.filters import command
 
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
-    await message.reply_photo(
-        photo=f"{BOT_IMAGE}",
-        caption=f"""<b>👋🏻 Hallo {message.from_user.mention}
+    await message.reply_text(f"""
+<b>👋🏻 Hallo {message.from_user.mention}
 🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
-🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram</b>""",
+🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
+
+⚔️ Klik Tombol Bantuan Untuk Mendapatkan Informasi Cara Menggunaka Bot</b>
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -41,9 +43,8 @@ async def start_(client: Client, message: Message):
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
 async def help(client: Client, message: Message):
-    await message.reply_photo(
-        photo=f"{BOT_IMAGE}",
-        caption=f"""<b>Perintah semua anggota grup
+    await message.reply_text(f"""
+<b>Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
 • /vsong (judul video) - Untuk Mendownload Video di YouTube
@@ -54,7 +55,8 @@ Perintah semua admin grup
 • /resume - Untuk Melanjutkan pemutaran Lagu yang di pause
 • /skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
 • /end - Untuk Memberhentikan pemutaran Lagu
-• /reload - Untuk Segarkan daftar admin</b>""",
+• /reload - Untuk Segarkan daftar admin</b>
+""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
