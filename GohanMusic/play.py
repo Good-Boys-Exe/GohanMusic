@@ -653,7 +653,8 @@ async def play(_, message: Message):
 **🎧 Atas permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
-
+        os.remove("final.png")
+        return await lel.delete()
     else:
         chat_id = get_chat_id(message.chat)
         que[chat_id] = []
@@ -679,6 +680,8 @@ async def play(_, message: Message):
 """,
         reply_markup=keyboard,
         )
+        os.remove("final.png")
+        return await lel.delete()
 
 
 @Client.on_callback_query(filters.regex(pattern=r"plll"))
