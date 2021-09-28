@@ -646,11 +646,11 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             caption=f"""
-💡 Trek ditambahkan ke antrian
+💡 **Trek ditambahkan ke antrian**
 
-**🏷 Nama:** [{title}]({url})
-**⏱️ Durasi:** {duration}
-**🎧 Atas permintaan:** {message.from_user.mention}",
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+🎧 **Atas permintaan:** {message.from_user.mention}",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -673,10 +673,10 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             caption=f"""
-**🏷 Nama:** [{title}]({url})
-**⏱️ Durasi:** {duration}
-**💡 Status:** `sedang memutar`
-**🎧 Atas permintaan:** {message.from_user.mention}
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+💡 **Status:** `sedang memutar`
+🎧 **Atas permintaan:** {message.from_user.mention}
 """,
         reply_markup=keyboard,
         )
@@ -761,11 +761,11 @@ async def lol_cb(b, cb):
             chat_id,
             photo="final.png",
             caption=f"""
-**💡Trek ditambahkan ke antrian
+💡 **Trek ditambahkan ke antrian**
 
-**🏷 Nama:** [{title}]({url})
-**⏱️ Durasi:** {duration}
-**🎧 Atas permintaan:** {r_by.mention}
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+🎧 **Atas permintaan:** {r_by.mention}
 """,
         reply_markup=keyboard,
         )
@@ -787,10 +787,10 @@ async def lol_cb(b, cb):
             chat_id,
             photo="final.png",
             caption=f"""
-**🏷 Nama:** [{title}]({url})
-**⏱️ Durasi:** {duration}
-**💡 Status:** `Sedang Memutar`
-**🎧 Atas permintaan:** {r_by.mention}
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+💡 **Status:** `Sedang Memutar`
+🎧 **Atas permintaan:** {r_by.mention}
 """,
         reply_markup=keyboard,
         )
