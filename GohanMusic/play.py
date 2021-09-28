@@ -678,7 +678,7 @@ async def play(_, message: Message):
 💡 **Status:** `sedang memutar`
 🎧 **Atas permintaan:** {message.from_user.mention}
 """,
-        reply_markup=keyboard,
+            reply_markup=keyboard,
         )
         os.remove("final.png")
         return await lel.delete()
@@ -767,7 +767,7 @@ async def lol_cb(b, cb):
 ⏱️ **Durasi:** {duration}
 🎧 **Atas permintaan:** {r_by.mention}
 """,
-        reply_markup=keyboard,
+            reply_markup=keyboard,
         )
         os.remove("final.png")
     else:
@@ -792,6 +792,6 @@ async def lol_cb(b, cb):
 💡 **Status:** `Sedang Memutar`
 🎧 **Atas permintaan:** {r_by.mention}
 """,
-        reply_markup=keyboard,
+            reply_markup=keyboard,
         )
         os.remove("final.png")
