@@ -675,7 +675,7 @@ async def play(_, message: Message):
 **🏷 Nama:** [{title}]({url})
 **⏱️ Durasi:** {duration}
 **💡 Status:** `sedang memutar`
-**🎧 Atas Permintaan:** {message.from_user.mention}
+**🎧 Atas permintaan:** {message.from_user.mention}
 """,
         reply_markup=keyboard,
         )
@@ -762,7 +762,7 @@ async def lol_cb(b, cb):
 
 **🏷 Nama:** [{title}]({url})
 **⏱️ Durasi:** {duration}
-**🎧 Atas Permintaan:** {r_by.mention}
+**🎧 Atas permintaan:** {r_by.mention}
 """,
         reply_markup=keyboard,
         )
@@ -787,9 +787,8 @@ async def lol_cb(b, cb):
 **🏷 Nama:** [{title}]({url})
 **⏱️ Durasi:** {duration}
 **💡 Status:** `Sedang Memutar`
-**🎧 Atas Permintaan:** {r_by.mention}
+**🎧 Atas permintaan:** {r_by.mention}
 """,
-            reply_markup=keyboard,
+        reply_markup=keyboard,
         )
         os.remove("final.png")
-
