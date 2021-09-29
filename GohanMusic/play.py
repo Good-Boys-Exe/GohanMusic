@@ -747,14 +747,6 @@ async def lol_cb(b, cb):
         ]
     )
     requested_by = useer_name
-    PLAY_TEXT = [
-        f"""
-🏷 **Nama:** [{title}]({url})
-⏱️ **Durasi:** {duration}
-💡 **Status:** `Sedang Memutar`
-🎧 **Atas permintaan:** {r_by.mention}
-""",
-    ]
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
     if chat_id in callsmusic.pytgcalls.active_calls:
@@ -777,7 +769,7 @@ async def lol_cb(b, cb):
 
 🏷 **Nama:** [{title}]({url})
 ⏱️ **Durasi:** {duration}
-🎧 **Atas permintaan:** {cb.message.from_user.mention}
+🎧 **Atas permintaan:** {r_by.mention}
 """,
             reply_markup=keyboard,
         )
@@ -798,7 +790,12 @@ async def lol_cb(b, cb):
         await b.send_photo(
             chat_id,
             photo="final.png",
-            caption=PLAY_TEXT,
+            caption=f"""
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+💡 **Status:** `Sedang Memutar`
+🎧 **Atas permintaan:** {r_by.mention}
+""",
             reply_markup=keyboard,
         )
         os.remove("final.png")
