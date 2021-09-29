@@ -643,7 +643,6 @@ async def play(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await lel.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -669,11 +668,8 @@ async def play(_, message: Message):
         try:
             callsmusic.pytgcalls.join_group_call(chat_id, file_path)
         except:
-            await lel.edit(
-                "**voice chat group tidak aktif, tidak dapat memutar lagu.**"
-            )
-             return
-        await lel.delete()
+            await lel.edit("**voice chat group tidak aktif, tidak dapat memutar lagu.**")
+            return
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -706,7 +702,7 @@ async def lol_cb(b, cb):
             "anda bukan orang yang meminta untuk memutar lagu ini!", show_alert=True
         )
         return
-    # await cb.message.edit("**🔄 Memproses lagu...**")
+     await cb.message.edit("**🔄 Memproses lagu Yang Dipilih...**")
     x = int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
