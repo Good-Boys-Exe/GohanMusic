@@ -25,6 +25,7 @@ from converter.converter import path
 from downloaders import youtube
 from helpers.admins import get_administrators
 from helpers.channelmusic import get_chat_id
+from GohanMusic.lang import id
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
 from helpers.gets import get_file_name
