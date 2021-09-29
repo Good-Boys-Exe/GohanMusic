@@ -79,7 +79,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def generate_cover(requested_by, title, message.chat.title, views, duration, thumbnail):
+async def generate_cover(requested_by, title, views, duration, thumbnail):
     async with aiohttp.ClientSession() as session, session.get(thumbnail) as resp:
         if resp.status == 200:
             f = await aiofiles.open("background.png", mode="wb")
@@ -95,7 +95,7 @@ async def generate_cover(requested_by, title, message.chat.title, views, duratio
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/font.otf", 70)
-    draw.text((20, 540), f"{message.chat.title}", (0, 0, 0), font=font)
+    draw.text((20, 540), f"{views}", (0, 0, 0), font=font)
     draw.text((20, 630), f"{title[:25]}", (0, 0, 0), font=font)
     img.save("final.png")
     os.remove("temp.png")
