@@ -1,9 +1,9 @@
 class id:
     PLAY_TEXT = [
-        """
-🏷 **Nama:** [{}]({})
-⏱️ **Durasi:** {}
+        f"""
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
 💡 **Status:** `Sedang Memutar`
-🎧 **Atas permintaan:** {}
+🎧 **Atas permintaan:** {r_by.mention}
 """,
     ]
