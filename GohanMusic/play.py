@@ -777,7 +777,7 @@ async def lol_cb(b, cb):
 
 🏷 **Nama:** [{title}]({url})
 ⏱️ **Durasi:** {duration}
-🎧 **Atas permintaan:** {r_by.mention}
+🎧 **Atas permintaan:** {cb.message.from_user.mention}
 """,
             reply_markup=keyboard,
         )
