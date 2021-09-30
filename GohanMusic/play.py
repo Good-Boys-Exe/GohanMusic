@@ -20,7 +20,7 @@ from callsmusic.callsmusic import client as USER
 from config import ARQ_API_KEY as aak
 from config import BOT_NAME as bn
 from config import BOT_USERNAME as bu
-from config import DURATION_LIMIT, que, SUPPORT_GROUP
+from config import DURATION_LIMIT, SUPPORT_GROUP, que
 from converter.converter import path
 from downloaders import youtube
 from helpers.admins import get_administrators
@@ -163,17 +163,17 @@ def r_ply(type_):
     else:
         pass
     marr = InlineKeyboardMarkup(
+        [
             [
-                [
-                    InlineKeyboardButton("▶️", "resume"),
-                    InlineKeyboardButton("⏸️", "puse"),
-                    InlineKeyboardButton("⏭️", "skip"),
-                    InlineKeyboardButton("⏹️", "leave"),
-                ],
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
-            ]
-        )
+                InlineKeyboardButton("▶️", "resume"),
+                InlineKeyboardButton("⏸️", "puse"),
+                InlineKeyboardButton("⏭️", "skip"),
+                InlineKeyboardButton("⏹️", "leave"),
+            ],
+            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+        ]
+    )
     return mar
 
 
@@ -621,11 +621,15 @@ async def play(_, message: message):
             dlurl = url
             dlurl = dlurl.replace("youtube", "youtubepp")
             keyboard = InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-            ]
-        )
+                [
+                    [
+                        InlineKeyboardButton(
+                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
+                        )
+                    ],
+                    [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                ]
+            )
             requested_by = message.from_user.first_name
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await converter.convert(youtube.download(url))
@@ -734,11 +738,11 @@ async def lol_cb(b, cb):
     dlurl = url
     dlurl = dlurl.replace("youtube", "youtubepp")
     keyboard = InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-            ]
-        )
+        [
+            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+        ]
+    )
     requested_by = useer_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
@@ -803,11 +807,11 @@ async def ytp(_, message: Message):
     message.from_user.first_name
 
     keyboard = InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-            ]
-        )
+        [
+            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+        ]
+    )
 
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
@@ -855,22 +859,30 @@ async def ytp(_, message: Message):
             results[0]["url_suffix"]
             views = results[0]["views"]
             keyboard = InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-            ]
-        )
+                [
+                    [
+                        InlineKeyboardButton(
+                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
+                        )
+                    ],
+                    [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                ]
+            )
         except Exception:
             title = "NaN"
             thumb_name = "https://telegra.ph/file/c364d2f8144c33bd301d5.jpg"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-            ]
-        )
+                [
+                    [
+                        InlineKeyboardButton(
+                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
+                        )
+                    ],
+                    [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                ]
+            )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
