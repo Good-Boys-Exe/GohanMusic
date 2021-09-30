@@ -75,7 +75,7 @@ def changeimagesize(maxwidth, maxheight, image):
     heightratio = maxheight / image.size[1]
     newwidth = int(widthratio * image.size[0])
     newheight = int(heightratio * image.size[1])
-    image.resize((newwidth, newheight))
+    newImage = image.resize((newwidth, newheight))
     return newImage
 
 
