@@ -20,7 +20,7 @@ from callsmusic.callsmusic import client as user
 from config import arq_api_key as aak
 from config import bot_name as bn
 from config import bot_username as bu
-from config import duration_limit, support_group, que
+from config import duration_limit, que, support_group
 from converter.converter import path
 from downloaders import youtube
 from helpers.admins import get_administrators
@@ -803,21 +803,21 @@ async def lol_cb(b, cb):
 async def ytp(_, message: Message):
 
     lel = await message.reply("🔄 Processing Sounds...")
-    sender_id = message.from_user.id
-    sender_name = message.from_user.first_name
+    message.from_user.id
+    message.from_user.first_name
 
     keyboard = inlinekeyboardmarkup(
-                [
-                    [
-                        inlinekeyboardbutton(
-                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
-                        )
-                    ],
-                    [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+        [
+            [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+            [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+        ]
+    )
 
-    audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
+    audio = (
+        (message.reply_to_message.audio or message.reply_to_message.voice)
+        if message.reply_to_message
+        else None
+    )
     url = get_url(message)
 
     if audio:
@@ -833,33 +833,30 @@ async def ytp(_, message: Message):
         duration = round(audio.duration / 60)
         views = "Locally added"
         keyboard = inlinekeyboardmarkup(
-                [
-                    [
-                        inlinekeyboardbutton(
-                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
-                        )
-                    ],
-                    [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+            [
+                [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            ]
+        )
         requested_by = message.from_user.first_name
-        await generate_cover(requested_by, title, views, duration, thumbnail)  
+        await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(
             (await message.reply_to_message.download(file_name))
-            if not path.isfile(path.join("downloads", file_name)) else file_name
+            if not path.isfile(path.join("downloads", file_name))
+            else file_name
         )
     elif url:
         try:
             results = YoutubeSearch(url, max_results=1).to_dict()
-            #url = f"https://youtube.com{results[0]['url_suffix']}"
-            #print(results)
-            title = results[0]["title"][:40]       
+            # url = f"https://youtube.com{results[0]['url_suffix']}"
+            # print(results)
+            title = results[0]["title"][:40]
             thumbnail = results[0]["thumbnails"][0]
-            thumb_name = f'thumb{title}.jpg'
+            thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
-            open(thumb_name, 'wb').write(thumb.content)
+            open(thumb_name, "wb").write(thumb.content)
             duration = results[0]["duration"]
-            url_suffix = results[0]["url_suffix"]
+            results[0]["url_suffix"]
             views = results[0]["views"]
             keyboard = inlinekeyboardmarkup(
                 [
@@ -871,7 +868,7 @@ async def ytp(_, message: Message):
                     [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
                 ]
             )
-        except Exception as e:
+        except Exception:
             title = "NaN"
             thumb_name = "https://telegra.ph/file/c364d2f8144c33bd301d5.jpg"
             duration = "NaN"
@@ -887,33 +884,33 @@ async def ytp(_, message: Message):
                 ]
             )
         requested_by = message.from_user.first_name
-        await generate_cover(requested_by, title, views, duration, thumbnail)     
+        await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
     else:
         await lel.edit("🔎 Finding the song...")
-        sender_id = message.from_user.id
+        message.from_user.id
         user_id = message.from_user.id
-        sender_name = message.from_user.first_name
+        message.from_user.first_name
         user_name = message.from_user.first_name
-        rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
+        rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
 
-        query = ''
+        query = ""
         for i in message.command[1:]:
-            query += ' ' + str(i)
+            query += " " + str(i)
         print(query)
         await lel.edit("🎵 Processing sounds...")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
-            #print(results)
-            title = results[0]["title"][:40]       
+            # print(results)
+            title = results[0]["title"][:40]
             thumbnail = results[0]["thumbnails"][0]
-            thumb_name = f'thumb{title}.jpg'
+            thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
-            open(thumb_name, 'wb').write(thumb.content)
+            open(thumb_name, "wb").write(thumb.content)
             duration = results[0]["duration"]
-            url_suffix = results[0]["url_suffix"]
+            results[0]["url_suffix"]
             views = results[0]["views"]
 
         except Exception as e:
@@ -924,36 +921,33 @@ async def ytp(_, message: Message):
             return
 
         keyboard = inlinekeyboardmarkup(
-                [
-                    [
-                        inlinekeyboardbutton(
-                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
-                        )
-                    ],
-                    [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+            [
+                [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            ]
+        )
         requested_by = message.from_user.first_name
-        await generate_cover(requested_by, title, views, duration, thumbnail)  
+        await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
-  
+
     if message.chat.id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
-        photo="final.png", 
-        caption=f"#⃣ Your requested song **queued** at position {position}!",
-        reply_markup=keyboard)
+            photo="final.png",
+            caption=f"#⃣ Your requested song **queued** at position {position}!",
+            reply_markup=keyboard,
+        )
         os.remove("final.png")
         return await lel.delete()
     else:
         callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
         await message.reply_photo(
-        photo="final.png",
-        reply_markup=keyboard,
-        caption=f"🏷 **Judul:** [{title}]({url})\n**⏱ Durasi:** {duration}\n" \
-                + f"💡 **Status:** `Sedang Memutar\n🎧 **Permintaan:** {requested_by}".format(
-        message.from_user.mention()
-        ),
-    )
+            photo="final.png",
+            reply_markup=keyboard,
+            caption=f"🏷 **Judul:** [{title}]({url})\n**⏱ Durasi:** {duration}\n"
+            + f"💡 **Status:** `Sedang Memutar\n🎧 **Permintaan:** {requested_by}".format(
+                message.from_user.mention()
+            ),
+        )
         os.remove("final.png")
         return await lel.delete()
