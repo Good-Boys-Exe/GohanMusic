@@ -42,7 +42,7 @@ async def ytmusic(client, message: Message):
     mio[0]["duration"]
     thum = mio[0]["title"]
     fridayz = mio[0]["id"]
-    thums = mio[0]["channel"]
+    mio[0]["channel"]
     kekme = f"https://img.youtube.com/vi/{fridayz}/hqdefault.jpg"
     await asyncio.sleep(0.6)
     sedlyf = wget.download(kekme)
@@ -419,7 +419,9 @@ async def ytmusic(client, message: Message):
         message.chat.id, f"`Mendapatkan {urlissed} Dari Server Youtube. Harap tunggu.`"
     )
     if not urlissed:
-        await pablo.edit("Sintaks Perintah Tidak Valid, Silakan Periksa Menu Bantuan Untuk Tahu Lebih Banyak!")
+        await pablo.edit(
+            "Sintaks Perintah Tidak Valid, Silakan Periksa Menu Bantuan Untuk Tahu Lebih Banyak!"
+        )
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -428,7 +430,7 @@ async def ytmusic(client, message: Message):
     mo = mio[0]["link"]
     thum = mio[0]["title"]
     fridayz = mio[0]["id"]
-    thums = mio[0]["channel"]
+    mio[0]["channel"]
     kekme = f"https://img.youtube.com/vi/{fridayz}/hqdefault.jpg"
     await asyncio.sleep(0.6)
     url = mo
