@@ -71,10 +71,10 @@ def time_to_seconds(time):
 
 # change image size
 def changeimagesize(maxwidth, maxheight, image):
-    widthratio = maxwidth / image.size[0]
-    heightratio = maxheight / image.size[1]
-    newwidth = int(widthratio * image.size[0])
-    newheight = int(heightratio * image.size[1])
+    widthRatio = maxwidth / image.size[0]
+    heightRatio = maxheight / image.size[1]
+    newWidth = int(widthratio * image.size[0])
+    newHeight = int(heightratio * image.size[1])
     newImage = image.resize((newwidth, newheight))
     return newImage
 
@@ -432,7 +432,7 @@ async def play(_, message: Message):
             f"<b>{user.first_name}\nterkena banned dari group ini, minta admin untuk kirim perintah `/unban @{user.username}` di grup ini kemudian kirim perintah `/userbotjoin` di grup ini untuk mengundang assistant ke dalam grup anda</b>"
         )
         return
-    text_links = none
+    text_links = None
     await lel.edit("**🔎 menemukan lagu...**")
     if message.reply_to_message:
         entities = []
