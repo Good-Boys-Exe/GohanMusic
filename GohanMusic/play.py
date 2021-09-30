@@ -27,7 +27,7 @@ from helpers.admins import get_administrators
 from helpers.channelmusic import get_chat_id
 from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
-from helpers.gets import get_file_name
+from helpers.gets import get_file_name, get_url
 
 chat_id = -1001352787797
 
@@ -153,7 +153,7 @@ def updated_stats(chat, queue, vol=100):
             stats += "sedang memutar lagu: **{}**\n".format(queue[0][0])
             stats += "permintaan: {}".format(queue[0][1].mention)
     else:
-        stats = none
+        stats = None
     return stats
 
 
