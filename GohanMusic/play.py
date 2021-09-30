@@ -444,7 +444,7 @@ async def play(_, message: Message):
         urls = [entity for entity in entities if entity.type == "url"]
         text_links = [entity for entity in entities if entity.type == "text_link"]
     else:
-        urls = none
+        urls = None
     if text_links:
         urls = true
     user_id = message.from_user.id
@@ -453,7 +453,7 @@ async def play(_, message: Message):
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
         if message.reply_to_message
-        else none
+        else None
     )
     if audio:
         if round(audio.duration / 60) > duration_limit:
