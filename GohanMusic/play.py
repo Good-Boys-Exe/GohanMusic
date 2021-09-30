@@ -572,7 +572,7 @@ async def play(_, message: Message):
         file_path = await converter.convert(youtube.download(url))
     else:
         query = ""
-        for i in message.command[1:]:
+        for i in message.command[2:]:
             query += " " + str(i)
         print(query)
         await lel.edit("**🎵 Memproses lagu...**")
