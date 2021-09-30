@@ -71,10 +71,10 @@ def time_to_seconds(time):
 
 # change image size
 def changeimagesize(maxwidth, maxheight, image):
-    widthRatio = maxwidth / image.size[0]
-    heightRatio = maxheight / image.size[1]
-    newWidth = int(widthratio * image.size[0])
-    newHeight = int(heightratio * image.size[1])
+    maxwidth / image.size[0]
+    maxheight / image.size[1]
+    int(widthratio * image.size[0])
+    int(heightratio * image.size[1])
     newImage = image.resize((newwidth, newheight))
     return newImage
 
