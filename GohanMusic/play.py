@@ -69,13 +69,13 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-# change image size
-def changeimagesize(maxwidth, maxheight, image):
-    maxwidth / image.size[0]
-    maxheight / image.size[1]
-    int(widthratio * image.size[0])
-    int(heightratio * image.size[1])
-    newImage = image.resize((newwidth, newheight))
+# Change image size
+def changeImageSize(maxWidth, maxHeight, image):
+    widthRatio = maxWidth / image.size[0]
+    heightRatio = maxHeight / image.size[1]
+    newWidth = int(widthRatio * image.size[0])
+    newHeight = int(heightRatio * image.size[1])
+    newImage = image.resize((newWidth, newHeight))
     return newImage
 
 
