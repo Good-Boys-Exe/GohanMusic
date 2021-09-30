@@ -6,15 +6,24 @@ from config import DURATION_LIMIT
 from helpers.errors import DurationLimitError
 
 ydl_opts = {
-    "format": "114/bestaudio[ext=m4a]",
-    "format": "bestaudio[ext=m4a]",
-    "format": "bestaudio/best",
-    "format": "best",
-    "verbose": True,
-    "geo-bypass": True,
-    "nocheckcertificate": True,
-    "outtmpl": "downloads/%(id)s.%(ext)s",
-}
+        "format": "bestaudio",
+        "addmetadata": True,
+        "key": "FFmpegMetadata",
+        "writethumbnail": True,
+        "prefer_ffmpeg": True,
+        "geo_bypass": True,
+        "nocheckcertificate": True,
+        "postprocessors": [
+            {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",
+                "preferredquality": "720",
+            }
+        ],
+        "outtmpl": "%(id)s.mp3",
+        "quiet": True,
+        "logtostderr": False,
+    }
 
 ydl = YoutubeDL(ydl_opts)
 
