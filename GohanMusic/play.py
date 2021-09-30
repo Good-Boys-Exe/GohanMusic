@@ -9,7 +9,7 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, Voice
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
@@ -80,7 +80,7 @@ def changeimagesize(maxwidth, maxheight, image):
 
 
 async def generate_cover(requested_by, title, views, duration, thumbnail):
-    async with aiohttp.clientsession() as session, session.get(thumbnail) as resp:
+    async with aiohttp.ClientSession() as session, session.get(thumbnail) as resp:
         if resp.status == 200:
             f = await aiofiles.open("background.png", mode="wb")
             await f.write(await resp.read())
@@ -89,8 +89,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     image2 = Image.open("etc/scp.png")
     image3 = changeimagesize(1280, 720, image1)
     image4 = changeimagesize(1280, 720, image2)
-    image5 = image3.convert("rgba")
-    image6 = image4.convert("rgba")
+    image5 = image3.convert("RGBA")
+    image6 = image4.convert("RGBA")
     Image.alpha_composite(image5, image6).save("temp.png")
     img = image.open("temp.png")
     draw = ImageDraw.Draw(img)
@@ -196,7 +196,7 @@ async def ee(client, message):
 async def settings(client, message):
     playing = None
     if message.chat.id in callsmusic.pytgcalls.active_calls:
-        playing = true
+        playing = True
     queue = que.get(message.chat.id)
     stats = updated_stats(message.chat, queue)
     if stats:
