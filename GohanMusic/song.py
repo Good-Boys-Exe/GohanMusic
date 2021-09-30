@@ -29,11 +29,11 @@ async def ytmusic(client, message: Message):
     if not urlissed:
         await client.send_message(
             message.chat.id,
-            "Invalid Command Syntax, Please Check Help Menu To Know More!",
+            "Sintaks Perintah Tidak Valid, Silakan Periksa Menu Bantuan Untuk Tahu Lebih Banyak!",
         )
         return
     pablo = await client.send_message(
-        message.chat.id, f"`Getting {urlissed} From Youtube Servers. Please Wait.`"
+        message.chat.id, f"`Mendapatkan {urlissed} Dari Server Youtube. Harap tunggu.`"
     )
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
     mi = search.result()
@@ -72,7 +72,12 @@ async def ytmusic(client, message: Message):
         await pablo.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
         return
     c_time = time.time()
-    capy = f"**Song Name :** `{thum}` \n**Requested For :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}`"
+    capy = f"""
+**🏷️ Nama Lagu:** [{thum}]({mo})
+**⏱️ Durasi Lagu:** {duration}
+**🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**🎧 Permintaan Dari:** {message.from_user.mention}
+"""
     file_stark = f"{ytdl_data['id']}.mp3"
     await client.send_audio(
         message.chat.id,
@@ -86,7 +91,7 @@ async def ytmusic(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"`Uploading {urlissed} Song From YouTube Music!`",
+            f"`Mendownload Lagu {urlissed} Dari YouTube!`",
             file_stark,
         ),
     )
@@ -395,7 +400,7 @@ async def ytmusic(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"**Mendownload Video** `{urlissed}` **Dari YouTube Music!**",
+            f"**Mendownload Video** `{urlissed}` **Dari YouTube!**",
             file_stark,
         ),
     )
@@ -411,10 +416,10 @@ async def ytmusic(client, message: Message):
     urlissed = get_text(message)
 
     pablo = await client.send_message(
-        message.chat.id, f"`Getting {urlissed} From Youtube Servers. Please Wait.`"
+        message.chat.id, f"`Mendapatkan {urlissed} Dari Server Youtube. Harap tunggu.`"
     )
     if not urlissed:
-        await pablo.edit("Invalid Command Syntax, Please Check Help Menu To Know More!")
+        await pablo.edit("Sintaks Perintah Tidak Valid, Silakan Periksa Menu Bantuan Untuk Tahu Lebih Banyak!")
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -448,7 +453,12 @@ async def ytmusic(client, message: Message):
         return
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"**Video Name ➠** `{thum}` \n**Requested For :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}`"
+    capy = f"""
+**🏷️ Nama Video:** [{thum}]({mo})
+**⏱️ Durasi Video:** {duration}
+**🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**🎧 Permintaan Dari:** {message.from_user.mention}
+"""
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
@@ -461,7 +471,7 @@ async def ytmusic(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"`Uploading {urlissed} Song From YouTube Music!`",
+            f"`Mendownload Video {urlissed} Dari YouTube!`",
             file_stark,
         ),
     )
