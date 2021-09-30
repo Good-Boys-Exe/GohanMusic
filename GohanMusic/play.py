@@ -375,7 +375,7 @@ async def m_cb(b, cb):
             )
 
 
-@client.on_message(command(["play", f"play@{bu}"]) & other_filters)
+@Client.on_message(command(["play", f"play@{bu}"]) & other_filters)
 @errors
 async def play(_, message: message):
     global que
