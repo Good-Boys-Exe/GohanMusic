@@ -12,6 +12,7 @@ import aiohttp
 import requests
 import wget
 import youtube_dl
+from youtube_dl import YoutubeDL
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
