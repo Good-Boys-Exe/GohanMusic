@@ -189,7 +189,7 @@ async def ee(client, message):
         await message.reply("**silahkan nyalakan dulu vcg nya!**"),
 
 
-@client.on_message(
+@Client.on_message(
     command(["player", f"player@{bu}"]) & filters.group & ~filters.edited
 )
 @authorized_users_only
