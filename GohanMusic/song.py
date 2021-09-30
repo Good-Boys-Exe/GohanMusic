@@ -8,7 +8,6 @@ import wget
 from pyrogram import Client
 from pyrogram.types import Message
 from youtube_dl import YoutubeDL
-from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
 
 from config import BOT_NAME, BOT_USERNAME
