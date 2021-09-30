@@ -377,7 +377,7 @@ async def m_cb(b, cb):
 
 @Client.on_message(command(["play", f"play@{bu}"]) & other_filters)
 @errors
-async def play(_, message: message):
+async def play(_, message: Message):
     global que
     lel = await message.reply("**🔄 memproses...**")
     administrators = await get_administrators(message.chat)
