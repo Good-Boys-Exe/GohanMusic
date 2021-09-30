@@ -526,14 +526,13 @@ async def play(_, message: Message):
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
-   else:
         await lel.edit("**🔍 Menemukan lagu...**")
         sender_id = message.from_user.id
         user_id = message.from_user.id
         sender_name = message.from_user.first_name
         user_name = message.from_user.first_name
         rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
-
+    else:
         query = ''
         for i in message.command[1:]:
             query += ' ' + str(i)
