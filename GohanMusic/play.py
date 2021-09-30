@@ -484,13 +484,6 @@ async def play(_, message: Message):
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
             "format": "114/bestaudio[ext=m4a]",
-            "format": "bestaudio[ext=m4a]",
-            "format": "bestaudio/best",
-            "format": "best",
-            "verbose": True,
-            "geo-bypass": True,
-            "nocheckcertificate": True,
-            "outtmpl": "downloads/%(id)s.%(ext)s",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -529,13 +522,6 @@ async def play(_, message: Message):
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
             "format": "114/bestaudio[ext=m4a]",
-            "format": "bestaudio[ext=m4a]",
-            "format": "bestaudio/best",
-            "format": "best",
-            "verbose": True,
-            "geo-bypass": True,
-            "nocheckcertificate": True,
-            "outtmpl": "downloads/%(id)s.%(ext)s",
         }
         try:
             results = YoutubeSearch(query, max_results=10).to_dict()
