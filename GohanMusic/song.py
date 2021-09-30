@@ -1,22 +1,22 @@
 from __future__ import unicode_literals
+
 import asyncio
 import math
 import os
 import time
 from random import randint
 from urllib.parse import urlparse
+
 import aiofiles
 import aiohttp
-import requests
 import wget
-import youtube_dl
-from pyrogram import Client, filters
+from pyrogram import Client
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
 from youtube_dl import YoutubeDL
-from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
-from config import BOT_NAME, BOT_USERNAME, DURATION_LIMIT
+
+from config import BOT_NAME, BOT_USERNAME
 from helpers.filters import command
 
 
@@ -96,6 +96,7 @@ async def song(client, message: Message):
         if files and os.path.exists(files):
             os.remove(files)
 
+
 def get_text(message: Message) -> [None, str]:
     text_to_return = message.text
     if message.text is None:
@@ -118,6 +119,7 @@ def humanbytes(size):
         size /= power
         raised_to_pow += 1
     return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
+
 
 async def progress(current, total, message, start, type_of_ps, file_name=None):
     now = time.time()
