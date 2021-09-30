@@ -7,6 +7,10 @@ from helpers.errors import DurationLimitError
 
 ydl_opts = {
     "format": "114/bestaudio[ext=m4a]",
+    "verbose": True,
+    "geo-bypass": True,
+    "nocheckcertificate": True,
+    "outtmpl": "downloads/%(id)s.%(ext)s",
 }
 
 ydl = YoutubeDL(ydl_opts)
