@@ -468,17 +468,55 @@ async def play(_, message: Message):
         )
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/a65cd06f5a75b2762fe64.png"
+        thumb_name = "https://telegra.ph/file/c364d2f8144c33bd301d5.jpg"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
+        keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+            ]
+        )
         requested_by = message.from_user.first_name
-        await generate_cover(requested_by, title, views, duration, thumbnail)
+        await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(
             (await message.reply_to_message.download(file_name))
-            if not path.isfile(path.join("downloads", file_name))
-            else file_name
+            if not path.isfile(path.join("downloads", file_name)) else file_name
         )
+    elif url:
+        try:
+            results = YoutubeSearch(url, max_results=1).to_dict()
+            #url = f"https://youtube.com{results[0]['url_suffix']}"
+            #print(results)
+            title = results[0]["title"][:40]       
+            thumbnail = results[0]["thumbnails"][0]
+            thumb_name = f'thumb{title}.jpg'
+            thumb = requests.get(thumbnail, allow_redirects=True)
+            open(thumb_name, 'wb').write(thumb.content)
+            duration = results[0]["duration"]
+            url_suffix = results[0]["url_suffix"]
+            views = results[0]["views"]
+            keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+            ]
+        )
+        except Exception as e:
+            title = "NaN"
+            thumb_name = "https://telegra.ph/file/c364d2f8144c33bd301d5.jpg"
+            duration = "NaN"
+            views = "NaN"
+            keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+            ]
+        )
+        requested_by = message.from_user.first_name
+        await generate_cover(requested_by, title, views, duration, thumbnail)     
+        file_path = await converter.convert(youtube.download(url))
     elif urls:
         query = toxt
         await lel.edit("**🎵 Memproses lagu...**")
