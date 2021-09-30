@@ -194,7 +194,7 @@ async def ee(client, message):
 )
 @authorized_users_only
 async def settings(client, message):
-    playing = none
+    playing = None
     if message.chat.id in callsmusic.pytgcalls.active_calls:
         playing = true
     queue = que.get(message.chat.id)
