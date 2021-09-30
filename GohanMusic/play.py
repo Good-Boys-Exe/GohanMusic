@@ -76,7 +76,7 @@ def changeimagesize(maxwidth, maxheight, image):
     newwidth = int(widthratio * image.size[0])
     newheight = int(heightratio * image.size[1])
     newimage = image.resize((newwidth, newheight))
-    return newimage
+    return newImage
 
 
 async def generate_cover(requested_by, title, views, duration, thumbnail):
