@@ -24,7 +24,7 @@ from helpers.filters import command
 
 
 @Client.on_message(command(["music", f"music@{BOT_USERNAME}"]))
-async def ytmusic(client, message: Message):
+async def music(client, message: Message):
     urlissed = get_text(message)
     if not urlissed:
         await client.send_message(
@@ -74,7 +74,6 @@ async def ytmusic(client, message: Message):
     c_time = time.time()
     capy = f"""
 **🏷️ Nama Lagu:** [{thum}]({mo})
-**⏱️ Durasi Lagu:** {duration}
 **🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 **🎧 Permintaan Dari:** {message.from_user.mention}
 """
@@ -136,8 +135,6 @@ def song(client, message):
             ydl.process_info(info_dict)
         rep = f"""
 **🏷 Nama Lagu:** [{title}]({link})
-**⏱️ Durasi Lagu:** {duration}
-**👁️‍🗨️ Dilihat Oleh:** {results[0]['views']}
 **🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 **🎧 Permintaan Dari:** {rpk}
 """
@@ -318,7 +315,7 @@ def time_to_seconds(time):
 
 
 @Client.on_message(command(["vsong", f"vsong@{BOT_USERNAME}"]))
-async def ytmusic(client, message: Message):
+async def vsong(client, message: Message):
     global is_downloading
     if is_downloading:
         await message.reply_text(
@@ -384,7 +381,6 @@ async def ytmusic(client, message: Message):
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"""
 **🏷️ Nama Video:** [{thum}]({mo})
-**⏱️ Durasi Video:** {duration}
 **🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 **🎧 Permintaan Dari:** {message.from_user.mention}
 """
@@ -412,7 +408,7 @@ async def ytmusic(client, message: Message):
 
 
 @Client.on_message(command(["video", f"video@{BOT_USERNAME}"]))
-async def ytmusic(client, message: Message):
+async def video(client, message: Message):
     urlissed = get_text(message)
 
     pablo = await client.send_message(
@@ -451,13 +447,12 @@ async def ytmusic(client, message: Message):
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url, download=True)
     except Exception as e:
-        await event.edit(event, f"**Failed To Download** \n**Error :** `{str(e)}`")
+        await event.edit(event, f"**Gagal Mengunduh** \n**Kesalahan :** `{str(e)}`")
         return
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"""
 **🏷️ Nama Video:** [{thum}]({mo})
-**⏱️ Durasi Video:** {duration}
 **🤖 Diunggah Oleh:** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 **🎧 Permintaan Dari:** {message.from_user.mention}
 """
