@@ -1,25 +1,16 @@
 from __future__ import unicode_literals
 
 import asyncio
-import math
 import os
 import time
-from random import randint
-from urllib.parse import urlparse
 
-import aiofiles
-import aiohttp
-import requests
 import wget
-import youtube_dl
-from pyrogram import Client, filters
-from pyrogram.errors import FloodWait, MessageNotModified
+from pyrogram import Client
 from pyrogram.types import Message
 from youtube_dl import YoutubeDL
-from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
 
-from config import BOT_NAME, BOT_USERNAME, DURATION_LIMIT
+from config import BOT_NAME, BOT_USERNAME
 from helpers.filters import command
 
 
@@ -42,7 +33,7 @@ async def ytmusic(client, message: Message):
     mio[0]["duration"]
     thum = mio[0]["title"]
     fridayz = mio[0]["id"]
-    thums = mio[0]["channel"]
+    mio[0]["channel"]
     kekme = f"https://img.youtube.com/vi/{fridayz}/hqdefault.jpg"
     await asyncio.sleep(0.6)
     sedlyf = wget.download(kekme)
@@ -109,7 +100,9 @@ async def ytmusic(client, message: Message):
         message.chat.id, f"`Mendapatkan {urlised} Dari Youtube Mohon Tunggu.`"
     )
     if not urlissed:
-        await pablo.edit("Sintaks Perintah Tidak Valid, Silakan Periksa Menu Bantuan Untuk Tahu Lebih Banyak!")
+        await pablo.edit(
+            "Sintaks Perintah Tidak Valid, Silakan Periksa Menu Bantuan Untuk Tahu Lebih Banyak!"
+        )
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -118,7 +111,7 @@ async def ytmusic(client, message: Message):
     mo = mio[0]["link"]
     thum = mio[0]["title"]
     fridayz = mio[0]["id"]
-    thums = mio[0]["channel"]
+    mio[0]["channel"]
     kekme = f"https://img.youtube.com/vi/{fridayz}/hqdefault.jpg"
     await asyncio.sleep(0.6)
     url = mo
