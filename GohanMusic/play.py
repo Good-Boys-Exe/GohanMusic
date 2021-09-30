@@ -1,26 +1,26 @@
 import os
-from asyncio.queues import queueempty
-from typing import callable
+from asyncio.queues import QueueEmpty
+from typing import Callable
 
 import aiofiles
 import aiohttp
 import ffmpeg
 import requests
-from pil import image, imagedraw, imagefont
-from pyrogram import client, filters
-from pyrogram.errors import useralreadyparticipant
-from pyrogram.types import inlinekeyboardbutton, inlinekeyboardmarkup, message
-from python_arq import arq
-from youtube_search import youtubesearch
+from PIL import Image, ImageDraw, ImageFont
+from pyrogram import Client, filters
+from pyrogram.errors import UserAlreadyParticipant
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from Python_ARQ import ARQ
+from youtube_search import YoutubeSearch
 
 import converter
 from cache.admins import admins as a
 from callsmusic import callsmusic, queues
-from callsmusic.callsmusic import client as user
-from config import arq_api_key as aak
-from config import bot_name as bn
-from config import bot_username as bu
-from config import duration_limit, que, support_group
+from callsmusic.callsmusic import client as USER
+from config import ARQ_API_KEY as aak
+from config import BOT_NAME as bn
+from config import BOT_USERNAME as bu
+from config import DURATION_LIMIT, que, SUPPORT_GROUP
 from converter.converter import path
 from downloaders import youtube
 from helpers.admins import get_administrators
@@ -31,12 +31,12 @@ from helpers.gets import get_file_name
 
 chat_id = -1001352787797
 
-arq_api_key = f"{aak}"
-aiohttpsession = aiohttp.clientsession()
-arq = arq("https://thearq.tech", arq_api_key, aiohttpsession)
+ARQ_API_KEY = f"{aak}"
+aiohttpsession = aiohttp.ClientSession()
+arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
 
 
-def cb_admin_check(func: callable) -> callable:
+def cb_admin_check(func: Callable) -> Callable:
     async def decorator(client, cb):
         admemes = a.get(cb.message.chat.id)
         if cb.from_user.id in admemes:
@@ -85,16 +85,16 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
             f = await aiofiles.open("background.png", mode="wb")
             await f.write(await resp.read())
             await f.close()
-    image1 = image.open("./background.png")
-    image2 = image.open("etc/scp.png")
+    image1 = Image.open("./background.png")
+    image2 = Image.open("etc/scp.png")
     image3 = changeimagesize(1280, 720, image1)
     image4 = changeimagesize(1280, 720, image2)
     image5 = image3.convert("rgba")
     image6 = image4.convert("rgba")
-    image.alpha_composite(image5, image6).save("temp.png")
+    Image.alpha_composite(image5, image6).save("temp.png")
     img = image.open("temp.png")
-    draw = imagedraw.draw(img)
-    font = imagefont.truetype("etc/font.otf", 70)
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype("etc/font.otf", 70)
     draw.text((20, 540), f"{views}", (0, 0, 0), font=font)
     draw.text((20, 630), f"{title[:25]}", (0, 0, 0), font=font)
     img.save("final.png")
@@ -102,7 +102,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-@client.on_message(
+@Client.on_message(
     command(["playlist", f"playlist@{bu}"]) & filters.group & ~filters.edited
 )
 async def playlist(client, message):
@@ -129,12 +129,12 @@ async def playlist(client, message):
             msg += f"\n• permintaan {usr}\n"
         await message.reply_text(
             msg,
-            reply_markup=inlinekeyboardmarkup(
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    [inlinekeyboardbutton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
+                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
                     [
-                        inlinekeyboardbutton(
-                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{support_group}"
+                        InlineKeyboardButton(
+                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
                         )
                     ],
                 ]
@@ -162,22 +162,22 @@ def r_ply(type_):
         pass
     else:
         pass
-    mar = inlinekeyboardmarkup(
-        [
+    marr = InlineKeyboardMarkup(
             [
-                inlinekeyboardbutton("▶️", "resume"),
-                inlinekeyboardbutton("⏸️", "puse"),
-                inlinekeyboardbutton("⏭️", "skip"),
-                inlinekeyboardbutton("⏹️", "leave"),
-            ],
-            [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [inlinekeyboardbutton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
-        ]
-    )
+                [
+                    InlineKeyboardButton("▶️", "resume"),
+                    InlineKeyboardButton("⏸️", "puse"),
+                    InlineKeyboardButton("⏭️", "skip"),
+                    InlineKeyboardButton("⏹️", "leave"),
+                ],
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+            ]
+        )
     return mar
 
 
-@client.on_message(
+@Client.on_message(
     command(["current", f"current@{bu}"]) & filters.group & ~filters.edited
 )
 async def ee(client, message):
@@ -209,7 +209,7 @@ async def settings(client, message):
         await message.reply("**silahkan nyalakan dulu vcg nya!**")
 
 
-@client.on_callback_query(filters.regex(pattern=r"^(playlist)$"))
+@Client.on_callback_query(filters.regex(pattern=r"^(playlist)$"))
 async def p_cb(b, cb):
     global que
     que.get(cb.message.chat.id)
@@ -240,12 +240,12 @@ async def p_cb(b, cb):
                 msg += f"\n• permintaan {usr}\n"
         await cb.message.edit(
             msg,
-            reply_markup=inlinekeyboardmarkup(
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    [inlinekeyboardbutton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
+                    [InlineKeyboardButton("⏯ ᴍᴇɴᴜ ᴘᴇᴍᴜᴛᴀʀᴀɴ ⏯", callback_data="menu")],
                     [
-                        inlinekeyboardbutton(
-                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{support_group}"
+                        InlineKeyboardButton(
+                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
                         )
                     ],
                 ]
@@ -253,7 +253,7 @@ async def p_cb(b, cb):
         )
 
 
-@client.on_callback_query(
+@Client.on_callback_query(
     filters.regex(pattern=r"^(play|playlist|pause|skip|leave|puse|resume|menu|cls)$")
 )
 @cb_admin_check
@@ -324,16 +324,16 @@ async def m_cb(b, cb):
     elif type_ == "menu":
         stats = updated_stats(cb.message.chat, qeue)
         await cb.answer("menu opened")
-        marr = inlinekeyboardmarkup(
+        marr = InlineKeyboardMarkup(
             [
                 [
-                    inlinekeyboardbutton("▶️", "resume"),
-                    inlinekeyboardbutton("⏸️", "puse"),
-                    inlinekeyboardbutton("⏭️", "skip"),
-                    inlinekeyboardbutton("⏹️", "leave"),
+                    InlineKeyboardButton("▶️", "resume"),
+                    InlineKeyboardButton("⏸️", "puse"),
+                    InlineKeyboardButton("⏭️", "skip"),
+                    InlineKeyboardButton("⏹️", "leave"),
                 ],
-                [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [inlinekeyboardbutton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
             ]
         )
         await cb.message.edit(stats, reply_markup=marr)
@@ -364,7 +364,7 @@ async def m_cb(b, cb):
         if chat_id in callsmusic.pytgcalls.active_calls:
             try:
                 callsmusic.queues.clear(chat_id)
-            except queueempty:
+            except QueueEmpty:
                 pass
 
             callsmusic.pytgcalls.leave_group_call(chat_id)
@@ -383,13 +383,13 @@ async def play(_, message: message):
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
-        user = await user.get_me()
+        user = await USER.get_me()
     except:
         user.first_name = "helper"
     usar = user
     wew = usar.id
     try:
-        # chatdetails = await user.get_chat(chid)
+        # chatdetails = await USER.get_chat(chid)
         await _.get_chat_member(chid, wew)
     except:
         for administrator in administrators:
@@ -407,8 +407,8 @@ async def play(_, message: message):
                     return
 
                 try:
-                    await user.join_chat(invitelink)
-                    await user.send_message(
+                    await USER.join_chat(invitelink)
+                    await USER.send_message(
                         message.chat.id,
                         "saya bergabung ke grup ini untuk memutar musik di obrolan suara",
                     )
@@ -416,16 +416,16 @@ async def play(_, message: message):
                         "<b>userbot bergabung dengan obrolan anda</b>",
                     )
 
-                except useralreadyparticipant:
+                except UserAlreadyParticipant:
                     pass
-                except exception:
+                except Exception:
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 flood wait error 🔴 \n{user.first_name} tidak dapat bergabung dengan group anda karena banyaknya permintaan bergabung untuk assistant! pastikan assistan tidak dibanned didalam grup."
                         f"\n\natau tambahkan @{user.username} bot secara manual ke group anda dan coba lagi.</b>",
                     )
     try:
-        await user.get_chat(chid)
+        await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
@@ -460,10 +460,10 @@ async def play(_, message: message):
             raise durationlimiterror(
                 f"**❌ lagu dengan durasi lebih dari `{duration_limit}` menit tidak dapat diputar!\n🎧 lagu yang di minta berdurasi `{duration}`**"
             )
-        keyboard = inlinekeyboardmarkup(
+        keyboard = InlineKeyboardMarkup(
             [
-                [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
             ]
         )
         file_name = get_file_name(audio)
@@ -486,7 +486,7 @@ async def play(_, message: message):
             "format": "114/bestaudio[ext=m4a]",
         }
         try:
-            results = youtubesearch(query, max_results=1).to_dict()
+            results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             title = results[0]["title"][:999]
             thumbnail = results[0]["thumbnails"][0]
@@ -505,10 +505,10 @@ async def play(_, message: message):
             return
         dlurl = url
         dlurl = dlurl.replace("youtube", "youtubepp")
-        keyboard = inlinekeyboardmarkup(
+        keyboard = InlineKeyboardMarkup(
             [
-                [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴʏ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -524,12 +524,12 @@ async def play(_, message: message):
             "format": "114/bestaudio[ext=m4a]",
         }
         try:
-            results = youtubesearch(query, max_results=10).to_dict()
+            results = YoutubeSearch(query, max_results=10).to_dict()
         except:
             await lel.edit("**anda tidak memberikan judul lagu apapun !**")
         # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         try:
-            toxxt = f"**⚡ silahkan pilih lagu yang ingin anda putar:** {rpk}\n\n"
+            toxxt = f"**⚡ Silahkan pilih lagu yang ingin anda putar:** {rpk}\n\n"
             j = 0
 
             numberlist = [
@@ -546,10 +546,10 @@ async def play(_, message: message):
             ]
             while j < 10:
                 toxxt += f"**{numberlist[j]}** [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
-                toxxt += f"├ 💡 **durasi:** {results[j]['duration']}\n"
-                toxxt += f"└ ⚡ **didukung:** [{bn}](t.me/{bu})\n\n"
+                toxxt += f"├ 💡 **Durasi:** {results[j]['duration']}\n"
+                toxxt += f"└ ⚡ **Didukung:** [{bn}](t.me/{bu})\n\n"
                 j += 1
-            keyboard = inlinekeyboardmarkup(
+            keyboard = InlineKeyboardMarkup(
                 [
                     [
                         inlinekeyboardbutton(
@@ -558,38 +558,38 @@ async def play(_, message: message):
                         inlinekeyboardbutton(
                             "2", callback_data=f"plll 1|{query}|{user_id}"
                         ),
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "3", callback_data=f"plll 2|{query}|{user_id}"
                         ),
                     ],
                     [
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "4", callback_data=f"plll 3|{query}|{user_id}"
                         ),
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "5", callback_data=f"plll 4|{query}|{user_id}"
                         ),
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "6", callback_data=f"plll 5|{query}|{user_id}"
                         ),
                     ],
                     [
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "7", callback_data=f"plll 6|{query}|{user_id}"
                         ),
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "8", callback_data=f"plll 7|{query}|{user_id}"
                         ),
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "9", callback_data=f"plll 8|{query}|{user_id}"
                         ),
                     ],
                     [
-                        inlinekeyboardbutton(
+                        InlineKeyboardButton(
                             "10", callback_data=f"plll 9|{query}|{user_id}"
                         )
                     ],
-                    [inlinekeyboardbutton(text="❌", callback_data="cls")],
+                    [InlineKeyboardButton(text="❌", callback_data="cls")],
                 ]
             )
 
@@ -612,7 +612,7 @@ async def play(_, message: message):
                 duration = results[0]["duration"]
                 results[0]["url_suffix"]
                 views = results[0]["views"]
-            except exception as e:
+            except Exception as e:
                 await lel.edit(
                     "**❌ lagu tidak ditemukan.** berikan nama lagu yang valid."
                 )
@@ -620,16 +620,12 @@ async def play(_, message: message):
                 return
             dlurl = url
             dlurl = dlurl.replace("youtube", "youtubepp")
-            keyboard = inlinekeyboardmarkup(
-                [
-                    [
-                        inlinekeyboardbutton(
-                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
-                        )
-                    ],
-                    [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+            keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            ]
+        )
             requested_by = message.from_user.first_name
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await converter.convert(youtube.download(url))
@@ -645,11 +641,11 @@ async def play(_, message: message):
         await message.reply_photo(
             photo="final.png",
             caption=f"""
-💡 **trek ditambahkan ke antrian**
+💡 **Trek ditambahkan ke antrian**
 
-🏷 **nama:** [{title}]({url})
-⏱️ **durasi:** {duration}
-🎧 **atas permintaan:** {message.from_user.mention}
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+🎧 **Atas permintaan:** {message.from_user.mention}
 """,
             reply_markup=keyboard,
         )
@@ -674,10 +670,10 @@ async def play(_, message: message):
         await message.reply_photo(
             photo="final.png",
             caption=f"""
-🏷 **nama:** [{title}]({url})
-⏱️ **durasi:** {duration}
-💡 **status:** `sedang memutar`
-🎧 **atas permintaan:** {message.from_user.mention}
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+💡 **Status:** `sedang memutar`
+🎧 **Atas permintaan:** {message.from_user.mention}
 """,
             reply_markup=keyboard,
         )
@@ -685,7 +681,7 @@ async def play(_, message: message):
         return await lel.delete()
 
 
-@client.on_callback_query(filters.regex(pattern=r"plll"))
+@Client.on_callback_query(filters.regex(pattern=r"plll"))
 @errors
 async def lol_cb(b, cb):
     global que
@@ -709,7 +705,7 @@ async def lol_cb(b, cb):
         useer_name = cb.message.reply_to_message.from_user.first_name
     except:
         useer_name = cb.message.from_user.first_name
-    results = youtubesearch(query, max_results=10).to_dict()
+    results = YoutubeSearch(query, max_results=10).to_dict()
     resultss = results[x]["url_suffix"]
     title = results[x]["title"][:999]
     thumbnail = results[x]["thumbnails"][0]
@@ -721,9 +717,9 @@ async def lol_cb(b, cb):
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
             secmul *= 60
-        if (dur / 60) > duration_limit:
+        if (dur / 60) > DURATION_LIMIT:
             await cb.message.edit(
-                f"**❌ lagu dengan durasi lebih dari `{duration_limit}` menit tidak dapat diputar!\n🎧 lagu yang di minta berdurasi `{duration}`**"
+                f"**❌ lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!\n🎧 lagu yang di minta berdurasi `{duration}`**"
             )
             return
     except:
@@ -732,17 +728,17 @@ async def lol_cb(b, cb):
         thumb_name = f"thumb{title}.jpg"
         thumb = requests.get(thumbnail, allow_redirects=true)
         open(thumb_name, "wb").write(thumb.content)
-    except exception as e:
+    except Exception as e:
         print(e)
         return
     dlurl = url
     dlurl = dlurl.replace("youtube", "youtubepp")
-    keyboard = inlinekeyboardmarkup(
-        [
-            [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-        ]
-    )
+    keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            ]
+        )
     requested_by = useer_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
@@ -762,11 +758,11 @@ async def lol_cb(b, cb):
             chat_id,
             photo="final.png",
             caption=f"""
-💡 **trek ditambahkan ke antrian**
+💡 **Trek ditambahkan ke antrian**
 
-🏷 **nama:** [{title}]({url})
-⏱️ **durasi:** {duration}
-🎧 **atas permintaan:** {r_by.mention}
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+🎧 **Atas permintaan:** {r_by.mention}
 """,
             reply_markup=keyboard,
         )
@@ -788,10 +784,10 @@ async def lol_cb(b, cb):
             chat_id,
             photo="final.png",
             caption=f"""
-🏷 **nama:** [{title}]({url})
-⏱️ **durasi:** {duration}
-💡 **status:** `sedang memutar`
-🎧 **atas permintaan:** {r_by.mention}
+🏷 **Nama:** [{title}]({url})
+⏱️ **Durasi:** {duration}
+💡 **Status:** `sedang memutar`
+🎧 **Atas permintaan:** {r_by.mention}
 """,
             reply_markup=keyboard,
         )
@@ -806,12 +802,12 @@ async def ytp(_, message: Message):
     message.from_user.id
     message.from_user.first_name
 
-    keyboard = inlinekeyboardmarkup(
-        [
-            [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-        ]
-    )
+    keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            ]
+        )
 
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
@@ -832,10 +828,10 @@ async def ytp(_, message: Message):
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
-        keyboard = inlinekeyboardmarkup(
+        keyboard = InlineKeyboardMarkup(
             [
-                [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -858,31 +854,23 @@ async def ytp(_, message: Message):
             duration = results[0]["duration"]
             results[0]["url_suffix"]
             views = results[0]["views"]
-            keyboard = inlinekeyboardmarkup(
-                [
-                    [
-                        inlinekeyboardbutton(
-                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
-                        )
-                    ],
-                    [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+            keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            ]
+        )
         except Exception:
             title = "NaN"
             thumb_name = "https://telegra.ph/file/c364d2f8144c33bd301d5.jpg"
             duration = "NaN"
             views = "NaN"
-            keyboard = inlinekeyboardmarkup(
-                [
-                    [
-                        inlinekeyboardbutton(
-                            "📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist"
-                        )
-                    ],
-                    [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+            keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            ]
+        )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
@@ -920,10 +908,10 @@ async def ytp(_, message: Message):
             print(str(e))
             return
 
-        keyboard = inlinekeyboardmarkup(
+        keyboard = InlineKeyboardMarkup(
             [
-                [inlinekeyboardbutton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [inlinekeyboardbutton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
             ]
         )
         requested_by = message.from_user.first_name
