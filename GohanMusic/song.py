@@ -93,7 +93,7 @@ async def ytmusic(client, message: Message):
 
 
 @Client.on_message(command(["vsong", f"vsong@{BOT_USERNAME}"]))
-async def ytmusic(client, message: Message):
+async def ytvideo(client, message: Message):
     urlissed = get_text(message)
 
     pablo = await client.send_message(
