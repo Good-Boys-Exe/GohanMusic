@@ -11,6 +11,7 @@ ydl_opts = {
     "geo-bypass": True,
     "nocheckcertificate": True,
     "addmetadata": True,
+    "writethumbnail": True,
     "key": "FFmpegMetadata",
     "prefer_ffmpeg": True,
     "nocheckcertificate": True,
