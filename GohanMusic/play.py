@@ -857,15 +857,16 @@ async def ytp(_, message: Message):
         print(query)
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
-    "format": "bestaudio",
-    "verbose": True,
-    "geo-bypass": True,
-    "nocheckcertificate": True,
-    "addmetadata": True,
-    "writethumbnail": True,
-    "key": "FFmpegMetadata",
-    "prefer_ffmpeg": True,
-    "nocheckcertificate": True}
+            "format": "bestaudio",
+            "verbose": True,
+            "geo-bypass": True,
+            "nocheckcertificate": True,
+            "addmetadata": True,
+            "writethumbnail": True,
+            "key": "FFmpegMetadata",
+            "prefer_ffmpeg": True,
+            "nocheckcertificate": True,
+        }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
