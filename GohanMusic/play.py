@@ -178,18 +178,6 @@ def r_ply(type_):
 
 
 @Client.on_message(
-    command(["current", f"current@{bu}"]) & filters.group & ~filters.edited
-)
-async def ee(client, message):
-    queue = que.get(message.chat.id)
-    stats = updated_stats(message.chat, queue)
-    if stats:
-        await message.reply(stats)
-    else:
-        await message.reply("**Silahkan Nyalakan dulu VCG nya!**"),
-
-
-@Client.on_message(
     command(["player", f"player@{bu}"]) & filters.group & ~filters.edited
 )
 @authorized_users_only
@@ -579,11 +567,11 @@ async def play(_, message: Message):
             return
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         except:
-            await lel.edit(f"**❌ Error Silahkan Lapor Ke @{SUPPORT_GROUP}**")
+            await lel.edit(f"**Tidak menemukan hasil apapun\nLangsung memutar lagu**")
 
             try:
                 url = f"https://youtube.com{results[0]['url_suffix']}"
-                title = results[0]["title"][:250]
+                title = results[0]["title"][:999]
                 thumbnail = results[0]["thumbnails"][0]
                 thumb_name = f"thumb-{title}.jpg"
                 thumb = requests.get(thumbnail, allow_redirects=True)
@@ -668,7 +656,7 @@ async def lol_cb(b, cb):
             "anda bukan orang yang meminta untuk memutar lagu ini!", show_alert=True
         )
         return
-    # await cb.message.edit("**🔄 Memproses lagu...**")
+    await cb.message.edit("**🔄 Memproses lagu Yang Dipilih...**")
     x = int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
@@ -767,7 +755,7 @@ async def lol_cb(b, cb):
 @errors
 async def ytp(_, message: Message):
 
-    lel = await message.reply("🔄 Memproses...")
+    lel = await message.reply("**🔄 Memproses...**")
     message.from_user.id
     message.from_user.first_name
 
@@ -856,7 +844,7 @@ async def ytp(_, message: Message):
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
     else:
-        await lel.edit("🔎 Menemukan lagu...")
+        await lel.edit("**🔎 Menemukan lagu...**")
         message.from_user.id
         user_id = message.from_user.id
         message.from_user.first_name
@@ -867,7 +855,7 @@ async def ytp(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("🎵 Memproses lagu...")
+        await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {"format": "bestaudio/best"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
