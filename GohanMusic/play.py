@@ -796,11 +796,11 @@ async def ytp(_, message: Message):
             )
 
         file_name = get_file_name(audio)
-        title = file_name
+        title = audio.title
         thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
-        duration = round(audio.duration / 60)
-        views = "Locally added"
+        duration = convert_seconds(audio.duration)
+        views = views
         keyboard = InlineKeyboardMarkup(
             [
                 [
