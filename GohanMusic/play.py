@@ -767,7 +767,7 @@ async def lol_cb(b, cb):
 @errors
 async def ytp(_, message: Message):
 
-    lel = await message.reply("🔄 Processing Sounds...")
+    lel = await message.reply("🔄 Memproses...")
     message.from_user.id
     message.from_user.first_name
 
@@ -852,7 +852,7 @@ async def ytp(_, message: Message):
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
     else:
-        await lel.edit("🔎 Finding the song...")
+        await lel.edit("🔎 Menemukan lagu...")
         message.from_user.id
         user_id = message.from_user.id
         message.from_user.first_name
@@ -863,13 +863,13 @@ async def ytp(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("🎵 Processing sounds...")
+        await lel.edit("🎵 Memproses lagu...")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             # print(results)
-            title = results[0]["title"][:40]
+            title = results[0]["title"][:240]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -899,7 +899,13 @@ async def ytp(_, message: Message):
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
             photo="final.png",
-            caption=f"#⃣ Your requested song **queued** at position {position}!",
+            caption=f"""
+**💡 Trek ditambahkan ke antrian
+
+🏷 Nama: [{title}]({url})
+⏱️ Durasi: {duration}
+🎧 Atas permintaan: {message.from_user.mention}**
+""",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -909,10 +915,12 @@ async def ytp(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption=f"🏷 **Judul:** [{title}]({url})\n**⏱ Durasi:** {duration}\n"
-            + f"💡 **Status:** `Sedang Memutar\n**🎧 Permintaan:** {requested_by}".format(
-                message.from_user.mention()
-            ),
+            caption=f"""
+**🏷 Nama: [{title}]({url})
+⏱️ Durasi: {duration}
+💡 Status: sedang memutar
+🎧 Atas permintaan: {message.from_user.mention}**
+""",
         )
         os.remove("final.png")
         return await lel.delete()
