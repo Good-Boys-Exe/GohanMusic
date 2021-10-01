@@ -763,7 +763,7 @@ async def lol_cb(b, cb):
         os.remove("final.png")
 
 
-@Client.on_message(command("ytp") & other_filters)
+@Client.on_message(command(["ytp", f"ytp@{bu}"]) & other_filters)
 @errors
 async def ytp(_, message: Message):
 
@@ -772,15 +772,12 @@ async def ytp(_, message: Message):
     message.from_user.first_name
 
     keyboard = InlineKeyboardMarkup(
-        [
             [
-                InlineKeyboardButton(
-                    "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                )
-            ],
-            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-        ]
-    )
+                [
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+            ]
+        )
 
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
@@ -805,10 +802,7 @@ async def ytp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
-                ],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -832,30 +826,24 @@ async def ytp(_, message: Message):
             results[0]["url_suffix"]
             views = results[0]["views"]
             keyboard = InlineKeyboardMarkup(
+            [
                 [
-                    [
-                        InlineKeyboardButton(
-                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                        )
-                    ],
-                    [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+            ]
+        )
         except Exception:
             title = "NaN"
             thumb_name = "https://telegra.ph/file/33fc5c8490eb948d1e816.jpg"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
+            [
                 [
-                    [
-                        InlineKeyboardButton(
-                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                        )
-                    ],
-                    [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
-                ]
-            )
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+            ]
+        )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
@@ -888,7 +876,7 @@ async def ytp(_, message: Message):
 
         except Exception as e:
             lel.edit(
-                "❌ Song not found.\n\nTry another song or maybe spell it properly."
+                "❌ Lagu tidak ditemukan.\n\nCoba lagu lain atau mungkin mengejanya dengan benar."
             )
             print(str(e))
             return
@@ -897,10 +885,7 @@ async def ytp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
-                ],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
             ]
         )
         requested_by = message.from_user.first_name
