@@ -12,7 +12,6 @@ ydl_opts = {
     "nocheckcertificate": True,
     "addmetadata": True,
     "key": "FFmpegMetadata",
-    "writethumbnail": True,
     "prefer_ffmpeg": True,
     "nocheckcertificate": True,
     "outtmpl": "downloads/%(id)s.%(ext)s",
