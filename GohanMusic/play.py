@@ -866,6 +866,7 @@ async def ytp(_, message: Message):
             "key": "FFmpegMetadata",
             "prefer_ffmpeg": True,
             "nocheckcertificate": True,
+            "outtmpl": "downloads/%(id)s.%(ext)s",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
