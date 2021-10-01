@@ -835,7 +835,7 @@ async def ytp(_, message: Message):
             )
         except Exception:
             title = "NaN"
-            thumb_name = "https://telegra.ph/file/c364d2f8144c33bd301d5.jpg"
+            thumb_name = "https://telegra.ph/file/33fc5c8490eb948d1e816.jpg"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
