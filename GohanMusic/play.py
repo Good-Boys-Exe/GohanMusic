@@ -455,7 +455,8 @@ async def play(_, message: Message):
         if message.reply_to_message
         else None
     )
-    url = get_url(message
+    url = get_url(message)
+
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
