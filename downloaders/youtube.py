@@ -10,6 +10,11 @@ ydl_opts = {
     "verbose": True,
     "geo-bypass": True,
     "nocheckcertificate": True,
+    "addmetadata": True,
+    "key": "FFmpegMetadata",
+    "writethumbnail": True,
+    "prefer_ffmpeg": True,
+    "nocheckcertificate": True,
     "outtmpl": "downloads/%(id)s.%(ext)s",
 }
 
