@@ -94,9 +94,9 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/font.otf", 50)
-    draw.text((20, 630), f"{views}", (0, 0, 0), font=font)
-    draw.text((20, 670), f"{title[:25]}...", (0, 0, 0), font=font)
+    font = ImageFont.truetype("etc/font.otf", 70)
+    draw.text((20, 540), f"{views}", (0, 0, 0), font=font)
+    draw.text((20, 630), f"{title[:25]}...", (0, 0, 0), font=font)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -455,6 +455,7 @@ async def play(_, message: Message):
         if message.reply_to_message
         else None
     )
+    url = get_url(message
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
@@ -468,7 +469,7 @@ async def play(_, message: Message):
         )
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = f"{bi}"
+        thumb_name = "https://telegra.ph/file/33fc5c8490eb948d1e816.jpg"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
@@ -541,7 +542,7 @@ async def play(_, message: Message):
                 "5️⃣",
             ]
             while j < 5:
-                toxxt += f"{emojilist[j]}: [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
+                toxxt += f"{emojilist[j]} [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f"├ 💡 **Durasi:** {results[j]['duration']}\n"
                 toxxt += f"└ ⚡ **Didukung:** [{bn}](t.me/{bu})\n\n"
                 j += 1
@@ -612,7 +613,13 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"""
+**💡 Trek ditambahkan ke antrian
+
+🏷 Nama: [{title}]({url})
+⏱️ Durasi: {duration}
+🎧 Atas permintaan: {message.from_user.mention}**
+""",
             reply_markup=keyboard,
         )
 
@@ -632,7 +639,12 @@ async def play(_, message: Message):
             return
         await message.reply_photo(
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Memutar\n**🎧 Permintaan:** {message.from_user.mention}",
+            caption=f"""
+**🏷 Nama: [{title}]({url})
+⏱️ Durasi: {duration}
+💡 Status: sedang memutar
+🎧 Atas permintaan: {message.from_user.mention}**
+""",
             reply_markup=keyboard,
         )
 
@@ -713,7 +725,13 @@ async def lol_cb(b, cb):
         await b.send_photo(
             chat_id,
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** Antrian Ke {position}\n**🎧 Permintaan:** {r_by.mention}",
+            caption=f"""
+**💡 Trek ditambahkan ke antrian
+
+🏷 Nama: [{title}]({url})
+⏱️ Durasi: {duration}
+🎧 Atas permintaan: {r_by.mention}**
+""",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -733,7 +751,12 @@ async def lol_cb(b, cb):
         await b.send_photo(
             chat_id,
             photo="final.png",
-            caption=f"**🏷 Judul:** [{title[:25]}...]({url})\n**⏱️ Durasi:** {duration}\n**💡 Status:** `Sedang Memutar`\n**🎧 Permintaan:** {r_by.mention}",
+            caption=f"""
+**🏷 Nama: [{title}]({url})
+⏱️ Durasi: {duration}
+💡 Status: sedang memutar
+🎧 Atas permintaan: {r_by.mention}**
+""",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -886,7 +909,7 @@ async def ytp(_, message: Message):
             photo="final.png",
             reply_markup=keyboard,
             caption=f"🏷 **Judul:** [{title}]({url})\n**⏱ Durasi:** {duration}\n"
-            + f"💡 **Status:** `Sedang Memutar\n🎧 **Permintaan:** {requested_by}".format(
+            + f"💡 **Status:** `Sedang Memutar\n**🎧 Permintaan:** {requested_by}".format(
                 message.from_user.mention()
             ),
         )
