@@ -872,7 +872,7 @@ async def ytp(_, message: Message):
             query += " " + str(i)
         print(query)
         await lel.edit("🎵 Memproses lagu...")
-        ydl_opts = {"format": "bestaudio[ext=m4a]"}
+        ydl_opts = {"format": "bestaudio/best"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
