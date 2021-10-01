@@ -772,12 +772,14 @@ async def ytp(_, message: Message):
     message.from_user.first_name
 
     keyboard = InlineKeyboardMarkup(
+        [
             [
-                [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-            ]
-        )
+                InlineKeyboardButton(
+                    "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                )
+            ],
+        ]
+    )
 
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
@@ -802,7 +804,9 @@ async def ytp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                    )
+                ],
             ]
         )
         requested_by = message.from_user.first_name
@@ -826,24 +830,28 @@ async def ytp(_, message: Message):
             results[0]["url_suffix"]
             views = results[0]["views"]
             keyboard = InlineKeyboardMarkup(
-            [
                 [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-            ]
-        )
+                    [
+                        InlineKeyboardButton(
+                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                        )
+                    ],
+                ]
+            )
         except Exception:
             title = "NaN"
             thumb_name = "https://telegra.ph/file/33fc5c8490eb948d1e816.jpg"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
-            [
                 [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
-            ]
-        )
+                    [
+                        InlineKeyboardButton(
+                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                        )
+                    ],
+                ]
+            )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
@@ -885,7 +893,9 @@ async def ytp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}")],
+                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                    )
+                ],
             ]
         )
         requested_by = message.from_user.first_name
