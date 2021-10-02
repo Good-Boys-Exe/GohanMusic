@@ -12,12 +12,16 @@ import aiohttp
 import wget
 from pyrogram import Client
 from pyrogram.errors import FloodWait, MessageNotModified
-from pyrogram.types import Message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_dl import YoutubeDL
 from youtubesearchpython import SearchVideos
 
-from config import BOT_NAME, BOT_USERNAME
+from config import BOT_NAME, BOT_USERNAME, SUPPORT_GROUP
 from helpers.filters import command
+
+GOHAN = InlineKeyboardMarkup(
+    [[InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"t.me/{SUPPORT_GROUP}")]]
+)
 
 
 @Client.on_message(command(["song", f"song@{BOT_USERNAME}"]))
@@ -83,6 +87,7 @@ async def song(client, message: Message):
         performer=str(ytdl_data["uploader"]),
         thumb=sedlyf,
         caption=capy,
+        reply_markup=GOHAN,
         progress=progress,
         progress_args=(
             pablo,
@@ -306,6 +311,7 @@ async def vsong(client, message: Message):
         file_name=str(ytdl_data["title"]),
         thumb=sedlyf,
         caption=capy,
+        reply_markup=GOHAN,
         supports_streaming=True,
         progress=progress,
         progress_args=(
