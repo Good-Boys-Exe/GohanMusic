@@ -29,8 +29,6 @@ from helpers.decorators import authorized_users_only, errors
 from helpers.filters import command, other_filters
 from helpers.gets import get_file_name, get_url
 
-chat_id = -1001352787797
-
 ARQ_API_KEY = f"{aak}"
 aiohttpsession = aiohttp.ClientSession()
 arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
@@ -94,9 +92,10 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/font.otf", 70)
-    draw.text((20, 540), f"{views}", (0, 0, 0), font=font)
-    draw.text((20, 630), f"{title[:25]}...", (0, 0, 0), font=font)
+    font = ImageFont.truetype("etc/Roboto-Medium.ttf", 60)
+    font2 = ImageFont.truetype("etc/finalfont.ttf", 70)
+    draw.text((25, 550), f"Diputar di: {requested_by}", (0, 0, 0), font=font)
+    draw.text((25, 630), f"{title[:25]}", (0, 0, 0), font=font2)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -501,7 +500,7 @@ async def play(_, message: Message):
                 [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
             ]
         )
-        requested_by = message.from_user.first_name
+        requested_by = message.chat.title
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
     else:
@@ -559,7 +558,6 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="❌", callback_data="cls")],
                 ]
             )
-
             await lel.edit(toxxt, reply_markup=keyboard, disable_web_page_preview=True)
 
             # await lel.delete()
@@ -588,7 +586,7 @@ async def play(_, message: Message):
             dlurl = url
             dlurl = dlurl.replace("youtube", "youtubepp")
 
-            requested_by = message.from_user.first_name
+            requested_by = message.chat.title
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await converter.convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
@@ -639,7 +637,6 @@ async def play(_, message: Message):
 
 
 @Client.on_callback_query(filters.regex(pattern=r"plll"))
-@errors
 async def lol_cb(b, cb):
     global que
     cbd = cb.data.strip()
@@ -659,9 +656,9 @@ async def lol_cb(b, cb):
     await cb.message.edit("**🔄 Memproses lagu Yang Dipilih...**")
     x = int(x)
     try:
-        useer_name = cb.message.reply_to_message.from_user.first_name
+        cb.message.reply_to_message.from_user.first_name
     except:
-        useer_name = cb.message.from_user.first_name
+        cb.message.from_user.first_name
     results = YoutubeSearch(query, max_results=5).to_dict()
     resultss = results[x]["url_suffix"]
     title = results[x]["title"][:250]
@@ -696,7 +693,7 @@ async def lol_cb(b, cb):
             [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
         ]
     )
-    requested_by = useer_name
+    requested_by = cb.message.chat.title
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await converter.convert(youtube.download(url))
     if chat_id in callsmusic.pytgcalls.active_calls:
@@ -797,7 +794,7 @@ async def ytp(_, message: Message):
                 ],
             ]
         )
-        requested_by = message.from_user.first_name
+        requested_by = message.chat.title
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(
             (await message.reply_to_message.download(file_name))
@@ -840,7 +837,7 @@ async def ytp(_, message: Message):
                     ],
                 ]
             )
-        requested_by = message.from_user.first_name
+        requested_by = message.chat.title
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
     else:
@@ -857,16 +854,7 @@ async def ytp(_, message: Message):
         print(query)
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
-            "format": "bestaudio",
-            "verbose": True,
-            "geo-bypass": True,
-            "nocheckcertificate": True,
-            "addmetadata": True,
-            "writethumbnail": True,
-            "key": "FFmpegMetadata",
-            "prefer_ffmpeg": True,
-            "nocheckcertificate": True,
-            "outtmpl": "downloads/%(id)s.%(ext)s",
+            "format": "bestaudio/best",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -897,7 +885,7 @@ async def ytp(_, message: Message):
                 ],
             ]
         )
-        requested_by = message.from_user.first_name
+        requested_by = message.chat.title
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
 
