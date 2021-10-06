@@ -39,6 +39,7 @@ async def start_(client: Client, message: Message):
                 ],
             ]
         ),
+        disable_web_page_preview=True
     )
 
 
