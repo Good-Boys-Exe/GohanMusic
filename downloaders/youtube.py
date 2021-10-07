@@ -6,14 +6,8 @@ from config import DURATION_LIMIT
 from helpers.errors import DurationLimitError
 
 ydl_opts = {
-    "format": "bestaudio/best",
-    "verbose": True,
+    "format": "bestaudio[ext=m4a]",
     "geo-bypass": True,
-    "nocheckcertificate": True,
-    "addmetadata": True,
-    "writethumbnail": True,
-    "key": "FFmpegMetadata",
-    "prefer_ffmpeg": True,
     "nocheckcertificate": True,
     "outtmpl": "downloads/%(id)s.%(ext)s",
 }
@@ -27,12 +21,7 @@ def download(url: str) -> str:
 
     if duration > DURATION_LIMIT:
         raise DurationLimitError(
-            f"❌ Video lebih panjang dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang disediakan adalah {duration} menit)"
-        )
-    try:
+            f"❌ Video lebih panjang dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang disediakan adalah {duration} menit")
+        
         ydl.download([url])
-    except:
-        raise DurationLimitError(
-            f"❌ Video lebih panjang dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang disediakan adalah {duration} menit)"
-        )
     return path.join("downloads", f"{info['id']}.{info['ext']}")
