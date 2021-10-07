@@ -24,7 +24,9 @@ GOHAN = InlineKeyboardMarkup(
 )
 
 
-@Client.on_message(command(["song", f"song@{BOT_USERNAME}"]))
+@Client.on_message(
+    command(["song", f"song@{BOT_USERNAME}", "music", f"music@{BOT_USERNAME}"])
+)
 async def song(client, message: Message):
     urlissed = get_text(message)
     if not urlissed:
@@ -255,7 +257,9 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(command(["vsong", f"vsong@{BOT_USERNAME}"]))
+@Client.on_message(
+    command(["vsong", f"vsong@{BOT_USERNAME}", "video", f"video@{BOT_USERNAME}"])
+)
 async def vsong(client, message: Message):
     urlissed = get_text(message)
 
