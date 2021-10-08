@@ -1,5 +1,10 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
+from pyrogram.types import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+)
 
 from config import BOT_NAME, BOT_USERNAME, OWNER, SUPPORT_GROUP
 from GohanMusic.msg import Messages as tr
@@ -80,7 +85,6 @@ async def cbstart(_, query: CallbackQuery):
     )
 
 
-
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
 async def help(client: Client, message: Message):
     await message.reply_text(
@@ -131,12 +135,20 @@ def helps_answer(client, callback_query):
 
 def map(pos):
     if pos == 1:
-        button = [[InlineKeyboardButton(text="⬅️", callback_data="cbstart"),
-                   InlineKeyboardButton(text="➡️", callback_data="helps+2")]]
+        button = [
+            [
+                InlineKeyboardButton(text="⬅️", callback_data="cbstart"),
+                InlineKeyboardButton(text="➡️", callback_data="helps+2"),
+            ]
+        ]
     elif pos == len(tr.HELPS_MSG) - 1:
         url = f"https://t.me/{SUPPORT_GROUP}"
-        button = [[InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}"),
-                   InlineKeyboardButton(text="➡️", callback_data="cbstart")]]
+        button = [
+            [
+                InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}"),
+                InlineKeyboardButton(text="➡️", callback_data="cbstart"),
+            ]
+        ]
     else:
         button = [
             [
