@@ -85,9 +85,10 @@ async def cbstart(_, query: CallbackQuery):
 async def donate(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""
-<b>✨ Selamat datang di menu donasi [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
+<b>✨ Selamat datang [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
 
-Jika berminat donasi anda bisa berdonasi silahkan kirimkan donasika ke pulau atau saldo dana seikhlasnya
+• Jika berminat berdonasi anda bisa kirim donasi ke pulsa atau ke saldo dana seikhlasnya
+
 • nomer: 089525658633 terimakasih donasimu begitu berarti bagi saya</b>
 """,
         reply_markup=InlineKeyboardMarkup(
