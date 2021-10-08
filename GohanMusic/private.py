@@ -52,7 +52,7 @@ async def start_(client: Client, message: Message):
 async def cbstart(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""
-<b>👋🏻 Hallo {query.message.chat.mention}
+<b>👋🏻 Hallo {query.message.chat.title}
 🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 
 🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
