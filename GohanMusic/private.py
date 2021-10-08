@@ -76,13 +76,34 @@ async def cbstart(_, query: CallbackQuery):
                 [
                     InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
                     InlineKeyboardButton(
-                        "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic"
+                        "ᴅᴏɴᴀsɪ 🎁", callback_data="donate"
                     ),
                 ],
             ]
         ),
         disable_web_page_preview=True,
     )
+
+
+@Client.on_callback_query(filters.regex("donate"))
+async def cbstart(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""
+<b>✨ Selamat datang di menu donasi [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
+
+Jika berminat donasi anda bisa berdonasi silahkan kirimkan donasika ke pulau atau saldo dana seikhlasnya
+• nomer: 089525658633 terimakasih donasimu begitu berarti bagi saya</b>
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(text="ᴋᴇᴍʙᴀʟɪ", callback_data="cbstart")
+                ],
+            ]
+        ),
+        disable_web_page_preview=True,
+    )
+
 
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
