@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 
 from config import BOT_NAME, BOT_USERNAME, OWNER, SUPPORT_GROUP
 from GohanMusic.msg import Messages as tr
@@ -41,6 +41,44 @@ async def start_(client: Client, message: Message):
         ),
         disable_web_page_preview=True,
     )
+
+
+@Client.on_callback_query(filters.regex("cbstart"))
+async def cbstart(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""
+<b>👋🏻 Hallo {query.message.chat.mention}
+🎟️ Nama Saya [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+
+🤖 Saya Adalah Bot Canggih Yang Dibuat Untuk Memutar Musik Di Obrolan Suara Grup Telegram
+
+⚔️ Klik Tombol Bantuan Untuk Mendapatkan Informasi Cara Menggunaka Bot</b>
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "➕ ᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ɢʀᴏᴜᴘ ➕",
+                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
+                ],
+                [
+                    InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
+                    InlineKeyboardButton(
+                        "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic"
+                    ),
+                ],
+            ]
+        ),
+        disable_web_page_preview=True,
+    )
+
 
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
@@ -93,10 +131,12 @@ def helps_answer(client, callback_query):
 
 def map(pos):
     if pos == 1:
-        button = [[InlineKeyboardButton(text="➡️", callback_data="helps+2")]]
+        button = [[InlineKeyboardButton(text="⬅️", callback_data="cbstart"),
+                   InlineKeyboardButton(text="➡️", callback_data="helps+2")]]
     elif pos == len(tr.HELPS_MSG) - 1:
         url = f"https://t.me/{SUPPORT_GROUP}"
-        button = [[InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}")]]
+        button = [[InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}"),
+                   InlineKeyboardButton(text="➡️", callback_data="cbstart")]]
     else:
         button = [
             [
