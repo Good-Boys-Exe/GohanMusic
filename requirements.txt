@@ -2,6 +2,7 @@ pyrogram
 TgCrypto
 py-tgcalls==0.5.2
 python-dotenv
+yt_dlp
 youtube_dl
 youtube_search_python==1.4.6
 requests
