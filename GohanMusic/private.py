@@ -75,9 +75,7 @@ async def cbstart(_, query: CallbackQuery):
                 ],
                 [
                     InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
-                    InlineKeyboardButton(
-                        "ᴅᴏɴᴀsɪ 🎁", callback_data="donate"
-                    ),
+                    InlineKeyboardButton("ᴅᴏɴᴀsɪ 🎁", callback_data="donate"),
                 ],
             ]
         ),
@@ -96,14 +94,11 @@ Jika berminat donasi anda bisa berdonasi silahkan kirimkan donasika ke pulau ata
 """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton(text="ᴋᴇᴍʙᴀʟɪ", callback_data="cbstart")
-                ],
+                [InlineKeyboardButton(text="ᴋᴇᴍʙᴀʟɪ", callback_data="cbstart")],
             ]
         ),
         disable_web_page_preview=True,
     )
-
 
 
 @Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
