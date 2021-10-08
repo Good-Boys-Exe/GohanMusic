@@ -38,9 +38,7 @@ async def start_(client: Client, message: Message):
                 ],
                 [
                     InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
-                    InlineKeyboardButton(
-                        "sᴏᴜᴄʀᴇ 🛠️", url="https://github.com/Good-Boys-Exe/GohanMusic"
-                    ),
+                    InlineKeyboardButton("ᴅᴏɴᴀsɪ 🎁", callback_data="donate"),
                 ],
             ]
         ),
@@ -84,7 +82,7 @@ async def cbstart(_, query: CallbackQuery):
 
 
 @Client.on_callback_query(filters.regex("donate"))
-async def cbstart(_, query: CallbackQuery):
+async def donate(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""
 <b>✨ Selamat datang di menu donasi [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
