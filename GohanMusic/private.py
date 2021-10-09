@@ -1,5 +1,4 @@
 from datetime import datetime
-from time import time
 
 from pyrogram import Client, emoji, filters
 from pyrogram.types import (
@@ -11,7 +10,6 @@ from pyrogram.types import (
 
 from config import BOT_NAME, BOT_USERNAME, OWNER, SUPPORT_GROUP
 from helpers.filters import command
-
 
 START_TIME = datetime.utcnow()
 START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
@@ -63,14 +61,12 @@ async def start(client: Client, message: Message):
                     InlineKeyboardButton("🧑🏻‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER}"),
                     InlineKeyboardButton(
                         "sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
-                    ],
-                    [InlineKeyboardButton("⚔️ ʙᴀɴᴛᴜᴀɴ ⚔️", callback_data="cbghelp")
+                    ),
                 ],
+                [InlineKeyboardButton("⚔️ ʙᴀɴᴛᴜᴀɴ ⚔️", callback_data="cbghelp")],
             ]
         ),
     )
-
 
 
 @Client.on_callback_query(filters.regex("cbgstart"))
