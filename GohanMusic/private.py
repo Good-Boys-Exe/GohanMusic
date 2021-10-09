@@ -52,7 +52,7 @@ async def start(client: Client, message: Message):
         f"""
 ✅ **{BOT_NAME}** Online
 
-{emoji.PING_PONG} **PONG!** `{delta_ping * 1000:.3f}`
+{emoji.PING_PONG} **PONG!** `{delta_ping * 1000:.3f} ms`
 
 ⌚ **Waktu Online:** `{uptime}`
 
@@ -73,7 +73,7 @@ async def start(client: Client, message: Message):
 
 
 @Client.on_callback_query(filters.regex("cbgstart"))
-async def cbstart(_, query: CallbackQuery):
+async def cbgstart(_, query: CallbackQuery):
     current_time = datetime.utcnow()
     start = time()
     delta_ping = time() - start
@@ -83,7 +83,7 @@ async def cbstart(_, query: CallbackQuery):
         f"""
 ✅ **{BOT_NAME}** Online
 
-{emoji.PING_PONG} **PONG!** `{delta_ping * 1000:.3f}`
+{emoji.PING_PONG} **PONG!** `{delta_ping * 1000:.3f} ms`
 
 ⌚ **Waktu Online:** `{uptime}`
 
@@ -91,10 +91,15 @@ async def cbstart(_, query: CallbackQuery):
 """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton(text="ᴋᴇᴍʙᴀʟɪ", callback_data="cbgstart")],
+                [
+                    InlineKeyboardButton("🧑🏻‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER}"),
+                    InlineKeyboardButton(
+                        "sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                ],
+                [InlineKeyboardButton("⚔️ ʙᴀɴᴛᴜᴀɴ ⚔️", callback_data="cbghelp")],
             ]
         ),
-        disable_web_page_preview=True,
     )
 
 
