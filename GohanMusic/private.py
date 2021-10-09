@@ -1,4 +1,7 @@
-from pyrogram import Client, filters
+from datetime import datetime
+from time import time
+
+from pyrogram import Client, emoji, filters
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -7,8 +10,91 @@ from pyrogram.types import (
 )
 
 from config import BOT_NAME, BOT_USERNAME, OWNER, SUPPORT_GROUP
-from GohanMusic.msg import Messages as tr
 from helpers.filters import command
+
+
+START_TIME = datetime.utcnow()
+START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+TIME_DURATION_UNITS = (
+    ("Minggu", 60 * 60 * 24 * 7),
+    ("Hari", 60 * 60 * 24),
+    ("Jam", 60 * 60),
+    ("Menit", 60),
+    ("Detik", 1),
+)
+
+
+async def _human_time_duration(seconds):
+    if seconds == 0:
+        return "inf"
+    parts = []
+    for unit, div in TIME_DURATION_UNITS:
+        amount, seconds = divmod(int(seconds), div)
+        if amount > 0:
+            parts.append("{} {}{}".format(amount, unit, "" if amount == 1 else ""))
+    return ", ".join(parts)
+
+
+@Client.on_callback_query(filters.regex("close"))
+async def close(_, query: CallbackQuery):
+    await query.message.delete()
+
+
+@Client.on_message(
+    command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+)
+async def start(client: Client, message: Message):
+    current_time = datetime.utcnow()
+    uptime_sec = (current_time - START_TIME).total_seconds()
+    uptime = await _human_time_duration(int(uptime_sec))
+    await message.reply_text(
+        f"""
+✅ **{BOT_NAME}** Online
+
+{emoji.PING_PONG} **PONG!** `{delta_ping * 1000:.3f}`
+
+⌚ **Waktu Online:** `{uptime}`
+
+✨ **Waktu mulai:** `{START_TIME_ISO}`
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("🧑🏻‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER}"),
+                    InlineKeyboardButton(
+                        "sᴜᴘᴘᴏʀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
+                    )
+                    ],
+                    [InlineKeyboardButton("⚔️ ʙᴀɴᴛᴜᴀɴ ⚔️", callback_data="cbghelp")
+                ],
+            ]
+        ),
+    )
+
+
+
+@Client.on_callback_query(filters.regex("cbgstart"))
+async def cbstart(_, query: CallbackQuery):
+    current_time = datetime.utcnow()
+    uptime_sec = (current_time - START_TIME).total_seconds()
+    uptime = await _human_time_duration(int(uptime_sec))
+    await query.edit_message_text(
+        f"""
+✅ **{BOT_NAME}** Online
+
+{emoji.PING_PONG} **PONG!** `{delta_ping * 1000:.3f}`
+
+⌚ **Waktu Online:** `{uptime}`
+
+✨ **Waktu mulai:** `{START_TIME_ISO}`
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton(text="ᴋᴇᴍʙᴀʟɪ", callback_data="cbgstart")],
+            ]
+        ),
+        disable_web_page_preview=True,
+    )
 
 
 @Client.on_message(command("start") & filters.private & ~filters.edited)
@@ -37,8 +123,8 @@ async def start_(client: Client, message: Message):
                     InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
                 ],
                 [
-                    InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
-                    InlineKeyboardButton("ᴅᴏɴᴀsɪ 🎁", callback_data="donate"),
+                    InlineKeyboardButton("⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="cbhelp"),
+                    InlineKeyboardButton("ᴅᴏɴᴀsɪ 🎁", callback_data="cbdonate"),
                 ],
             ]
         ),
@@ -72,8 +158,8 @@ async def cbstart(_, query: CallbackQuery):
                     InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
                 ],
                 [
-                    InlineKeyboardButton(text="⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="helps+1"),
-                    InlineKeyboardButton("ᴅᴏɴᴀsɪ 🎁", callback_data="donate"),
+                    InlineKeyboardButton("⚔️ ʙᴀɴᴛᴜᴀɴ", callback_data="cbhelp"),
+                    InlineKeyboardButton("ᴅᴏɴᴀsɪ 🎁", callback_data="cbdonate"),
                 ],
             ]
         ),
@@ -81,7 +167,7 @@ async def cbstart(_, query: CallbackQuery):
     )
 
 
-@Client.on_callback_query(filters.regex("donate"))
+@Client.on_callback_query(filters.regex("cbdonate"))
 async def donate(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""
@@ -100,9 +186,9 @@ async def donate(_, query: CallbackQuery):
     )
 
 
-@Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & ~filters.edited)
-async def help(client: Client, message: Message):
-    await message.reply_text(
+@Client.on_callback_query(filters.regex("cbhelp"))
+async def cbhelp(_, query: CallbackQuery):
+    await query.edit_message_text(
         f"""
 <b>Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
@@ -119,56 +205,34 @@ Perintah semua admin grup
 """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
-                    ),
-                    InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ 🧑🏻‍💻", url=f"https://t.me/{OWNER}"),
-                ]
+                [InlineKeyboardButton(text="ᴋᴇᴍʙᴀʟɪ", callback_data="cbstart")],
             ]
         ),
+        disable_web_page_preview=True,
     )
 
 
-help_callback_filter = filters.create(
-    lambda _, __, query: query.data.startswith("helps+")
-)
+@Client.on_callback_query(filters.regex("cbghelp"))
+async def cbghelp(_, query: CallbackQuery):
+    await query.edit_message_text(
+        f"""
+<b>Perintah semua anggota grup
+• /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
+• /song (judul lagu) - Untuk Mendownload lagu dari YouTube
+• /vsong (judul video) - Untuk Mendownload Video di YouTube
+• /search (judul lagu/video) - Untuk Mencari link di YouTube dengan detail
 
-
-@Client.on_callback_query(help_callback_filter)
-def helps_answer(client, callback_query):
-    chat_id = callback_query.from_user.id
-    message_id = callback_query.message.message_id
-    msg = int(callback_query.data.split("+")[1])
-    client.edit_message_text(
-        chat_id=chat_id,
-        message_id=message_id,
-        text=tr.HELPS_MSG[msg],
-        reply_markup=InlineKeyboardMarkup(map(msg)),
+Perintah semua admin grup
+• /pause - Untuk Menjeda pemutaran Lagu
+• /resume - Untuk Melanjutkan pemutaran Lagu yang di pause
+• /skip - Untuk Menskip pemutaran lagu ke Lagu berikutnya
+• /end - Untuk Memberhentikan pemutaran Lagu
+• /reload - Untuk Segarkan daftar admin</b>
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton(text="ᴋᴇᴍʙᴀʟɪ", callback_data="cbgstart")],
+            ]
+        ),
+        disable_web_page_preview=True,
     )
-
-
-def map(pos):
-    if pos == 1:
-        button = [
-            [
-                InlineKeyboardButton(text="⬅️", callback_data="cbstart"),
-                InlineKeyboardButton(text="➡️", callback_data="helps+2"),
-            ]
-        ]
-    elif pos == len(tr.HELPS_MSG) - 1:
-        url = f"https://t.me/{SUPPORT_GROUP}"
-        button = [
-            [
-                InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}"),
-                InlineKeyboardButton(text="➡️", callback_data="cbstart"),
-            ]
-        ]
-    else:
-        button = [
-            [
-                InlineKeyboardButton(text="⬅️", callback_data=f"helps+{pos-1}"),
-                InlineKeyboardButton(text="➡️", callback_data=f"helps+{pos+1}"),
-            ],
-        ]
-    return button
