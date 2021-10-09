@@ -43,6 +43,7 @@ async def close(_, query: CallbackQuery):
 )
 async def start(client: Client, message: Message):
     current_time = datetime.utcnow()
+    delta_ping = time() - start
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await message.reply_text(
@@ -72,6 +73,7 @@ async def start(client: Client, message: Message):
 @Client.on_callback_query(filters.regex("cbgstart"))
 async def cbstart(_, query: CallbackQuery):
     current_time = datetime.utcnow()
+    delta_ping = time() - start
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await query.edit_message_text(
