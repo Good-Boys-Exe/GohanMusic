@@ -76,20 +76,3 @@ async def lirik(_, message):
         await rep.edit(
             f"**Lyrics tidak ditemukan.** \nCoba cari dengan judul lagu yang lebih jelas"
         )
-
-
-@Client.on_message(command(["songs", f"songs@{bu}"]))
-async def songs(client, message):
-    try:
-        if len(message.command) < 2:
-            await message.reply_text(
-                "❌ **Lagu Tidak ditemukan.**\n\n**Coba Masukan Judul lagu yang lebih jelas.**"
-            )
-            return
-        text = message.text.split(None, 1)[1]
-        results = await USER.get_inline_bot_results(473587803, f"{text}")
-        await USER.send_inline_bot_result(
-            message.chat.id, results.query_id, results.results[0].id
-        )
-    except Exception:
-        await message.reply_text("❌ **Lagu Tidak ditemukan**")
