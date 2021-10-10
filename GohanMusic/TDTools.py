@@ -4,7 +4,6 @@
 import requests
 from pyrogram import Client
 
-from callsmusic.callsmusic import client as USER
 from config import BOT_USERNAME as bu
 from helpers.filters import command
 
