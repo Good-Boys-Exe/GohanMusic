@@ -598,6 +598,7 @@ async def play(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
+        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -624,6 +625,7 @@ async def play(_, message: Message):
         except:
             message.reply("**voice chat group tidak aktif, tidak dapat memutar lagu.**")
             return
+        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -707,6 +709,7 @@ async def lol_cb(b, cb):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
+        await cb.message.reply_to_message.delete()
         await cb.message.delete()
         await b.send_photo(
             chat_id,
@@ -734,6 +737,7 @@ async def lol_cb(b, cb):
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(chat_id, file_path)
         await cb.message.delete()
+        await cb.message.reply_to_message.delete()
         await b.send_photo(
             chat_id,
             photo="final.png",
@@ -891,6 +895,7 @@ async def ytp(_, message: Message):
 
     if message.chat.id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(message.chat.id, file=file_path)
+        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -906,6 +911,7 @@ async def ytp(_, message: Message):
         return await lel.delete()
     else:
         callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
