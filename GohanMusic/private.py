@@ -42,13 +42,14 @@ async def close(_, query: CallbackQuery):
 @Client.on_message(
     command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited
 )
-async def start(client: Client, message: Message):
+async def start(client: Client, m: Message):
     current_time = datetime.utcnow()
     start = time()
+    m_reply = await m.reply_text(f"{BOT_NAME}")
     delta_ping = time() - start
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
-    await message.reply_text(
+    await m_reply.edit_text(
         f"""
 ✅ **{BOT_NAME}** Online
 
@@ -75,11 +76,13 @@ async def start(client: Client, message: Message):
 @Client.on_callback_query(filters.regex("cbgstart"))
 async def cbgstart(_, query: CallbackQuery):
     current_time = datetime.utcnow()
+    m_reply = await query.message.reply_text(f"{BOT_NAME}")
+    await query.message.delete()
     start = time()
     delta_ping = time() - start
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
-    await query.edit_message_text(
+    await m_reply.edit_text(
         f"""
 ✅ **{BOT_NAME}** Online
 
@@ -196,7 +199,9 @@ async def donate(_, query: CallbackQuery):
 async def cbhelp(_, query: CallbackQuery):
     await query.edit_message_text(
         f"""
-<b>Perintah semua anggota grup
+<b>✨ Selamat datang [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
+
+Perintah semua anggota grup
 • /play (judul lagu) - Untuk Memutar lagu yang Anda minta melalui YouTube
 • /song (judul lagu) - Untuk Mendownload lagu dari YouTube
 • /vsong (judul video) - Untuk Mendownload Video di YouTube
