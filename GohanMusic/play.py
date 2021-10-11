@@ -170,7 +170,7 @@ def r_ply(type_):
                 InlineKeyboardButton("⏹️", "leave"),
             ],
             [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+            [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", callback_data="close")],
         ]
     )
     return mar
@@ -320,7 +320,7 @@ async def m_cb(b, cb):
                     InlineKeyboardButton("⏹️", "leave"),
                 ],
                 [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", "cls")],
+                [InlineKeyboardButton("🗑️ ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑️", callback_data="close")],
             ]
         )
         await cb.message.edit(stats, reply_markup=marr)
@@ -472,7 +472,7 @@ async def play(_, message: Message):
         query = toxt
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
-            "format": "bestaudio/best",
+            "format": "bestaudio",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -497,7 +497,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="close")],
             ]
         )
         requested_by = message.chat.title
@@ -510,7 +510,7 @@ async def play(_, message: Message):
         print(query)
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
-            "format": "bestaudio/best",
+            "format": "bestaudio",
         }
 
         try:
@@ -555,18 +555,21 @@ async def play(_, message: Message):
                             "5️⃣", callback_data=f"plll 4|{query}|{user_id}"
                         ),
                     ],
-                    [InlineKeyboardButton(text="❌", callback_data="cls")],
+                    [InlineKeyboardButton(text="❌", callback_data="close")],
                 ]
             )
-            await lel.edit(toxxt, reply_markup=keyboard, disable_web_page_preview=True)
+            await message.reply(
+                toxxt,
+                reply_markup=keyboard,
+                disable_web_page_preview=True,
+            )
 
-            # await lel.delete()
+            await lel.delete()
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
             return
             # 𝗚𝗢𝗛𝗔𝗡 𝗠𝗨𝗦𝗜𝗖 tolol
         except:
             await lel.edit(f"**Tidak menemukan hasil apapun\nLangsung memutar lagu**")
-
             try:
                 url = f"https://youtube.com{results[0]['url_suffix']}"
                 title = results[0]["title"][:999]
@@ -578,6 +581,7 @@ async def play(_, message: Message):
                 results[0]["url_suffix"]
                 views = results[0]["views"]
             except Exception as e:
+                # await massage.delete()
                 await lel.edit(
                     "**❌ lagu tidak ditemukan.** berikan nama lagu yang valid."
                 )
@@ -598,7 +602,6 @@ async def play(_, message: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -610,6 +613,7 @@ async def play(_, message: Message):
 """,
             reply_markup=keyboard,
         )
+        return await lel.delete()
 
     else:
         chat_id = get_chat_id(message.chat)
@@ -625,7 +629,6 @@ async def play(_, message: Message):
         except:
             message.reply("**voice chat group tidak aktif, tidak dapat memutar lagu.**")
             return
-        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -636,6 +639,7 @@ async def play(_, message: Message):
 """,
             reply_markup=keyboard,
         )
+        return await lel.delete()
 
 
 @Client.on_callback_query(filters.regex(pattern=r"plll"))
@@ -655,7 +659,8 @@ async def lol_cb(b, cb):
             "anda bukan orang yang meminta untuk memutar lagu ini!", show_alert=True
         )
         return
-    await cb.message.edit("**🔄 Memproses lagu Yang Dipilih...**")
+    await cb.message.delete()
+    # await cb.message.reply_text("**🔄 Memproses lagu Yang Dipilih...**")
     x = int(x)
     try:
         cb.message.reply_to_message.from_user.first_name
@@ -692,7 +697,7 @@ async def lol_cb(b, cb):
     keyboard = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="close")],
         ]
     )
     requested_by = cb.message.chat.title
@@ -736,8 +741,8 @@ async def lol_cb(b, cb):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(chat_id, file_path)
-        await cb.message.delete()
         await cb.message.reply_to_message.delete()
+        await cb.message.delete()
         await b.send_photo(
             chat_id,
             photo="final.png",
@@ -752,10 +757,9 @@ async def lol_cb(b, cb):
         os.remove("final.png")
 
 
-@Client.on_message(command(["ytp", f"ytp@{bu}"]) & other_filters)
+@Client.on_message(command(["stream", f"stream@{bu}"]) & other_filters)
 @errors
 async def ytp(_, message: Message):
-
     lel = await message.reply("**🔄 Memproses...**")
     message.from_user.id
     message.from_user.first_name
@@ -856,9 +860,10 @@ async def ytp(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
+        await message.delete()
         await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
-            "format": "bestaudio/best",
+            "format": "bestaudio",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -895,7 +900,6 @@ async def ytp(_, message: Message):
 
     if message.chat.id in callsmusic.pytgcalls.active_calls:
         position = await queues.put(message.chat.id, file=file_path)
-        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             caption=f"""
@@ -911,7 +915,6 @@ async def ytp(_, message: Message):
         return await lel.delete()
     else:
         callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
-        await message.reply_to_message.delete()
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
