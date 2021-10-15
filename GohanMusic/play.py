@@ -7,7 +7,6 @@ import aiofiles
 import aiohttp
 import ffmpeg
 import requests
-from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
@@ -37,11 +36,11 @@ arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
 
 
 GOHAN_IMG = [
-"https://telegra.ph/file/159431ea489ecc68f19f0.png",
-"https://telegra.ph/file/1588cb26e8c79a80d6c32.png",
-"https://telegra.ph/file/9fb646ad170d0512aa447.png",
-"https://telegra.ph/file/c03210961ae494a616542.png",
-"https://telegra.ph/file/07db27b4941d88d200121.png",
+    "https://telegra.ph/file/159431ea489ecc68f19f0.png",
+    "https://telegra.ph/file/1588cb26e8c79a80d6c32.png",
+    "https://telegra.ph/file/9fb646ad170d0512aa447.png",
+    "https://telegra.ph/file/c03210961ae494a616542.png",
+    "https://telegra.ph/file/07db27b4941d88d200121.png",
 ]
 
 
