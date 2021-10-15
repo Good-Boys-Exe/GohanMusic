@@ -19,11 +19,6 @@
           "description": "Ambil api dari bot telegram » @ARQRobot",
           "required": true,
           "value": "QFOTZM-GSZUFY-CHGHRX-TDEHOZ-ARQ"
-        },     
-        "BG_IMAGE": {
-          "description": "background music format jpg/png",
-          "required": true,
-          "value": "https://telegra.ph/file/20147c4f049e2c1f2f248.png"
         },    
         "SUPPORT_GROUP": {
           "description": "Grup dukungan MusicPlayer Anda Tanpa Menggunakan ==> @ <== [skip ini jika Anda tidak punya]",
