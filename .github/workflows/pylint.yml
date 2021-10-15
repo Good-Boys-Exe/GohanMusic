@@ -28,7 +28,7 @@ jobs:
           black .
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 'Fixes'
+          commit_message: 'Automatic correction'
           commit_options: '--no-verify'
           repository: .
           commit_user_name: Good-Boys-Exe
