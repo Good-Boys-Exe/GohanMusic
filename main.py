@@ -2,12 +2,7 @@ import requests
 from pyrogram import Client as Bot
 
 from callsmusic import run
-from config import API_HASH, API_ID, BG_IMAGE, BOT_TOKEN
-
-response = requests.get(BG_IMAGE)
-with open("./etc/thumb.png", "wb") as file:
-    file.write(response.content)
-
+from config import API_HASH, API_ID, BOT_TOKEN
 
 bot = Bot(
     ":memory:",
