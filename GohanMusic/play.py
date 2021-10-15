@@ -1,4 +1,5 @@
 import os
+import random
 from asyncio.queues import QueueEmpty
 from typing import Callable
 
@@ -6,6 +7,7 @@ import aiofiles
 import aiohttp
 import ffmpeg
 import requests
+from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
@@ -32,6 +34,19 @@ from helpers.gets import get_file_name, get_url
 ARQ_API_KEY = f"{aak}"
 aiohttpsession = aiohttp.ClientSession()
 arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
+
+
+GOHAN_IMG = [
+"https://telegra.ph/file/159431ea489ecc68f19f0.png",
+"https://telegra.ph/file/1588cb26e8c79a80d6c32.png",
+"https://telegra.ph/file/9fb646ad170d0512aa447.png",
+"https://telegra.ph/file/c03210961ae494a616542.png",
+"https://telegra.ph/file/07db27b4941d88d200121.png",
+]
+
+
+GOHAN_THUMBNAIL = random.choice(GOHAN_IMG)
+response = requests.get(GOHAN_THUMBNAIL)
 
 
 def cb_admin_check(func: Callable) -> Callable:
@@ -84,7 +99,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
             await f.write(await resp.read())
             await f.close()
     image1 = Image.open("./background.png")
-    image2 = Image.open("etc/thumb.png")
+    image2 = Image.open(io.BytesIO(requests.get(GOHAN_THUMBNAIL).content))
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
