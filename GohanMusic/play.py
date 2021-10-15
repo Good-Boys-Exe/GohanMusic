@@ -45,7 +45,6 @@ GOHAN_IMG = [
 
 
 GOHAN_THUMBNAIL = random.choice(GOHAN_IMG)
-response = requests.get(GOHAN_THUMBNAIL)
 
 
 def cb_admin_check(func: Callable) -> Callable:
