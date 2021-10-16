@@ -11,3 +11,5 @@ Cara termudah untuk membuat Bot ini
 Dapatkan STRING SESSION klik tombol dibawah untuk mendapatkan string (P)
 
 <p align="center"><a href="https://replit.com/@GoodBoysExe/string-session?lite=1&outputonly=1"><img src="https://img.shields.io/badge/DAPATKAN-STRING-blue?style=plastic&logo=replit&logoColor=yellow"width="300" height="40" /></a></p>
+
+- Jika terjadi kesalahan silahkan hubungi saya di [Gtoup Music Random](t.me/GroupMusicRandom)
