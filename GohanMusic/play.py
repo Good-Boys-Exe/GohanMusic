@@ -45,9 +45,6 @@ GOHAN_IMG = [
 ]
 
 
-GOHAN_THUMBNAIL = random.choice(GOHAN_IMG)
-
-
 def cb_admin_check(func: Callable) -> Callable:
     async def decorator(client, cb):
         admemes = a.get(cb.message.chat.id)
@@ -97,19 +94,20 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
             f = await aiofiles.open("background.png", mode="wb")
             await f.write(await resp.read())
             await f.close()
-    image1 = Image.open("./background.png")
-    image2 = Image.open(io.BytesIO(requests.get(GOHAN_THUMBNAIL).content))
-    image3 = changeImageSize(1280, 720, image1)
-    image4 = changeImageSize(1280, 720, image2)
-    image5 = image3.convert("RGBA")
-    image6 = image4.convert("RGBA")
-    Image.alpha_composite(image5, image6).save("temp.png")
+    PNG = Image.open("./background.png")
+    GOHAN_THUMBNAIL = random.choice(GOHAN_IMG)
+    AMBIL_FOTO = Image.open(io.BytesIO(requests.get(GOHAN_THUMBNAIL).content))
+    IMAGE1 = changeImageSize(1280, 720, PNG)
+    IMAGE2 = changeImageSize(1280, 720, AMBIL_FOTO)
+    IMAGE3 = IMAGE1.convert("RGBA")
+    IMAGE4 = IMAGE2.convert("RGBA")
+    Image.alpha_composite(IMAGE3, IMAGE4).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/Roboto-Medium.ttf", 60)
     font2 = ImageFont.truetype("etc/finalfont.ttf", 70)
-    draw.text((25, 550), f"Diputar di: {requested_by}", (0, 0, 0), font=font)
-    draw.text((25, 630), f"{title[:25]}", (0, 0, 0), font=font2)
+    draw.text((25, 550), f"Diputar di: {requested_by[:15]}...", (0, 0, 0), font=font)
+    draw.text((25, 630), f"{title[:25]}...", (0, 0, 0), font=font2)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
