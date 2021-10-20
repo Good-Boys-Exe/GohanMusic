@@ -378,7 +378,7 @@ async def m_cb(b, cb):
 @errors
 async def play(_, message: Message):
     global que
-    lel = await message.reply("**🔄 Memproses...**")
+    lel = await message.reply("**🔎 Pencarian**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
@@ -432,7 +432,7 @@ async def play(_, message: Message):
         )
         return
     text_links = None
-    await lel.edit("**🔎 Menemukan lagu...**")
+    # await lel.edit("**🔎 Menemukan lagu...**")
     if message.reply_to_message:
         entities = []
         toxt = message.reply_to_message.text or message.reply_to_message.caption
@@ -449,6 +449,7 @@ async def play(_, message: Message):
     user_id = message.from_user.id
     user_name = message.from_user.first_name
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
+
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
         if message.reply_to_message
@@ -463,15 +464,19 @@ async def play(_, message: Message):
             )
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="cls")],
+                [
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴍᴇɴᴜ ⏯", callback_data="menu"),
+                ],
             ]
         )
         file_name = get_file_name(audio)
-        title = file_name
-        thumb_name = "https://telegra.ph/file/33fc5c8490eb948d1e816.jpg"
+        title = audio.title
+        thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
-        duration = round(audio.duration / 60)
+        duration = convert_seconds(audio.duration)
         views = "Locally added"
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
@@ -482,14 +487,14 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("**🎵 Memproses lagu...**")
+        # await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
             "format": "bestaudio",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
-            title = results[0]["title"][:250]
+            title = results[0]["title"][:999]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -508,8 +513,12 @@ async def play(_, message: Message):
         dlurl = dlurl.replace("youtube", "youtubepp")
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-                [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="close")],
+                [
+                    InlineKeyboardButton(
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴍᴇɴᴜ ⏯", callback_data="menu"),
+                ],
             ]
         )
         requested_by = message.chat.title
@@ -520,7 +529,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("**🎵 Memproses lagu...**")
+        # await lel.edit("**🎵 Memproses lagu...**")
         ydl_opts = {
             "format": "bestaudio",
         }
@@ -542,7 +551,7 @@ async def play(_, message: Message):
                 "5️⃣",
             ]
             while j < 5:
-                toxxt += f"{emojilist[j]} [{results[j]['title'][:25]}](https://youtube.com{results[j]['url_suffix']})\n"
+                toxxt += f"{emojilist[j]} [{results[j]['title'][:999]}](https://youtube.com{results[j]['url_suffix']})\n"
                 toxxt += f"├ 💡 **Durasi:** {results[j]['duration']}\n"
                 toxxt += f"└ ⚡ **Didukung:** [{bn}](t.me/{bu})\n\n"
                 j += 1
@@ -567,7 +576,7 @@ async def play(_, message: Message):
                             "5️⃣", callback_data=f"plll 4|{query}|{user_id}"
                         ),
                     ],
-                    [InlineKeyboardButton(text="❌", callback_data="close")],
+                    [InlineKeyboardButton("❌", callback_data="close")],
                 ]
             )
             await message.reply(
@@ -586,7 +595,7 @@ async def play(_, message: Message):
                 url = f"https://youtube.com{results[0]['url_suffix']}"
                 title = results[0]["title"][:999]
                 thumbnail = results[0]["thumbnails"][0]
-                thumb_name = f"thumb-{title}.jpg"
+                thumb_name = f"thumb{title}.jpg"
                 thumb = requests.get(thumbnail, allow_redirects=True)
                 open(thumb_name, "wb").write(thumb.content)
                 duration = results[0]["duration"]
@@ -672,7 +681,7 @@ async def lol_cb(b, cb):
         )
         return
     await cb.message.delete()
-    # await cb.message.reply_text("**🔄 Memproses lagu Yang Dipilih...**")
+    # await cb.message.edit("**🔄 Sedang memproses lagu**")
     x = int(x)
     try:
         cb.message.reply_to_message.from_user.first_name
@@ -708,8 +717,10 @@ async def lol_cb(b, cb):
     dlurl = dlurl.replace("youtube", "youtubepp")
     keyboard = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("📖 ᴅᴀғᴛᴀʀ ᴘᴜᴛᴀʀ 📖", callback_data="playlist")],
-            [InlineKeyboardButton("🗑 ᴛᴜᴛᴜᴘ ᴍᴇɴᴜ 🗑", callback_data="close")],
+            [
+                InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
+                InlineKeyboardButton("ᴍᴇɴᴜ ⏯", callback_data="menu"),
+            ],
         ]
     )
     requested_by = cb.message.chat.title
@@ -727,7 +738,6 @@ async def lol_cb(b, cb):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         await cb.message.reply_to_message.delete()
-        await cb.message.delete()
         await b.send_photo(
             chat_id,
             photo="final.png",
@@ -753,8 +763,8 @@ async def lol_cb(b, cb):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         callsmusic.pytgcalls.join_group_call(chat_id, file_path)
-        await cb.message.reply_to_message.delete()
         await cb.message.delete()
+        await cb.message.reply_to_message.delete()
         await b.send_photo(
             chat_id,
             photo="final.png",
@@ -769,19 +779,20 @@ async def lol_cb(b, cb):
         os.remove("final.png")
 
 
-@Client.on_message(command(["stream", f"stream@{bu}"]) & other_filters)
+@Client.on_message(
+    command(["stream", f"stream@{bu}", "ytp", f"ytp@{bu}"]) & other_filters
+)
 @errors
 async def ytp(_, message: Message):
-    lel = await message.reply("**🔄 Memproses...**")
+    lel = await message.reply("**🔄 Memproses**")
     message.from_user.id
     message.from_user.first_name
 
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(
-                    "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                )
+                InlineKeyboardButton("💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
+                InlineKeyboardButton("ᴛᴜᴛᴜᴘ 🗑", callback_data="close"),
             ],
         ]
     )
@@ -809,8 +820,9 @@ async def ytp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴛᴜᴛᴜᴘ 🗑", callback_data="close"),
                 ],
             ]
         )
@@ -823,10 +835,10 @@ async def ytp(_, message: Message):
         )
     elif url:
         try:
-            results = YoutubeSearch(url, max_results=1).to_dict()
+            results = YoutubeSearch(query, max_results=1).to_dict()
             # url = f"https://youtube.com{results[0]['url_suffix']}"
-            # print(results)
-            title = results[0]["title"][:40]
+            print(results)
+            title = results[0]["title"][:999]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -838,8 +850,9 @@ async def ytp(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                        )
+                            "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                        ),
+                        InlineKeyboardButton("ᴛᴜᴛᴜᴘ 🗑", callback_data="close"),
                     ],
                 ]
             )
@@ -852,8 +865,9 @@ async def ytp(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                        )
+                            "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                        ),
+                        InlineKeyboardButton("ᴛᴜᴛᴜᴘ 🗑", callback_data="close"),
                     ],
                 ]
             )
@@ -861,7 +875,7 @@ async def ytp(_, message: Message):
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await converter.convert(youtube.download(url))
     else:
-        await lel.edit("**🔎 Menemukan lagu...**")
+        await lel.edit("**🔎 Pencarian lagu **")
         message.from_user.id
         user_id = message.from_user.id
         message.from_user.first_name
@@ -873,15 +887,15 @@ async def ytp(_, message: Message):
             query += " " + str(i)
         print(query)
         await message.delete()
-        await lel.edit("**🎵 Memproses lagu...**")
+        await lel.edit("**🎵 Memproses lagu**")
         ydl_opts = {
             "format": "bestaudio",
         }
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
-            # print(results)
-            title = results[0]["title"][:240]
+            print(results)
+            title = results[0]["title"][:999]
             thumbnail = results[0]["thumbnails"][0]
             thumb_name = f"thumb{title}.jpg"
             thumb = requests.get(thumbnail, allow_redirects=True)
@@ -901,8 +915,9 @@ async def ytp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ 💬", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
+                        "💬 sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"
+                    ),
+                    InlineKeyboardButton("ᴛᴜᴛᴜᴘ 🗑", callback_data="close"),
                 ],
             ]
         )
