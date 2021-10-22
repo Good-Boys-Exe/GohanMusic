@@ -41,7 +41,8 @@ GOHAN_IMG = [
     "https://telegra.ph/file/1588cb26e8c79a80d6c32.png",
     "https://telegra.ph/file/9fb646ad170d0512aa447.png",
     "https://telegra.ph/file/c03210961ae494a616542.png",
-    "https://telegra.ph/file/07db27b4941d88d200121.png",
+    "https://telegra.ph/file/07db27b4941d88d200121.png".
+    "https://telegra.ph/file/6d88487537ed16d78f7bf.png",
 ]
 
 
